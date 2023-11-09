@@ -15,6 +15,8 @@ if($_SESSION['employee_id']==''){
 	$product_name = mysqli_real_escape_string($con,$_POST["product_name"]);
 	$product_detail = mysqli_real_escape_string($con,$_POST["product_detail"]);
 	$product_price = mysqli_real_escape_string($con,$_POST["product_price"]);
+	$calculate_uom = mysqli_real_escape_string($con,$_POST["calculate_uom"]);
+	$production_price = mysqli_real_escape_string($con,$_POST["production_price"]);
 	$product_uom = mysqli_real_escape_string($con,$_POST["product_uom"]);	
     $product_unit = mysqli_real_escape_string($con,$_POST["product_unit"]);	
 	$product_weight = mysqli_real_escape_string($con,$_POST["product_weight"]);	
@@ -25,6 +27,8 @@ if($_SESSION['employee_id']==''){
 	product_name='$product_name',
 	product_detail='$product_detail',
 	product_price='$product_price',
+	calculate_uom='$calculate_uom',
+	production_price='$production_price',
     product_uom='$product_uom',
     product_unit='$product_unit',
 	product_weight='$product_weight',
