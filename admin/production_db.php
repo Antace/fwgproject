@@ -13,7 +13,7 @@ include( "../condb.php" );
 $strNextSeq = "";
 
 //*** Check Year ***//
-$strSQL = "SELECT * FROM tb_prefixin WHERE 1 ";
+$strSQL = "SELECT * FROM tb_prefixproduction WHERE 1 ";
 $objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 $objResult = mysqli_fetch_array($objQuery);
 
@@ -24,7 +24,7 @@ if($objResult["val"] == date("y"))
 	$strNextSeq =$objResult["val"].$objResult["mval"].$Seq;
 
 	//*** Update Next Seq ***//
-	$strSQL = "UPDATE tb_prefixin SET mval = '".date("m")."' ,seq= seq+1 ";
+	$strSQL = "UPDATE tb_prefixproduction SET mval = '".date("m")."' ,seq= seq+1 ";
 	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
 else  //*** Check val != year now ***//
@@ -33,7 +33,7 @@ else  //*** Check val != year now ***//
 	$strNextSeq =date("y").date("m").$Seq;
 
 	//*** Update New Seq ***//
-	$strSQL = "UPDATE tb_prefixin SET val = '".date("y")."' , mval='".date("m")."', seq = '1' ";
+	$strSQL = "UPDATE tb_prefixproduction SET val = '".date("y")."' , mval='".date("m")."', seq = '1' ";
 	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
 
@@ -42,11 +42,12 @@ else  //*** Check val != year now ***//
 
 
 
-
+$production_pricearray=$_POST['production_price'];
 $contractor_nickname = mysqli_real_escape_string($con,$_POST["contractor_nickname"]);
 $username = mysqli_real_escape_string($con,$_POST[ "username" ]);
 $production_date = mysqli_real_escape_string($con,$_POST["production_date"]);
 $production_dt = Date( "Y-m-d G:i:s" );
+// $production_price = mysqli_real_escape_string($con,$_POST["production_price"]);
 //บันทึกการสั่งซื้อลงใน order_detail
 mysqli_query( $con, "BEGIN" );
 $sql1 = "INSERT INTO tb_production
@@ -74,35 +75,35 @@ $production_id = $row[ "production_id" ]; // order id ล่าสุดที�
 // exit;
 //PHP foreach() เป็นคำสั่งเพื่อนำข้อมูลออกมาจากตัวแปลที่เป็นประเภท array โดยสามารถเรียกค่าได้ทั้ง $key และ $value ของ array
 foreach ( $_SESSION[ 'production' ] as $product_id => $qty ) {
-
+  $production_price = $production_pricearray[$product_id];
   $sql3 = "SELECT * FROM tb_product WHERE product_id=$product_id";
   $query3 = mysqli_query( $con, $sql3 )or die( "Error in query: $sql3" . mysqli_error( $sql3 ) );
   $row3 = mysqli_fetch_array( $query3 );
-
+  $pricetotal = $production_price;
   $count=mysqli_num_rows($query3);
   
   
  
-  $sql4 = "INSERT INTO tb_productionlist VALUES(null, $production_id, $product_id, $qty)";
+  $sql4 = "INSERT INTO tb_productionlist VALUES(null, $production_id, $product_id, $qty, $pricetotal)";
   $query4 = mysqli_query( $con, $sql4 )or die( "Error in query: $sql4" . mysqli_error( $sql4 ) );
 
   // echo '<pre>';
   // echo $sql4;
   // echo '<pre>';
   //ตัดสต๊อก
-  for ( $i = 0; $i < $count; $i++ ) {
-    $instock = $row3[ 'product_uom' ];
+  // for ( $i = 0; $i < $count; $i++ ) {
+  //   $instock = $row3[ 'product_uom' ];
 
-    $stc = $instock + $qty; //เอาจำนวนสินค้าที่มีอยู่มาลบด้วยจำนวนสั่งซื้อ
+  //   $stc = $instock + $qty; //เอาจำนวนสินค้าที่มีอยู่มาลบด้วยจำนวนสั่งซื้อ
 
-    $sql5 = "UPDATE tb_product SET  
-     product_uom=$stc
-     WHERE  product_id=$product_id ";
-    $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $sql5 ) );
-  //   echo '<pre>';
-  // echo $sql5;
-  // echo '<pre>';
-  }
+  //   $sql5 = "UPDATE tb_product SET  
+  //    product_uom=$stc
+  //    WHERE  product_id=$product_id ";
+  //   $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $sql5 ) );
+  // //   echo '<pre>';
+  // // echo $sql5;
+  // // echo '<pre>';
+  // }
 }
 
 // exit;
