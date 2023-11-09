@@ -13,23 +13,81 @@ if($_SESSION['employee_id']==''){
 	$po_date = mysqli_real_escape_string($con,$_POST["po_date"]);
 	$customer_name = mysqli_real_escape_string($con,$_POST["customer_name"]);
 	$department_name = mysqli_real_escape_string($con,$_POST["department_name"]);
-	$category_name = mysqli_real_escape_string($con,$_POST["category_name"]);
 	$work_by = mysqli_real_escape_string($con,$_POST["work_by"]);
 	$po_price = mysqli_real_escape_string($con,$_POST["po_price"]);
 	$po_place = mysqli_real_escape_string($con,$_POST["po_place"]);
 
+	
 	$date1 = date("Ymd_His");
 	$numrand = (mt_rand());
 	$prodcut_img = (isset($_POST['po_file']) ? $_POST['po_file'] : '');
 	$upload=$_FILES['po_file']['name'];
-	if($upload !='') { 
+	$type = strrchr($_FILES['po_file']['name'],".");
+
+
+	echo 'upload='.(isset($_POST['po_file']));
+	echo '<br>';
+	echo 'product_img='.($_FILES['po_file']['name']);
+	echo '<br>';
+	exit;
+	
+	if($type=='.pdf'){
+		if($upload !='') { 
 		$path="../po_file/";
 		$type = strrchr($_FILES['po_file']['name'],".");
-		$newname =$numrand.$date1.$type;
-		$path_copy=$path.$newname;
-		$path_link="../po_file/".$newname;
+		$fileNewName =$numrand.$date1.$type;
+		$path_copy=$path.$fileNewName;
+		$path_link="../po_file/".$fileNewName;
 		move_uploaded_file($_FILES['po_file']['tmp_name'],$path_copy); 
-	}
+		}
+	}elseif(isset($_POST["submit"]) && !$_FILES['po_file']['error']) {
+        $file = $_FILES['po_file']['tmp_name']; 
+        $sourceProperties = getimagesize($file);
+		$type = strrchr($_FILES['po_file']['name'],".");
+        $fileNewName = time().$type;
+        $folderPath = "../po_file/";
+        $ext = pathinfo($_FILES['po_file']['name'], PATHINFO_EXTENSION);
+        $imageType = $sourceProperties[2];
+
+        switch ($imageType) {
+
+            case IMAGETYPE_PNG:
+                $imageResourceId = imagecreatefrompng($file); 
+                $targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
+                imagepng($targetLayer,$folderPath. $fileNewName);
+                break;
+
+            case IMAGETYPE_GIF:
+                $imageResourceId = imagecreatefromgif($file); 
+                $targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
+                imagegif($targetLayer,$folderPath. $fileNewName);
+                break;
+
+            case IMAGETYPE_JPEG:
+                $imageResourceId = imagecreatefromjpeg($file); 
+                $targetLayer = imageResize($imageResourceId,$sourceProperties[0],$sourceProperties[1]);
+                imagejpeg($targetLayer,$folderPath. $fileNewName);
+                break;
+
+            default:
+                echo "Invalid Image type.";
+                exit;
+                break;
+        }
+        // move_uploaded_file($file, $folderPath. $fileNewName. "_origin.". $ext);
+    } else {
+        header("location: ./");
+    }
+
+    function imageResize($imageResourceId,$width,$height) {
+        $targetWidth = $width < 1280 ? $width : 1280 ;
+        $targetHeight = ($height/$width)* $targetWidth;
+        $targetLayer = imagecreatetruecolor($targetWidth,$targetHeight);
+        imagecopyresampled($targetLayer, $imageResourceId, 0, 0, 0, 0, $targetWidth, $targetHeight, $width, $height);
+        return $targetLayer;
+    }
+
+	
 	$username = mysqli_real_escape_string($con,$_POST["username"]);
     $check = "
 	SELECT po_name
@@ -52,7 +110,6 @@ if($_SESSION['employee_id']==''){
 	po_date,
 	customer_name,
 	department_name,
-	category_name,
 	work_by,
 	po_price,
 	po_place,
@@ -65,11 +122,10 @@ if($_SESSION['employee_id']==''){
 	'$po_date',
 	'$customer_name',
 	'$department_name',
-	'$category_name',
 	'$work_by',
 	'$po_price',
 	'$po_place',
-	'$newname',
+	'$fileNewName',
 	'$username'
 	)";
 
