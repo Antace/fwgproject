@@ -23,12 +23,12 @@
                                         session_start();
 
 
-                                        $slabel_ida = $_POST['label_ida']; //รับค่ารหัสสินค้าจาก order_form_search.php
+                                        @$slabel_ida = $_POST['label_ida']; //รับค่ารหัสสินค้าจาก order_form_search.php
                                          print_r($_POST);
 
 //  exit;
                                         @$label_ida = mysqli_real_escape_string($con, $_GET['label_ida']);
-                                        $act = mysqli_real_escape_string($con, $_GET['act']);
+                                        @$act = mysqli_real_escape_string($con, $_GET['act']);
 
                                         //print_r($label_ida);
                                         // exit;
