@@ -60,7 +60,7 @@ ORDER BY salary_id DESC" or die("Error:" . mysqli_error());
 $result = mysqli_query($con, $query);
 ?>
 
-<form name="frmsalary" action="print.php" method="post">
+<form name="frmsalary" action="salaryprintall.php" method="post">
 <table id="example1" class="table table-bordered table-striped">
 <input type = 'submit' class='btn btn-primary' name='btnprint' value='พิมพ์รายการที่เลือก'>
   <thead>
