@@ -10,19 +10,7 @@ $sql = "SELECT * FROM tb_employee WHERE employee_id=$employee_id";
 $result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
 $row = mysqli_fetch_array($result);
 ?>
-<script type="text/javascript">
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#blah').attr('src', e.target.result);
-                }
-                
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-</script>
 <form action="member_profile_edit_db.php" method="post" class="form-horizontal" enctype="multipart/form-data">
  
   <div class="form-group">
@@ -57,6 +45,7 @@ $row = mysqli_fetch_array($result);
       <input type="email" name="employee_mail" required class="form-control" value="<?php echo $row['employee_mail'];?>">
     </div>
   </div>
+  
    
   <div class="form-group">
     <div class="col-sm-2">
@@ -64,7 +53,7 @@ $row = mysqli_fetch_array($result);
     <div class="col-sm-3">
       <input type="hidden" name="employee_id" value="<?php echo $employee_id; ?>" />
       <button type="submit" class="btn btn-success">แก้ไขข้อมูล</button>
-      <a href="index.php" class="btn btn-danger">ยกเลิก</a>
+      <a href="member.php" class="btn btn-danger">ยกเลิก</a>
     </div>
   </div>
 </form>
