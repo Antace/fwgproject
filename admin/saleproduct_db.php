@@ -13,7 +13,7 @@ include( "../condb.php" );
 $strNextSeq = "";
 
 //*** Check Year ***//
-$strSQL = "SELECT * FROM tb_prefix WHERE 1 ";
+$strSQL = "SELECT * FROM tb_prefixsale WHERE 1 ";
 $objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 $objResult = mysqli_fetch_array($objQuery);
 
@@ -24,7 +24,7 @@ if($objResult["val"] == date("y"))
 	$strNextSeq =$objResult["val"].$objResult["mval"].$Seq;
 
 	//*** Update Next Seq ***//
-	$strSQL = "UPDATE tb_prefix SET mval = '".date("m")."' ,seq= seq+1 ";
+	$strSQL = "UPDATE tb_prefixsale SET mval = '".date("m")."' ,seq= seq+1 ";
 	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
 else  //*** Check val != year now ***//
@@ -33,7 +33,7 @@ else  //*** Check val != year now ***//
 	$strNextSeq =date("y").date("m").$Seq;
 
 	//*** Update New Seq ***//
-	$strSQL = "UPDATE tb_prefix SET val = '".date("y")."' , mval='".date("m")."', seq = '1' ";
+	$strSQL = "UPDATE tb_prefixsale SET val = '".date("y")."' , mval='".date("m")."', seq = '1' ";
 	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
 
