@@ -43,7 +43,7 @@ if($_SESSION['employee_id']==''){
 	'$username'
 	)";
 
-	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 }
 	mysqli_close($con);
 
