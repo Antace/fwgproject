@@ -33,7 +33,7 @@ if($_SESSION['employee_id']==''){
 	FROM tb_employees
 	WHERE emp_id = '$emp_id'
 	";
-    $result1 = mysqli_query($con, $check) or die(mysqli_error());
+    $result1 = mysqli_query($con, $check) or die(mysqli_error($con));
     $num=mysqli_num_rows($result1);
 
     if($num > 0)
@@ -82,7 +82,7 @@ if($_SESSION['employee_id']==''){
 	'$username'
 	)";
 
-	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 
 	}
 	mysqli_close($con);
