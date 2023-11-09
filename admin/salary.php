@@ -37,7 +37,7 @@
                   }elseif($act=='printall'){
                     include('print.php');
                   }else {
-                  include("date.php");
+                  include("salary_search_date.php");
                   include('salary_list.php');
                   
                   }
