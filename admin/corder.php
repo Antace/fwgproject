@@ -8,7 +8,7 @@
       <section class="content-header">
         <h1>
         <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลการสั่งป้ายที่ถูกยกเลิก</span> 
-        <a href="corder_form_add.php" class="btn btn-primary btn-sm">เพิ่มใบสั่งป้าย</a>
+        
         </h1>
       </section>
       <section class="content">
