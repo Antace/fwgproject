@@ -9,19 +9,19 @@ if($_SESSION['employee_id']==''){
 	$dept_name = mysqli_real_escape_string($con,$_POST["dept_name"]);
 	$department_name = mysqli_real_escape_string($con,$_POST["department_name"]);
 	$check = "
-	SELECT  dept_name  
+	SELECT  department_name  
 	FROM tb_department  
 	WHERE 
-	dept_name = '$dept_name'
+	department_name = '$department_name'
 	";
 	
-    $result1 = mysqli_query($con, $check) or die(mysqli_error());
+    $result1 = mysqli_query($con, $check) or die(mysqli_error($con));
     $num=mysqli_num_rows($result1);
 
     if($num > 0)
     {
      echo '<script>';
-	 echo "window.location='type.php?act=add&do=d';";
+	 echo "window.location='department.php?act=add&do=d';";
 	 echo '</script>';
     }else{
 	
@@ -29,7 +29,7 @@ if($_SESSION['employee_id']==''){
 	(dept_name,department_name)
 	VALUES
 	('$dept_name','$department_name')";
-	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 
 }
 	mysqli_close($con);
