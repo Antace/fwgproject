@@ -1,7 +1,7 @@
 <?php
 $ID = mysqli_real_escape_string($con, $_GET['ID']);
 $sql = "SELECT * FROM tb_customer WHERE customer_id=$ID";
-$result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error());
+$result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error($con));
 $row = mysqli_fetch_array($result);
 ?>
 
