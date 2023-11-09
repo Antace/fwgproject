@@ -2,12 +2,12 @@
 $ID = mysqli_real_escape_string($con,$_GET['ID']);
 $sql = "SELECT * FROM tb_po
 WHERE po_id=$ID
-ORDER BY po_id DESC" or die("Error:" . mysqli_error());
-$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+ORDER BY po_id DESC" or die("Error:" . mysqli_error($con));
+$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 $row = mysqli_fetch_array($result);
-$query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error());
+$query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error($con));
 $result2 = mysqli_query($con, $query2);
-$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error());
+$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error($con));
 $result3 = mysqli_query($con, $query3);
 ?>
 <script type="text/javascript">
