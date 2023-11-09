@@ -31,7 +31,7 @@
                   }elseif ($act == 'salary') {
                   include('salary_form_add.php');
                   }else {
-                  include('employee_list.php');
+                  include('employee_list1.php');
                   }
                   ?>                   
                   <!-- /.card-body -->
