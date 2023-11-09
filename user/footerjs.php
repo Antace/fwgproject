@@ -20,21 +20,53 @@
 <!-- daterangepicker -->
 <script src="../plugins/moment/moment.min.js"></script>
 <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+
+
 <!-- Select2 -->
 <script src="../plugins/select2/js/select2.full.min.js"></script>
 <script>
-    $(function () {
-      $('.select2').select2()
+   $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
     });
 </script>
 <!-- bs-custom-file-input -->
 <script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
 <!-- Page specific script -->
 <script>
 $(function () {
   bsCustomFileInput.init();
 });
 </script>
+
+<!-- Ekko Lightbox -->
+<script src="../plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
+
+    $('.filter-container').filterizr({gutterPixels: 3});
+    $('.btn[data-filter]').on('click', function() {
+      $('.btn[data-filter]').removeClass('active');
+      $(this).addClass('active');
+    });
+  })
+</script>
+
+
+
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
@@ -43,8 +75,8 @@ $(function () {
 <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<!-- <script src="../dist/js/demo.js"></script> -->
+
+
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../dist/js/pages/dashboard.js"></script>
 <!-- DataTables  & Plugins -->
@@ -61,21 +93,71 @@ $(function () {
 <script src="../plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["excel", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
+  $(document).ready(function () {
+    $("#example1").DataTable();
   });
 </script>
+
+<script>
+$(document).ready(function(){
+    $('#contactFrm').submit(function(e){
+        e.preventDefault();
+        $('.modal-body').css('opacity', '0.5');
+        $('.btn').prop('disabled', true);
+        
+        $form = $(this);
+        $.ajax({
+            type: "POST",
+            url: 'ajax_submit.php',
+            data: 'contact_submit=1&'+$form.serialize(),
+            dataType: 'json',
+            success: function(response){
+                if(response.status == 1){
+                    $('#contactFrm')[0].reset();
+                    $('.response').html('<div class="alert alert-success">'+response.message+'</div>');
+                }else{
+                    $('.response').html('<div class="alert alert-danger">'+response.message+'</div>');
+                }
+                $('.modal-body').css('opacity', '');
+                $('.btn').prop('disabled', false);
+            }
+        });
+    });
+});
+
+
+/*
+ * Modal popup
+ */
+// Get the modal
+var modal = $('#modalDialog');
+
+// Get the button that opens the modal
+var btn = $("#mbtn");
+
+// Get the <span> element that closes the modal
+var span = $(".close");
+
+$(document).ready(function(){
+    // When the user clicks the button, open the modal 
+    btn.on('click', function() {
+        modal.show();
+    });
+    
+    // When the user clicks on <span> (x), close the modal
+    span.on('click', function() {
+        modal.hide();
+    });
+});
+
+// When the user clicks anywhere outside of the modal, close it
+$('body').bind('click', function(e){
+    if($(e.target).hasClass("modal")){
+        modal.hide();
+    }
+});
+</script>
+
+
 
 
