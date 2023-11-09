@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$production_pricearray =  $_POST['production_price'];
 // print_r($_POST);
 
 include("../condb.php");
@@ -20,7 +20,7 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql " . mysqli_er
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">รายละเอียดข้อมูลสินค้า</span>
+                    <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">รายละเอียดการสั่งผลิต</span>
                     <!-- <a href="product.php?act=add" class="btn btn-primary btn-sm">เพิ่มสินค้า</a> -->
                 </h1>
             </section>
@@ -42,17 +42,16 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql " . mysqli_er
                                     <div class="card">
                                         <div class="card-body">
                                             <form id="frmproduction" name="frmproduction" method="post" action="production_db.php">
-                                                <table border="0" cellspacing="0" align="center" class="table table-bordered table-striped">
+                                            <table border="0" cellspacing="0" align="center" class="table table-bordered table-striped">
                                                     <tr>
                                                         <td colspan="2">เลือกข้อมูลผู้รับเหมา</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>วันที่ : <font color="red">*</font>
-                                                        </td>
+                                                        <td>วันที่ : <font color="red">*</font></td>
                                                         <td> <input type="date" name="production_date" value="<?php echo (new DateTime())->format('Y-m-d'); ?>" required class="form-control"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>ชื่อผู้รับเหมา</td>
+                                                        <td>ชื่อผู้รับเหมา : <font color="red">*</font></td>
                                                         <td><select class="select2bs4" data-placeholder="เลือกรายการ" name="contractor_nickname" style="width: 100%;">
                                                                 <option value="">-</option>
                                                                 <?php
@@ -81,13 +80,13 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql " . mysqli_er
                                                 <table width="600" border="0" align="center" class="table table-bordered table-striped">
                                                     <tr>
                                                         <td width="1558" colspan="4">
-                                                            <strong>ยืนยันการผลิต</strong>
+                                                            <strong>รายการที่สั่งผลิต</strong>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>สินค้า</td>
-
-                                                        <td align="center">จำนวน</td>
+                                                        <td>รายการ</td>
+                                                        <td align="center">ราคา/หน่วย</td>
+                                                        <td align="center">จำนวนที่สั่งผลิต</td>
 
                                                     </tr>
                                                     <?php
@@ -95,7 +94,7 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql " . mysqli_er
                                                     $vat = 0;
                                                     $stotal = 0;
                                                     foreach ($_SESSION['production'] as $product_id => $qty) {
-                                                        $sale_price = $sale_pricearray[$product_id];
+                                                        $production_price = $production_pricearray[$product_id];
                                                         $sql    = "SELECT * FROM tb_product WHERE product_id=$product_id";
                                                         $query    = mysqli_query($con, $sql);
                                                         $row    = mysqli_fetch_array($query);
@@ -105,11 +104,11 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql " . mysqli_er
                                                         // $vat = $total1 * 0.07;
                                                         // $stotal = $total1 + $vat;
 
-                                                        // echo"<input type='text' name='sale_price[$product_id]' value=' $sale_price'>";
+                                                        echo"<input type='text' name='production_price[$product_id]' value=' $production_price'>";
                                                         echo "<tr>";
                                                         echo "<td>" . $row["product_name"] . "</td>";
-                                                        // echo "<td align='right'>" . number_format($sale_price, 2) . "</td>";
-                                                        echo "<td align='right'>$qty</td>";
+                                                        echo "<td align='right'>" . number_format($production_price, 2) . "</td>";
+                                                        echo "<td align='right'>". number_format($qty,2) ."</td>";
                                                         // echo "<td align='right'>" . number_format($sum, 2) . "</td>";
                                                         echo "</tr>";
                                                     }
