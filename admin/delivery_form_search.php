@@ -1,5 +1,5 @@
 <?php
-$query1 = "SELECT * FROM tb_product ORDER BY product_id" or die ("Erorr:" . mysqli_error());
+$query1 = "SELECT * FROM tb_product ORDER BY product_id" or die ("Erorr:" . mysqli_error($con));
 $result1 = mysqli_query($con, $query1);
 
 
