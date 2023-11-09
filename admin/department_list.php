@@ -14,7 +14,7 @@
 
   }
 
-$query = "SELECT * FROM tb_department ORDER BY department_id DESC" or die("Error:" . mysqli_error());
+$query = "SELECT * FROM tb_department ORDER BY department_id DESC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
 echo ' <table id="example1" class="table table-bordered table-striped">';
   echo "<thead align=center>";
