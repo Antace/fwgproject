@@ -5,8 +5,7 @@ $query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" .
 $result2 = mysqli_query($con, $query2);
 $query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error());
 $result3 = mysqli_query($con, $query3);
-$query4 = "SELECT * FROM tb_category ORDER BY category_id asc" or die("Error:" . mysqli_error());
-$result4 = mysqli_query($con, $query4);
+
 ?>
 <!-- Main content -->
 <section class="content">
@@ -24,7 +23,8 @@ $result4 = mysqli_query($con, $query4);
 						<div class="col-1"></div>
 						<div class="col-6">
 							<div class="form-group">
-								<select class="select2" multiple="multiple" data-placeholder="บริษัท" name ="qcus" style="width: 100%;" >	
+								<select class="select2bs4" data-placeholder="บริษัท"  name ="qcus" style="width: 100%;" >
+								<option value="">-</option>
 									<?php foreach($result2 as $results){?>
 									<option value="<?php echo $results["customer_name"];?>">
 										<?php echo $results["customer_name"]; ?>
@@ -35,7 +35,8 @@ $result4 = mysqli_query($con, $query4);
 						</div>
 						<div class="col-4">
 							<div class="form-group">
-								<select class="select2" multiple="multiple" data-placeholder="โครงการ" name ="qdept" style="width: 100%;" >
+								<select class="select2bs4" data-placeholder="โครงการ" name ="qdept" style="width: 100%;" >
+								<option value="">-</option>
 									<?php foreach($result3 as $results){?>
 									<option value="<?php echo $results["department_name"];?>">
 										<?php echo $results["department_name"]; ?>
@@ -46,13 +47,13 @@ $result4 = mysqli_query($con, $query4);
 						</div>
 						<div class="col-4">
 							<div class="form-group">
-								<select class="select2" multiple="multiple" data-placeholder="ประเภทงาน" name ="qcate" style="width: 100%;"  >
-									<?php foreach($result4 as $results){?>
-									<option value="<?php echo $results["category_name"];?>">
-										<?php echo $results["category_name"]; ?>
-									</option>
-									<?php } ?>
-								</select>
+								<select class="select2bs4" data-placeholder="งานของ" name ="qcate" style="width: 100%;" >
+          							<option value="">-</option>
+          							<option value="ไม่ระบุ">ไม่ระบุ</option>
+          							<option value="LH">LH</option>
+          							<option value="SANSIRI">SANSIRI</option>
+          							<option value="QHOUSE">QHOUSE</option>
+        						</select>
 							</div>
 						</div>
 						<div class="col-sm-2">
