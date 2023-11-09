@@ -1,5 +1,5 @@
 <?php
-$query2 = "SELECT * FROM tb_dept ORDER BY dept_id asc" or die("Error:" . mysqli_error());
+$query2 = "SELECT * FROM tb_dept ORDER BY dept_id asc" or die("Error:" . mysqli_error($con));
 $result2 = mysqli_query($con, $query2);
 ?>
 <script type="text/javascript">
@@ -176,4 +176,4 @@ if (@$_GET['do'] == 'f') {
     </div>
   </div>
 </form>
-<?php include('scriptselect.php'); ?>
+<?php include('employeescriptselect.php'); ?>
