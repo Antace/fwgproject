@@ -1,5 +1,6 @@
 <?php
-include '../vendor/autoload.php';
+include ('../vendor/autoload.php');
+//require_once __DIR__ . '/vendor/autoload.php';
 $ID = mysqli_real_escape_string($con,$_GET['ID']);
 $sql = "SELECT * FROM tb_order
 WHERE order_id=$ID
@@ -13,15 +14,18 @@ ORDER BY orderlist_id DESC" or die("Error:" . mysqli_error());
 $result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_error());
 
 
+
+
 $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4',
   'margin_top' => 8,
 	'default_font_size' => 16,
 	'default_font' => 'sarabun'
 ]);
-echo'<a href="../order/order"  target="_blank" class="btn btn-primary">'.'พิมพ์'.'</a>'
+echo'<a href="../order/order.pdf"  target="_blank" class="btn btn-primary">'.'พิมพ์'.'</a>'
         .'<a href="order.php" class="btn btn-danger">'.'ยกเลิก'.'</a>';    
 ob_start();
 ?>
+
 <div class="container">
   <div class="row align-items-start">
     <div class="col-sm-12">
@@ -50,10 +54,10 @@ ob_start();
     <table class = "table table-borderless" align="center" width="100%" >
     <tr>
         <td>
-        <img src="../label_img/<?php echo $row['label_pic1'];?>"  height="200px">
+        <img src="../label_img/<?php echo $row['label_pic1'];?>"  height="150px">
         </td>
         <td>
-        <img src="../label_img/<?php echo $row['label_pic2'];?>"   height="200px">
+        <img src="../label_img/<?php echo $row['label_pic2'];?>"   height="150px">
         </td>
       </tr>
     </table>
@@ -114,16 +118,17 @@ h1.bigsection {
   <table id='customers' class = "table table-bordered" >
 <thead>
     <tr>
+    <td align='center' width="3%"><h3>ลำดับ</h3></td>
     <td align='center' width="20%"><h3>รายการ</h3></td>
     <td align='center' width="20%"><h3>แปลง</h3></td>
-    <td align='center' width="30%"><h3>โครงการ</h3></td>
-    <td align='center' width="10%"><h3>-</h3></td>
+    <td align='center' width="50%"><h3>โครงการ</h3></td>
+    <td align='center' width="7%"><h3>-</h3></td>
         
     </tr>
 </thead>
 <?php
 $total = 0;
-
+$i=1;
 while ($row1 = mysqli_fetch_array($result1)) {
          
         $label_ida=$row1['label_ida'];
@@ -133,6 +138,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
          $row2 = mysqli_fetch_array($query2);
          
         echo "<tr>";
+        echo "<td align='center'><h3>"  .$i++ . "</h3></td>";
         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='orderlist_id[]' value='$row1[orderlist_id]' readonly>";
         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='label_ida[]' value='$row2[label_ida]' readonly>";
         echo "<td align='center'><h3>"  .$row2["label_numberid"] . "</h3></td>";
@@ -154,12 +160,13 @@ while ($row1 = mysqli_fetch_array($result1)) {
 
         $html=ob_get_contents();
         $mpdf->WriteHTML($html);
-        //$filename = 'Salary'.'_'.date('D-d-m-Y-H-i-s').'.pdf';
-        $mpdf->Output('../order/order');
+
+        
+        $mpdf->Output('../order/order.pdf');
         $mpdf->cleanup();
     
 
-        echo'<a href="../order/order"  target="_blank" class="btn btn-primary">'.'พิมพ์สลิป'.'</a>'
+        echo'<a href="../order/order.pdf"  target="_blank" class="btn btn-primary">'.'พิมพ์'.'</a>'
         .'<a href="order.php" class="btn btn-danger">'.'ยกเลิก'.'</a>';    
         
 ?>
