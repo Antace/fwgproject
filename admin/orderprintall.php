@@ -1,5 +1,6 @@
 <?php
 include '../vendor/autoload.php';
+//require_once __DIR__ . '/vendor/autoload.php';
 include 'h.php';
 include 'menutop.php';
 include 'menu_l.php';
@@ -22,7 +23,7 @@ echo '<div class="col-md-12">';
 echo '<div class="sticky-top mb-12">';
 echo '<div class="card">';
 echo '<div class="card-body">';
-echo '<a href="../order/order"  target="_blank" class="btn btn-primary">' . 'พิมพ์' . '</a>'
+echo '<a href="../order/order.pdf"  target="_blank" class="btn btn-primary">' . 'พิมพ์' . '</a>'
   . '<a href="order.php" class="btn btn-danger">' . 'ยกเลิก' . '</a>'; //  echo '<pre>';
 //  print_r($_POST);
 //  echo '</pre>';
@@ -78,10 +79,10 @@ for ($i = 0; $i < count($_POST["checkbox"]); $i++) {
       echo '<table class = "table table-borderless" align="center" width="100%" >';
       echo '<tr>';
       echo '<td>';
-      echo '<img src="../label_img/' . $row["label_pic1"] . '" height="200px">';
+      echo '<img src="../label_img/' . $row["label_pic1"] . '" height="150px">';
       echo '</td>';
       echo '<td>';
-      echo '<img src="../label_img/' . $row["label_pic2"] . '" height="200px">';
+      echo '<img src="../label_img/' . $row["label_pic2"] . '" height="150px">';
       echo '</td>';
       echo '</tr>';
       echo '</table>';
@@ -106,15 +107,17 @@ for ($i = 0; $i < count($_POST["checkbox"]); $i++) {
       echo '<table id="customers" class = "table table-bordered" >';
       echo '<thead>';
       echo '<tr>';
+      echo '<td align="center" width="3%"><h3>ลำดับ</h3></td>';
       echo '<td align="center" width="20%"><h3>รายการ</h3></td>';
       echo '<td align="center" width="20%"><h3>แปลง</h3></td>';
-      echo '<td align="center" width="30%"><h3>โครงการ</h3></td>';
-      echo '<td align="center" width="10%"><h3>-</h3></td>';
+      echo '<td align="center" width="50%"><h3>โครงการ</h3></td>';
+      echo '<td align="center" width="7%"><h3>-</h3></td>';
 
       echo '</tr>';
       echo '</thead>';
 
       $total = 0;
+      $a=1;
       $sql1 = "SELECT * FROM tb_orderlist WHERE order_id='" . $_POST["checkbox"][$i] . "' ORDER BY orderlist_id DESC" or die("Error:" . mysqli_error());
       $result1 = mysqli_query($con, $sql1);
       while ($row1 = mysqli_fetch_array($result1)) {
@@ -126,6 +129,7 @@ for ($i = 0; $i < count($_POST["checkbox"]); $i++) {
         $row2 = mysqli_fetch_array($query2);
 
         echo "<tr>";
+        echo "<td align='center'><h3>"  . $a++ . "</h3></td>";
         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='orderlist_id[]' value='$row1[orderlist_id]' readonly>";
         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='label_ida[]' value='$row2[label_ida]' readonly>";
         echo "<td align='center'><h3>"  . $row2["label_numberid"] . "</h3></td>";
@@ -193,7 +197,7 @@ $mpdf->Output('../order/order');
 $mpdf->cleanup();
 
 
-echo '<a href="../order/order"  target="_blank" class="btn btn-primary">' . 'พิมพ์สลิป' . '</a>'
+echo '<a href="../order/order"  target="_blank" class="btn btn-primary">' . 'พิมพ์' . '</a>'
   . '<a href="order.php" class="btn btn-danger">' . 'ยกเลิก' . '</a>';
 echo '</div>';
 echo '</div>';
