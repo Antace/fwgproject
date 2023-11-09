@@ -47,6 +47,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="link.php" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ข้อมูลอีเมล์/เว็บไซต์</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="customer.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>ข้อมูลลูกค้า</p>
@@ -56,6 +62,12 @@
                 <a href="contractor.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>ข้อมูลผู้รับเหมา</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="expenses.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ข้อมูลค่าใช้จ่าย</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -69,7 +81,6 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>ข้อมูลหน่วยงาน/โครงการ</p>
                 </a>
-                
               </li>
               <li class="nav-item">
                 <a href="label.php" class="nav-link">
@@ -167,13 +178,11 @@
               </li>
             </ul>
           </li>
-          
-          
           <li class="nav-item menu-">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
-                ข้อมูลสต๊อกสินค้า
+                ข้อมูลการขาย
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -212,6 +221,36 @@
                 <a href="production.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>ข้อมูลการนำเข้า</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          <li class="nav-item menu-">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-shopping-cart"></i>
+              <p>
+                บันทึกรายการผลิต
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="production.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>บันทึกรายการผลิต</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="rexpenses.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>บันทึกค่าใช้จ่าย</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="payment.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>บันทึกการจ่ายเงิน</p>
                 </a>
               </li>
             </ul>
