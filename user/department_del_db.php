@@ -7,7 +7,7 @@ if($_SESSION['employee_id']==''){
 }
 	$ID  = mysqli_real_escape_string($con,$_GET["ID"]);
 	$sql = "DELETE FROM tb_department WHERE department_id=$ID";
-	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());	
+	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));	
 	mysqli_close($con);
 	
 	if($result){
