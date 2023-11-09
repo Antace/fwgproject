@@ -34,6 +34,8 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              
+              
               <li class="nav-item">
                 <a href="customer.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -52,16 +54,25 @@
                   <p>ข้อมูลสินค้า</p>
                 </a>
               </li>
-              
               <li class="nav-item">
                 <a href="department.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>ข้อมูลหน่วยงาน/โครงการ</p>
                 </a>
+                
+              </li>
+              <li class="nav-item">
+                <a href="label.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ข้อมูลป้ายบ้านเลขที่</p>
+                </a>
               </li>
             </ul>
           </li>
-          <li class="nav-header">PO MANAGEMENT</li>
+          
+          
+          
+          
           <li class="nav-item menu-">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-file"></i>
@@ -85,17 +96,86 @@
               </li>
             </ul>
           </li>
-          
-          <li class="nav-header">PRODUCT MANAGEMENT</li>
+
+         
           <li class="nav-item menu-">
             <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-shopping-cart"></i>
+              <i class="nav-icon far fa-file-alt"></i>
               <p>
-                จัดการข้อมูลสินค้า
+              ข้อมูลการสั่งป้าย
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="order.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ข้อมูลการสั่งป้าย</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="corder.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ข้อมูลการสั่งป้ายที่ถูกยกเลิก</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item menu-">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon far fa-file-alt"></i>
+              <p>
+              ข้อมูลเลขที่บ้าน
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="labeldetail.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ข้อมูลเลขที่บ้าน</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          
+          <li class="nav-item menu-">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-shopping-cart"></i>
+              <p>
+                ข้อมูลสต๊อกสินค้า
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <!-- <li class="nav-item">
+                <a href="sale.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ข้อมูลการขาย</p>
+                </a>
+              </li> -->
+              <!-- <li class="nav-item">
+                <a href="salenv.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ข้อมูลการขาย1</p>
+                </a>
+              </li> -->
+              <li class="nav-item">
+                <a href="delivery.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ข้อมูลการนำออก</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="reserve.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ข้อมูลการจอง</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="sale.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -110,6 +190,8 @@
               </li>
             </ul>
           </li>
+
+          
                     
           
           
