@@ -24,7 +24,7 @@ if($_SESSION['employee_id']==''){
 	WHERE contractor_id=$contractor_id
 	 ";
 
-	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 	mysqli_close($con);
 	
 	if($result){
