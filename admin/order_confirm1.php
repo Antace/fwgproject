@@ -197,6 +197,6 @@ $result2 = mysqli_query($con, $query2);
     }
 </script>
 <?php include('footerjs.php'); ?>
-<?php include('scriptselectpicorder.php'); ?>
+
 
 </html>
