@@ -38,7 +38,7 @@ $result_t3 = mysqli_query($con, $sql3) or die("Error in query: $sql3 " . mysqli_
             </head>
 
             <body>
-                
+
                 <section class="content">
                     <div class="container-fluid">
                         <div class="row">
@@ -61,12 +61,13 @@ $result_t3 = mysqli_query($con, $sql3) or die("Error in query: $sql3 " . mysqli_
                                                             วันที่ : <font color="red">*</font>
                                                         </td>
                                                         <td>
-                                                        <input type="date" name="delivery_date" value="<?php echo (new DateTime())->format('Y-m-d'); ?>" required class="form-control">
+                                                            <input type="date" name="delivery_date" value="<?php echo (new DateTime())->format('Y-m-d'); ?>" required class="form-control">
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>ชื่อลูกค้า : <font color="red">*</font></td>
-                                                        <td><select class="select2bs4" data-placeholder="เลือกรายการ" name="customer_name" style="width: 100%;" >
+                                                        <td>ชื่อลูกค้า : <font color="red">*</font>
+                                                        </td>
+                                                        <td><select class="select2bs4" data-placeholder="เลือกรายการ" name="customer_name" style="width: 100%;">
                                                                 <option value="-">-</option>
                                                                 <option value="ไม่ระบุ">ไม่ระบุ</option>
                                                                 <?php
@@ -78,14 +79,15 @@ $result_t3 = mysqli_query($con, $sql3) or die("Error in query: $sql3 " . mysqli_
                                                                 }
                                                                 ?>
                                                             </select>
-                                                           
+
                                                         </td>
                                                     </tr>
-                                                    
-                                                    
+
+
                                                     <tr>
-                                                        <td>โครงการ : <font color="red">*</font></td>
-                                                        <td><select class="select2bs4" data-placeholder="เลือกรายการ" name="department_name" style="width: 100%;" >
+                                                        <td>โครงการ : <font color="red">*</font>
+                                                        </td>
+                                                        <td><select class="select2bs4" data-placeholder="เลือกรายการ" name="department_name" style="width: 100%;">
                                                                 <option value="-">-</option>
                                                                 <option value="ไม่ระบุ">ไม่ระบุ</option>
                                                                 <?php
@@ -97,7 +99,7 @@ $result_t3 = mysqli_query($con, $sql3) or die("Error in query: $sql3 " . mysqli_
                                                                 }
                                                                 ?>
                                                             </select>
-                                                           
+
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -110,7 +112,7 @@ $result_t3 = mysqli_query($con, $sql3) or die("Error in query: $sql3 " . mysqli_
 
 
 
-                                                
+
                                                 <table width="600" border="0" align="center" class="table table-bordered table-striped">
                                                     <tr>
                                                         <td width="1558" colspan="4">
@@ -135,9 +137,9 @@ $result_t3 = mysqli_query($con, $sql3) or die("Error in query: $sql3 " . mysqli_
 
                                                         echo "<tr>";
                                                         echo "<td>" . $row["product_name"] . "</td>";
-                                                    
+
                                                         echo "<td align='right'>$qty</td>";
-                                                        
+
                                                         echo "</tr>";
                                                     }
 
