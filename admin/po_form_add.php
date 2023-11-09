@@ -51,7 +51,7 @@ echo '<meta http-equiv="refresh" content="1;url=po.php?act=add" />';
             <?php echo $results["customer_name"]; ?>
           </option>
           <?php } ?>
-        </select><a href="customer.php?act=add" ">เพิ่มบริษัท</a>
+        </select><a href="customer.php?act=add" >เพิ่มบริษัท</a>
       </div>
     </div>
     <div class="col-sm-6">
@@ -64,7 +64,7 @@ echo '<meta http-equiv="refresh" content="1;url=po.php?act=add" />';
             <?php echo $results["department_name"]; ?>
           </option>
           <?php } ?>
-        </select><a href="department.php?act=add" ">เพิ่มโครงการ</a>
+        </select><a href="department.php?act=add" >เพิ่มโครงการ</a>
       </div>
     </div>
     
