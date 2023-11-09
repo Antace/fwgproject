@@ -62,7 +62,7 @@
                                         {
                                             unset($_SESSION['delivery']);
                                         }
-                                        $query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error());
+                                        $query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error($con));
                                         $result2 = mysqli_query($con, $query2);
                                         $row2 = mysqli_fetch_array($result2);
                                         ?>
