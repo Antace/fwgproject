@@ -16,7 +16,7 @@ session_start(); ?>
         Header("Location: ../logout.php");
     }
     $sql = "SELECT username FROM tb_employee WHERE employee_id=$employee_id";
-    $result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error());
+    $result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error($con));
     $row = mysqli_fetch_array($result);
     $sql1 = "SELECT * FROM tb_po WHERE po_dateexpire < current_date AND po_dateexpire != 0000-00-00 AND cb_name = ' '"; //SELECT ข้อมูลทั้งหมดจาก ตาราง tb_po กำหนดเงื่อนไขคอลัมภ์ เป็น po_dateexpire น้อยกว่า วันที่ปัจจุบัน และ po_dateexpire ไม่เท่ากับ 0000-00-00
     $result1 = mysqli_query($con, $sql1);
@@ -68,23 +68,35 @@ session_start(); ?>
     <link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Bootstrap4 Duallistbox -->
-    <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+    <link rel="stylesheet" href="../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- BS Stepper -->
-    <link rel="stylesheet" href="../../plugins/bs-stepper/css/bs-stepper.min.css">
+    <link rel="stylesheet" href="../plugins/bs-stepper/css/bs-stepper.min.css">
     <!--Script SweetAlert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- jQuery -->
     <script src="../plugins/jquery/jquery.min.js"></script>
     <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <link rel="stylesheet" href="../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Toastr -->
-    <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
+
+    <!-- Css Bootstrap 4 -->
+    <!-- <link rel="stylesheet" href="../css/bootstrap.min.css" />   -->
+    <!-- Js Bootstrap 4 -->
+    <script src="../js/bootstrap.min.js"></script>  
 
 
+    
 
+    <!-- jQuery library -->
+    <script src="../js/jquery.min.js"></script>
+    
 
     <script src="../js/gijgo.min.js" type="text/javascript"></script>
     <link href="../css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+    
+    
 
     <script type="text/javascript">
         function autoTab(obj) {
