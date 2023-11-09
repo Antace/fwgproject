@@ -1,31 +1,16 @@
-<?php 
+<?php
 $ID = mysqli_real_escape_string($con,$_GET['ID']);
-$sql = "SELECT * FROM tb_po 
+$sql = "SELECT * FROM tb_po
 WHERE po_id=$ID
 ORDER BY po_id DESC" or die("Error:" . mysqli_error());
 $result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
 $row = mysqli_fetch_array($result);
-
-
-$sql2 = "SELECT * FROM tb_category 
-ORDER BY category_id DESC" or die("Error:" . mysqli_error());
-$result_t = mysqli_query($con, $sql2) or die ("Error in query: $sql " . mysqli_error());
-
-
+$query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error());
+$result2 = mysqli_query($con, $query2);
+$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error());
+$result3 = mysqli_query($con, $query3);
 ?>
-<script type="text/javascript">
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#blah').attr('src', e.target.result);
-                }
-                
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-</script>
 
 <form action="iv_form_edit_db.php" method="post" class="form-horizontal" enctype="multipart/form-data">
   <div class="form-group">
@@ -53,14 +38,26 @@ $result_t = mysqli_query($con, $sql2) or die ("Error in query: $sql " . mysqli_e
         <input type="date" name="iv_date" required class="form-control" value="<?php echo $row['iv_date'];?>">
       </div>
     </div>
-  <div class="form-group">
+    <div class="form-group">
       <div class="col-sm-2 control-label">
-        อัปโหลดใบแจ้งหนี้ :
+        ไฟล์ :
       </div>
       <div class="col-sm-3">
-        <a href="../iv_file/<?php echo $row['iv_file'];?>" target="_blank" class="btn btn-info btn-sm"> เปิดดู </a>
-        <font color="red">*อัพโหลดได้เฉพาะ .pdf เท่านั้น </font>
-        <input type="file" name="iv_file"    class="form-control" accept="application/pdf" value="<?php echo $row['iv_file'];?>">
+        <font color="red">*อัพโหลดได้เฉพาะไฟล์รูปและPDFเท่านั้น </font>
+        <input type="file" class="form-control" id="file" name="iv_file" accept="image/application/PDF*" onchange="readURL(this)"  >
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-2 control-label">
+        รูปเดิม :<br>
+      <img src="../iv_file/<?php echo $row['iv_file'];?>" width="200px">
+      <br>
+      </div>
+      <div class="col-sm-3">
+        รูปใหม่ :
+      <div id="imgControl" class="d-none">
+        <img id="imgUpload" class="img-fluid my-3">
+      </div>
       </div>
     </div>
   <div class="form-group">
@@ -69,8 +66,21 @@ $result_t = mysqli_query($con, $sql2) or die ("Error in query: $sql " . mysqli_e
     <div class="col-sm-3">
       <input type="hidden" name="iv_file2" value="<?php echo $row['iv_file'];?>">
       <input type="hidden" name="po_id" value="<?php echo $ID; ?>" />
-      <button type="submit" class="btn btn-success">แก้ไขข้อมูล</button>
+      <button type="submit" name="submit" class="btn btn-success">บันทึก</button>
       <a href="po.php" class="btn btn-danger">ยกเลิก</a>
     </div>
   </div>
 </form>
+<script>
+        function readURL(input){
+            if(input.files[0]){
+                let reader = new FileReader();
+                document.querySelector('#imgControl').classList.replace("d-none", "d-block");
+                reader.onload = function (e) {
+                    let element = document.querySelector('#imgUpload');
+                    element.setAttribute("src", e.target.result);
+                }  
+                reader.readAsDataURL(input.files[0]);
+            }         
+        }
+    </script>
