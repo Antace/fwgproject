@@ -64,7 +64,7 @@
                         <div class="col-sm-6">
 
                           <button type="submit" class="btn btn-success" id="btn">บันทึกข้อมูล </button>
-                          <a href="index.php" class="btn btn-danger">ยกเลิก</a>
+                          <a href="member.php" class="btn btn-danger">ยกเลิก</a>
                         </div>
                       </div>
                     </form>
