@@ -32,6 +32,8 @@
                     include('pm_form_edit.php');
                     }elseif ($act == 'cb') {
                     include('cb_form_edit.php');
+                    }elseif ($act == 'ex') {
+                    include('ex_form_view.php');
                     }else {
                     include('formsearch.php');
                     include('po_list.php');
