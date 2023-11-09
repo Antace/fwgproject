@@ -5,14 +5,14 @@ $ID = mysqli_real_escape_string($con,$_GET['ID']);
 
 $sql = "SELECT * FROM tb_production
 WHERE production_id=$ID
-ORDER BY production_id DESC" or die("Error:" . mysqli_error());
-$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+ORDER BY production_id DESC" or die("Error:" . mysqli_error($con));
+$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 $row = mysqli_fetch_array($result);
 
 $sql1 = "SELECT * FROM tb_productionlist
 WHERE production_id=$ID
-ORDER BY productionlist_id DESC" or die("Error:" . mysqli_error());
-$result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_error());
+ORDER BY productionlist_id DESC" or die("Error:" . mysqli_error($con));
+$result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_error($con));
 
 
 ?>
@@ -39,7 +39,7 @@ $result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_e
 <tr>
     <td>รายการ</td>
     
-    <td align="center">จำนวน</td>
+    <td align="center">จำนวนที่สั่งผลิต</td>
     
     <!-- <td align="center">ลบ</td> -->
 </tr>
@@ -68,13 +68,8 @@ while ($row1 = mysqli_fetch_array($result1)) {
         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='productionlist_id[]' value='$row1[productionlist_id]' readonly>";
         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='product_id[]' value='$row2[product_id]' readonly>";
         echo "<td width='334'>" . $row2["product_name"] . "</td>";
-        
-        
-        
         echo "<td width='46' align='right'>" . "<input type='number' style='text-align:right;'  class='form-control' name='production_uom[]' value='$row1[production_uom]' readonly>" . "</td>";
         echo "</td>";
-        
-        
         //remove product
         // echo "<td width='46' align='center'><a href='production_form_add1.php?product_id=$product_id&act=remove'class='btn btn-danger'>ลบ</a></td>";
         echo "</tr>";
