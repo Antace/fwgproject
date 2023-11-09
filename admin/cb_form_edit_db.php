@@ -87,7 +87,7 @@ function imageResize($imageResourceId,$width,$height) {
 	WHERE po_id=$po_id
 	 ";
 
-	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 	mysqli_close($con);
 	
 	if($result){
