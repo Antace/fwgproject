@@ -8,7 +8,8 @@
       <section class="content-header">
         <h1>
         <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลสินค้า</span> 
-        <a href="product.php?act=add" class="btn btn-primary btn-sm">เพิ่มสินค้า</a>
+        <a href="product.php?act=add" class="btn btn-primary btn-sm">เพิ่มรายการของขาย</a>
+        <a href="product.php?act=add1" class="btn btn-primary btn-sm">เพิ่มรายการโครงการ</a>
         </h1>
       </section>
       <section class="content">
@@ -22,9 +23,13 @@
                     $act = (isset($_GET['act']) ? $_GET['act'] : '');
                     if($act == 'add'){
                         include('product_form_add.php');
+                    }elseif($act == 'add1'){
+                      include('product_form_add1.php');
                     }elseif ($act == 'edit') {
                         include('product_form_edit.php');
-                    }else {
+                    }elseif ($act == 'edit1') {
+                      include('product_form_edit1.php');
+                  }else {
                         include('product_list.php');
                     }
                   ?>                   
