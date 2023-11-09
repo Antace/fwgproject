@@ -5,14 +5,14 @@ $ID = mysqli_real_escape_string($con,$_GET['ID']);
 
 $sql = "SELECT * FROM tb_cancelorder
 WHERE corder_id=$ID
-ORDER BY corder_id DESC" or die("Error:" . mysqli_error());
-$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+ORDER BY corder_id DESC" or die("Error:" . mysqli_error($con));
+$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 $row = mysqli_fetch_array($result);
 
 $sql1 = "SELECT * FROM tb_cancelorderlist
 WHERE corder_id=$ID
-ORDER BY corderlist_id DESC" or die("Error:" . mysqli_error());
-$result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_error());
+ORDER BY corderlist_id DESC" or die("Error:" . mysqli_error($con));
+$result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_error($con));
 
 
 ?>
