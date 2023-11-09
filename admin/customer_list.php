@@ -11,7 +11,7 @@ if (@$_GET['do'] == 'success') {
   echo '<meta http-equiv="refresh" content="1;url=customer.php" />';
 }
 $query = "SELECT * FROM tb_customer
-ORDER BY customer_id DESC" or die("Error:" . mysqli_error());
+ORDER BY customer_id DESC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
 echo ' <table id="example1" class="table table-bordered table-striped">';
 echo "<thead  align=center>";
