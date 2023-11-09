@@ -1,0 +1,51 @@
+<?php
+session_start();
+echo '<meta charset="utf-8">';
+include('../condb.php');
+// echo "<pre>";
+// print_r($_POST);
+// echo "</pre>";
+// exit();
+if($_SESSION['employee_id']==''){
+	Header("Location: index.php");
+}
+	$rexpenses_date = mysqli_real_escape_string($con,$_POST["rexpenses_date"]);
+	$contractor_nickname = mysqli_real_escape_string($con,$_POST["contractor_nickname"]);
+	$expenses_name = mysqli_real_escape_string($con,$_POST["expenses_name"]);
+	$rexpenses_uom = mysqli_real_escape_string($con,$_POST["rexpenses_uom"]);
+
+
+	
+	$username = mysqli_real_escape_string($con,$_POST["username"]);
+
+	$sql = "INSERT INTO tb_rexpenses
+	(
+	rexpenses_date,
+	contractor_nickname,
+	expenses_name,
+	rexpenses_uom,
+	username
+	)
+	VALUES
+	(
+	'$rexpenses_date',
+	'$contractor_nickname',
+	'$expenses_name',
+	'$rexpenses_uom',
+	'$username'
+	)";
+
+	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+
+	mysqli_close($con);
+
+	if($result){
+	echo '<script>';
+    echo "window.location='rexpenses.php?do=success';";
+    echo '</script>';
+	}else{
+	echo '<script>';
+    echo "window.location='rexpenses.php?act=add&do=f';";
+    echo '</script>';
+}
+?>
