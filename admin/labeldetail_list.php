@@ -29,7 +29,7 @@ if ($qdeptpd != '') { //ถ้า $qdeptpd ไม่เท่ากับค่�
   include('footerjs.php');
   exit;
 }
-if ($qdeptppd != '') { //ถ้า $qdeptpd ไม่เท่ากับค่าว่าง ให้ เรียกไฟล์ labeldetail_list_showpd.php และ labeldetail_searchpd.php และ footerjs.php
+if ($qdeptpd != '') { //ถ้า $qdeptpd ไม่เท่ากับค่าว่าง ให้ เรียกไฟล์ labeldetail_list_showpd.php และ labeldetail_searchpd.php และ footerjs.php
   include('labeldetail_searchppd.php');
   include('labeldetail_list_showppd.php');
   include('footerjs.php');
