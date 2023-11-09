@@ -39,7 +39,7 @@ while ($row = mysqli_fetch_array($result)) {
   </td> ";
   }else{
     echo "<td align=center><a href='labeldetail.php?act=edit&ID=$row[label_ida]' class='btn btn-warning btn-xs'><i class='fas fa-pencil-alt'></i></a>
-  <a href='label_del_db.php?ID=$row[product_id]' onclick=\"return confirm('ยันยันการลบ')\" class='btn btn-danger btn-xs'><i class='fas fa-trash'></i></a></td> ";
+  <a href='labeldetail_del_db.php?ID=$row[label_ida]' onclick=\"return confirm('ยันยันการลบ')\" class='btn btn-danger btn-xs'><i class='fas fa-trash'></i></a></td> ";
   }
 }
 
