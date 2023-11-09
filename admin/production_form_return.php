@@ -27,8 +27,8 @@ mysqli_query( $con, "BEGIN" );
 $sql1 = "DELETE FROM tb_production WHERE production_id=$production_id";
 $query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_error($sql1));
 
-
-echo $sql1;
+echo '<br>';
+echo 'sql1 ='. $sql1;
 //exit;
 // ฟังก์ชั่น MAX() จะคืนค่าที่มากที่สุดในคอลัมน์ที่ระบุ ออกมา หรือจะพูดง่ายๆก็ว่า ใช้สำหรับหาค่าที่มากที่สุด นั่นเอง.
 for($a=0;$a<count($_POST["productionlist_id"]);$a++){
@@ -49,29 +49,29 @@ for($i=0;$i<count($_POST["product_id"]);$i++){
   
   $count=mysqli_num_rows($query3);
   
-//   echo '<br>';
-// echo 'sql2 = '.$sql2;
-// echo '<br>';
+  echo '<br>';
+echo 'sql2 = '.$sql2;
+echo '<br>';
 
 // echo '$_POST[production_uom]='.$_POST['production_uom'][$i];
   //ตัดสต๊อก
 
-    $instock = $row3[ 'product_uom' ];
-    $production_uom = $_POST['production_uom'][$i];
+    // $instock = $row3[ 'product_uom' ];
+    // $production_uom = $_POST['production_uom'][$i];
 
-    $stc = $instock - $production_uom; //เอาจำนวนสินค้าที่มีอยู่มาบวกด้วยจำนวนคืนสินค้า
-    echo '<br>';
-    echo 'instcok ='.$instock;
-    echo '<br>';
-    echo 'stc ='.$stc;
-    echo '<br>';
-    echo 'production_uom ='.$production_uom;
-    echo '<br>';
+    // $stc = $instock - $production_uom; //เอาจำนวนสินค้าที่มีอยู่มาบวกด้วยจำนวนคืนสินค้า
+    // echo '<br>';
+    // echo 'instcok ='.$instock;
+    // echo '<br>';
+    // echo 'stc ='.$stc;
+    // echo '<br>';
+    // echo 'production_uom ='.$production_uom;
+    // echo '<br>';
    
-    $sql5 = "UPDATE tb_product SET  
-     product_uom=$stc
-     WHERE  product_id='".$_POST["product_id"][$i]."'";
-    $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $sql5 ) );
+    // $sql5 = "UPDATE tb_product SET  
+    //  product_uom=$stc
+    //  WHERE  product_id='".$_POST["product_id"][$i]."'";
+    // $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $sql5 ) );
 
 
     // echo 'sql5 ='.$sql5;
@@ -79,7 +79,7 @@ for($i=0;$i<count($_POST["product_id"]);$i++){
   
 
 }
-// exit;
+exit;
 
 if ( $query1 && $query3 ) {
   mysqli_query( $con, "COMMIT" );
