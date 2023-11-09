@@ -19,7 +19,7 @@
                             <div class="sticky-top mb-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        
+
                                         <?php
                                         session_start();
 
@@ -27,7 +27,7 @@
                                         $sproduct_id = $_POST['product_id']; //รับค่ารหัสสินค้าจาก production_form_search.php
                                         //  print_r($_POST);
 
-//  exit;
+                                        //  exit;
                                         @$product_id = mysqli_real_escape_string($con, $_GET['product_id']);
                                         $act = mysqli_real_escape_string($con, $_GET['act']);
 
@@ -45,18 +45,17 @@
                                             unset($_SESSION['production'][$product_id]);
                                         }
                                         if ($act == 'update') {
-                                            $production_pricearray=$_POST['production_price'];
+                                            $production_pricearray = $_POST['production_price'];
                                             // foreach($production_pricearray as $product_id => $production_price){
                                             //     $_SESSION['production'][$product_id] = $production_price;
                                             // }
-                                            
-                                            $discount=$_POST['production_discount'];
-                                            
+
+                                            $discount = $_POST['production_discount'];
+
                                             $amount_array = $_POST['amount'];
                                             foreach ($amount_array as $product_id => $amount) {
                                                 $_SESSION['production'][$product_id] = $amount;
                                             }
-                                           
                                         }
                                         if ($act == 'cancel')  //ยกเลิกการสั่งซื้อ
                                         {
@@ -78,7 +77,7 @@
                                         </script>';
                                             echo '<meta http-equiv="refresh" content="1;url=product.php?act=add" />';
                                         }
-                                        
+
                                         ?>
                                         <div align="right">
                                             <font color="red">*</font>
@@ -87,7 +86,7 @@
                                         <hr>
                                         <?php
                                         include "production_form_search.php";
-                                        
+
                                         ?>
 
                                         <form id="frmproduction" name="frmproduction" method="post" action="?act=update">
@@ -95,36 +94,36 @@
 
                                                 <tr>
                                                     <td>รายการ</td>
-                                                    <td align="center">คงเหลือ</td>
-                                                    <!-- <td align="center">ราคามาตราฐาน</td>
-                                                    <td align="center">ราคา<font color='red'>* </font></td> -->
-                                                    <td align="center">จำนวน</td>
+                                                    <!-- <td align="center">คงเหลือ</td> -->
+                                                    <td align="center">ราคา/หน่วย</td>
+                                                    <!-- <td align="center">ราคา<font color='red'>* </font></td> -->
+                                                    <td align="center">จำนวนที่สั่งผลิต</td>
                                                     <!-- <td align="center">รวม(บาท)</td> -->
                                                     <td align="center">ลบ</td>
                                                 </tr>
                                                 <?php
                                                 $total = 0;
                                                 if (!empty($_SESSION['production'])) {
-                                                    foreach ($_SESSION['production'] as $product_id => $qty  ) {
+                                                    foreach ($_SESSION['production'] as $product_id => $qty) {
                                                         $production_price = $production_pricearray[$product_id];
                                                         $sql = "SELECT * FROM tb_product WHERE product_id=$product_id";
-                                                        
+
                                                         $query = mysqli_query($con, $sql);
                                                         $row = mysqli_fetch_array($query);
                                                         $sum = $production_price * $qty;
                                                         $total += $sum;
-                                                        $total1 = $total-$discount;
-                                                        
-                                                        
+                                                        $total1 = $total - $discount;
+
+
                                                         $vat = ($total1 * 0.07);
                                                         $stotal = $total1 + $vat;
                                                         $p_qty = $row['product_uom']; //จำนวนสินค้าในสต๊อก
                                                         echo "<tr>";
                                                         echo "<td width='334'>" . $row["product_name"] . "</td>";
-                                                        echo "<td width='20' align='center'>" . $row["product_uom"]  . "</td>";
-                                                        // echo "<td width='46' align='right'>" . number_format($row["product_price"], 2) . "</td>";
-                                                        // echo "<td width='57' align='right'>";
-                                                        // echo "<input type='number' class='form-control' style='text-align:right;' name='production_price[$product_id]' value='$production_price' size='2' Required/></td>";
+                                                        // echo "<td width='20' align='center'>" . $row["product_uom"]  . "</td>";
+                                                        // echo "<td width='46' align='right'>" . number_format($row["production_price"], 2) . "</td>";
+                                                        echo "<td width='57' align='right'>";
+                                                        echo "<input type='number' class='form-control' style='text-align:right;' name='production_price[$product_id]' value='$row[production_price]' size='2' Required/ readonly></td>";
                                                         echo "<td width='57' align='right'>";
                                                         echo "<input type='number' class='form-control' style='text-align:right;' name='amount[$product_id]' value='$qty' size='2' min='1' /></td>";
                                                         // echo "<td width='93' align='right'>" . number_format($sum, 2) . "</td>";
@@ -159,13 +158,13 @@
                                                     echo "</tr>";
                                                 }
                                                 ?>
-                                                
+
                                                 <tr>
                                                     <td colspan="7" align="right">
                                                         <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="ปรับปรุง" />
                                                         <?php if ($act == 'update') { ?>
                                                             <input type="button" value="สั่งผลิต" class="btn btn-info btn-sm" onClick="this.form.action='production_confirm.php'; submit()">
-                                                            
+
                                                         <?php } ?>
                                                     </td>
                                                 </tr>
