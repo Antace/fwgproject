@@ -21,20 +21,24 @@
                     <?php
                     $act = (isset($_GET['act']) ? $_GET['act'] : '');
                     if($act == 'add'){
-                        include('po_form_add.php');
+                    include('po_form_add.php');
                     }elseif ($act == 'edit') {
-                        include('po_form_edit.php');
+                    include('po_form_edit.php');
                     }elseif ($act == 'db') {
-                        include('db_form_edit.php');
+                    include('db_form_edit.php');
                     }elseif ($act == 'iv') {
-                        include('iv_form_edit.php');
+                    include('iv_form_edit.php');
                     }elseif ($act == 'pm') {
-                        include('pm_form_edit.php');
+                    include('pm_form_edit.php');
                     }elseif ($act == 'cb') {
-                        include('cb_form_edit.php');
+                    include('cb_form_edit.php');
+                    }elseif ($act == 'ex') {
+                    include('ex_form_view.php');
                     }else {
-                        include('poe_list.php');
+                    include('formsearch.php');
+                    include('poe_list.php');
                     }
+                    
                   ?>                   
                   <!-- /.card-body -->
                   </div>
