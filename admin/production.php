@@ -9,6 +9,7 @@
         <h1>
         <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลการผลิต</span> 
         <a href="production_form_add.php" class="btn btn-primary btn-sm">เพิ่มรายการผลิต</a>
+        
         </h1>
       </section>
       <section class="content">
