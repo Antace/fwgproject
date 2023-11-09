@@ -21,17 +21,17 @@ $employee_id = $_POST['employee_id'];
 		if($resault_resetpass){
 			//แก้ไขสำเร็จ
 			echo '<script>';
-			echo "window.location='index.php?do=finish';";
+			echo "window.location='member.php?do=finish';";
 			echo '</script>';
 		}else{
 			//แก้ไขไม่สำเร็จ
 			echo '<script>';
-			echo "window.location='index.php?do=wrongpass';";
+			echo "window.location='member.php?do=wrongpass';";
 			echo '</script>';
 		}
  	}else{
 	 		echo '<script>';
-			echo "window.location='index.php?do=wrong';";
+			echo "window.location='member.php?do=wrong';";
 			echo '</script>';
  	}
 
