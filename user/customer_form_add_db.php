@@ -13,8 +13,11 @@ if($_SESSION['employee_id']==''){
 	$customer_address = mysqli_real_escape_string($con,$_POST["customer_address"]);
 	$customer_branch = mysqli_real_escape_string($con,$_POST["customer_branch"]);
 	$customer_tax = mysqli_real_escape_string($con,$_POST["customer_tax"]);
-	$customer_tel = mysqli_real_escape_string($con,$_POST["customer_tel"]);
+	$customer_type = mysqli_real_escape_string($con,$_POST["customer_type"]);
+	$customer_credit = mysqli_real_escape_string($con,$_POST["customer_credit"]);
+	$username = mysqli_real_escape_string($con,$_POST["username"]);
 
+	
 	
 	
 
@@ -23,7 +26,7 @@ if($_SESSION['employee_id']==''){
 	FROM tb_customer
 	WHERE customer_name = '$customer_name'
 	";
-    $result1 = mysqli_query($con, $check) or die(mysqli_error());
+    $result1 = mysqli_query($con, $check) or die(mysqli_error($con));
     $num=mysqli_num_rows($result1);
 
     if($num > 0)
@@ -39,7 +42,9 @@ if($_SESSION['employee_id']==''){
 	customer_address,
 	customer_branch,
 	customer_tax,
-	customer_tel
+	customer_type,
+	customer_credit,
+	username
 	)
 	VALUES
 	(
@@ -47,10 +52,12 @@ if($_SESSION['employee_id']==''){
 	'$customer_address',
 	'$customer_branch',
 	'$customer_tax',
-	'$customer_tel'
+	'$customer_type',
+	'$customer_credit',
+	'$username'
 	)";
 
-	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 
 	}
 	mysqli_close($con);
