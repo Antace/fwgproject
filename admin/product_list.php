@@ -17,11 +17,11 @@ echo ' <table id="example1" class="table table-bordered table-striped">';
 echo "<thead  align=center>";
 echo "<tr class='table-light'>
       <th width='3%'>ลำดับ</th>
-      <th width='15%'>รหัสสินค้า</th>
-      <th width='30%'>ชื่อสินค้า</th>
-      <th width='15%'>ราคาขาย</th>
-      <th width='15%'>คงเหลือ</th>
-      <th width='15%'>น้ำหนัก</th>
+      <th width='10%'>รหัสสินค้า</th>
+      <th width='50%'>ชื่อสินค้า</th>
+      <th width='10%'>ราคาขาย</th>
+      <th width='10%'>คงเหลือ</th>
+      <th width='10%'>น้ำหนัก</th>
       <th width='7%'>-</th>
     </tr>";
 echo "</thead>";
