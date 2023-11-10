@@ -80,23 +80,15 @@ session_start(); ?>
     <!-- Toastr -->
     <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
 
-    <!-- Css Bootstrap 4 -->
-    <!-- <link rel="stylesheet" href="../css/bootstrap.min.css" />   -->
-    <!-- Js Bootstrap 4 -->
-    <script src="../js/bootstrap.min.js"></script>  
 
-
-    
+    <!-- Stylesheet file -->
+    <link rel="stylesheet" href="../css/style.css">
 
     <!-- jQuery library -->
     <script src="../js/jquery.min.js"></script>
     
-
     <script src="../js/gijgo.min.js" type="text/javascript"></script>
     <link href="../css/gijgo.min.css" rel="stylesheet" type="text/css" />
-
-    
-    
 
     <script type="text/javascript">
         function autoTab(obj) {
