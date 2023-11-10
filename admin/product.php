@@ -8,8 +8,8 @@
       <section class="content-header">
         <h1>
         <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลสินค้า</span> 
-        <a href="product.php?act=add" class="btn btn-primary btn-sm">เพิ่มรายการของขาย</a>
-        <a href="product.php?act=add1" class="btn btn-primary btn-sm">เพิ่มรายการโครงการ</a>
+        <a href="product.php?act=add" class="btn btn-primary btn-sm">เพิ่มรายการคิดตามจำนวน</a>
+        <a href="product.php?act=add1" class="btn btn-secondary btn-sm">เพิ่มรายการคิดตามความยาว</a>
         </h1>
       </section>
       <section class="content">
