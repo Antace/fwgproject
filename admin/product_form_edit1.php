@@ -78,7 +78,7 @@ $result_t = mysqli_query($con, $query2);
                     }
                     ?>
                 </select>
-                <a href="productdept.php?act=add" class="btn btn-primary btn-xs">เพิ่ม</a><font color="gray"> ถ้าไม่มีรายการให้กดปุ่มเพิ่ม </font>
+                <a href="productdept.php?act=productedit&ID=<?php echo $row['product_id'];?>" class="btn btn-primary btn-xs">เพิ่ม</a><font color="gray"> ถ้าไม่มีรายการให้กดปุ่มเพิ่ม </font>
                 <input type="hidden" id="productdept_name" name="product_name" value="<?php echo $row["product_name"]; ?>" require class="form-control" readonly>
             </div>
         </div>
