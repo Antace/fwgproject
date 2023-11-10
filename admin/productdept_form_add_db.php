@@ -9,7 +9,7 @@ include('../condb.php');
 if($_SESSION['employee_id']==''){
 	Header("Location: index.php");
 }
-    
+	
 	$productdept_name = mysqli_real_escape_string($con,$_POST["productdept_name"]);
 	$productdept_price = mysqli_real_escape_string($con,$_POST["productdept_price"]);
 	
@@ -54,7 +54,7 @@ if($_SESSION['employee_id']==''){
     echo '</script>';
 	}elseif($_GET['act']=="productedit"){
 	echo '<script>';
-    echo "window.location='product.php?act=edit';";
+    echo "window.location='product.php?act=edit1&ID=$_GET[ID]';";
     echo '</script>';
 	}
 	}else{
