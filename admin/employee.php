@@ -5,7 +5,7 @@
     <?php include('menutop.php');?>
     <!-- Left side column. contains the logo and sidebar -->
     
-        <?php include('menu_l.php');?>
+    <?php include('menu_l.php');?>
       
     <div class="content-wrapper">
       <section class="content-header">
@@ -31,7 +31,7 @@
                   }elseif ($act == 'salary') {
                   include('salary_form_add.php');
                   }else {
-                  include('employee_list1.php');
+                  include('employee_list.php');
                   }
                   ?>                   
                   <!-- /.card-body -->
