@@ -34,14 +34,7 @@ swal("", "ชื่อสินค้าซ้ำ กรุณาเปลี่
                 <input type="text" name="product_name" require class="form-control">
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-sm-2 control-label">
-                ความยาว (Varies) : <font color="red">*</font>
-            </div>
-            <div class="col-sm-6">
-                <input type="decimal" name="product_name" require class="form-control">
-            </div>
-        </div>
+        
         <div class="form-group">
             <div class="col-sm-3 control-label" class="form-control">
                 รายละเอียดสินค้า :
