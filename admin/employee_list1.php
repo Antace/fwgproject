@@ -81,7 +81,7 @@
     $strSQL .= "WHERE employee_id = ''" . $_GET["ID"] . "' ";
     $objQuery = mysqli_query($con, $strSQL);
     if (!$objQuery) {
-      echo "Error Delete [" . mysqli_error() . "]";
+      echo "Error Delete [" . mysqli_error($con) . "]";
     }
     //header("location:$_SERVER[PHP_SELF]");
     //exit();
@@ -90,12 +90,12 @@
   $strSQL = "SELECT * FROM tb_employees as e
   INNER JOIN tb_dept as d ON e.name_dept = d.dept_id
   INNER JOIN tb_position as p ON e.name_position = p.position_id
-  ORDER BY employee_id ASC" or die("Error:" . mysqli_error());
+  ORDER BY employee_id ASC" or die("Error:" . mysqli_error($con));
 
   $objQuery = mysqli_query($con, $strSQL) or die("Error Query [" . $strSQL . "]");
 
   
-  $query2 = "SELECT * FROM tb_dept ORDER BY dept_id asc" or die("Error:" . mysqli_error());
+  $query2 = "SELECT * FROM tb_dept ORDER BY dept_id asc" or die("Error:" . mysqli_error($con));
   $result2 = mysqli_query($con, $query2);
   ?>
   <form name="frmMain" method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
@@ -257,7 +257,7 @@
       
     </table>
   </form>
-  <?php include('scriptselect.php'); ?>
+  <?php include('employeescriptselect.php'); ?>
   <?php
   mysqli_close($con);
   ?>
