@@ -1,8 +1,8 @@
 <?php
 session_start();
-$reserve_pricearray =  $_POST['reserve_price'];
-$total  =  $_POST["reserve_total"]; //ราคารวมทั้ง order
-$discount =  $_POST["reserve_discount"]; //ส่วนลด
+// $reserve_pricearray =  $_POST['reserve_price'];
+// $total  =  $_POST["reserve_total"]; //ราคารวมทั้ง order
+// $discount =  $_POST["reserve_discount"]; //ส่วนลด
 
 // print_r($_POST);
 
@@ -63,7 +63,7 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql2 " . mysqli_e
                                                         <td colspan="2">เลือกข้อมูลลูกค้า</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>วันที่ : <font color="red">*</font></td>
+                                                        <td>วันที่นัดรับสินค้า : <font color="red">*</font></td>
                                                         <td><input type="date" name="reserve_date" value="<?php echo (new DateTime())->format('Y-m-d'); ?>" required class="form-control"></td>
                                                     </tr>
                                                     <tr>
@@ -99,51 +99,18 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql2 " . mysqli_e
                                                     
                                                     <tr>
                                                         <td>สถานะการรับของ : <font color="red">*</font></td>
-                                                        <td><select class="select2bs4" data-placeholder="สถานะการรับของ" name="receive_status" style="width: 100%;" >
-                                                                <option value="">-</option>
-                                                                <option value="รับแล้ว">รับแล้ว</option>
-                                                                <option value="ยังไม่ได้รับ">ยังไม่ได้รับ</option>
-                                                            </select></td>
+                                                        <td><input name="receive_status" type="text" value="ยังไม่ได้รับของ" class="form-control" required readonly /></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>สถานะการจ่าย : <font color="red">*</font></td>
-                                                        <td><select class="select2bs4" data-placeholder="สถานะการจ่าย" name="payment_status" style="width: 100%;" >
-                                                                <option value="">-</option>
-                                                                <option value="จ่ายแล้ว">จ่ายแล้ว</option>
-                                                                <option value="ยังไม่จ่าย">ยังไม่จ่าย</option>
-                                                            </select></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>ประเภทการจ่าย : <font color="red">*</font></td>
-                                                        <td><select class="select2bs4" data-placeholder="สถานะการจ่าย" name="payment_type" style="width: 100%;" >
-                                                                <option value="">-</option>
-                                                                <option value="-">-</option>
-                                                                <option value="โอน">โอน</option>
-                                                                <option value="เงินสด">เงินสด</option>
-                                                            </select></td>
-                                                    </tr>
+                                                
+                                            
                                                     <tr>
                                                         <td colspan="2" align="center">
-                                                            <input type="hidden" name="reserve_total" value="<?php echo $total; ?>">
-                                                            <input type="hidden" name="reserve_discount" value="<?php echo $discount; ?>">
-                                                            <input type="hidden" name="reserve_vat" value="<?php echo $vat; ?>">
-                                                            <input type="hidden" name="reserve_stotal" value="<?php echo $stotal; ?>">
+                                                    
                                                             <input type="hidden" name="username" value="<?php echo $username; ?>">
                                                             <!--<input type="submit" name="Submit2" value="สั่งซื้อ" /> -->
                                                         </td>
                                                     </tr>
-                                                    <!-- <tr>
-                                                        <td>สถานะการนำออก : <font color="red">*</font></td>
-                                                        <td><select class="select2bs4" data-placeholder="เลือกรายการ" name="reserve_status" style="width: 100%;" required>
-                                                                <option value="">-</option>
-                                                                <option value="จอง">จอง</option>
-                                                                <option value="เงินสด">เงินสด</option>
-                                                                <option value="โอน">โอน</option>
-                                                                <option value="ส่งออก">ส่งออก</option>
-                                                            </select>
-                                                           
-                                                        </td>
-                                                    </tr> -->
+                                            
                                                 </table>
                                                 <table width="600" border="0" align="center" class="table table-bordered table-striped">
                                                     <tr>
@@ -153,9 +120,9 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql2 " . mysqli_e
                                                     </tr>
                                                     <tr>
                                                         <td>สินค้า</td>
-                                                        <td align="center">ราคา</td>
+                                                        
                                                         <td align="center">จำนวน</td>
-                                                        <td align="center">รวม/รายการ</td>
+                                                        
                                                     </tr>
                                                     <?php
                                                     $total = 0;
@@ -175,33 +142,19 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql2 " . mysqli_e
                                                         echo "<input type='hidden' name='reserve_price[$product_id]' value=' $reserve_price'>";
                                                         echo "<tr>";
                                                         echo "<td>" . $row["product_name"] . "</td>";
-                                                        echo "<td align='right'>" . number_format($reserve_price, 2) . "</td>";
+                                                        
                                                         echo "<td align='right'>$qty</td>";
-                                                        echo "<td align='right'>" . number_format($sum, 2) . "</td>";
+                                                        
                                                         echo "</tr>";
                                                     }
-                                                    echo "<tr>";
-                                                    echo "<td  align='right' colspan='3' ><b>รวม</b></td>";
-                                                    echo "<td align='right' >" . "<b>" . number_format($total, 2) . "</b>" . "</td>";
-                                                    echo "</tr>";
-                                                    echo "<tr>";
-                                                    echo "<td  align='right' colspan='3' ><b>ส่วนลด</b></td>";
-                                                    echo "<td align='right' >" . "<b>" . number_format($discount, 2) . "</b>" . "</td>";
-                                                    echo "</tr>";
-                                                    echo "<td  align='right' colspan='3' ><b>ภาษี</b></td>";
-                                                    echo "<td align='right' >" . "<b>" . number_format($vat, 2) . "</b>" . "</td>";
-                                                    echo "</tr>";
-                                                    echo "<tr>";
-                                                    echo "<td  align='right' colspan='3' ><b>รวมทั้งหมด</b></td>";
-                                                    echo "<td align='right' >" . "<b>" . number_format($stotal, 2) . "</b>" . "</td>";
-                                                    echo "</tr>";
+                                                    
                                                     ?>
 
                                                 </table>
                                                 <p>
 
                                                    
-                                                    <center><a href="reserve_form_add1.php" class="btn btn-warning ">กลับหน้ายืนยันการสั่งซื้อ</a> &nbsp;&nbsp;<input type="submit" name="Submit2" class="btn btn-success" value="สั่งซื้อ" /></center>
+                                                    <center><a href="reserve_form_add1.php" class="btn btn-warning ">กลับหน้ายืนยันการสั่งจอง</a> &nbsp;&nbsp;<input type="submit" name="Submit2" class="btn btn-success" value="บันทึก" /></center>
                                             </form>
                                             <!-- /.card-body -->
                                         </div>
