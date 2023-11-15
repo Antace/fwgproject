@@ -70,7 +70,7 @@ $query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_erro
 $sql2 = "SELECT MAX(sale_id) as sale_id 
 	FROM tb_sale
 	WHERE customer_name='$customer_name' ";
-$query2 = mysqli_query( $con, $sql2 )or die( "Error in query: $sql2" . mysqli_error( $sql2 ) );
+$query2 = mysqli_query( $con, $sql2 )or die( "Error in query: $sql2" . mysqli_error( $con,$sql2 ) );
 $row = mysqli_fetch_array( $query2 );
 $sale_id = $row[ "sale_id" ]; // order id ล่าสุดที่อยู่ในตาราง order_head
 
@@ -85,7 +85,7 @@ echo '<br>';*/
 foreach ( $_SESSION[ 'cart' ] as $product_id => $qty ) {
   $sale_price = $sale_pricearray[$product_id];
   $sql3 = "SELECT * FROM tb_product WHERE product_id=$product_id";
-  $query3 = mysqli_query( $con, $sql3 )or die( "Error in query: $sql3" . mysqli_error( $sql3 ) );
+  $query3 = mysqli_query( $con, $sql3 )or die( "Error in query: $sql3" . mysqli_error( $con,$sql3 ) );
   $row3 = mysqli_fetch_array( $query3 );
   $pricetotal = $sale_price * $qty;
   $count=mysqli_num_rows($query3);
@@ -93,7 +93,7 @@ foreach ( $_SESSION[ 'cart' ] as $product_id => $qty ) {
   
  
   $sql4 = "INSERT INTO tb_salelist VALUES(null, $sale_id, $product_id, $qty, $pricetotal)";
-  $query4 = mysqli_query( $con, $sql4 )or die( "Error in query: $sql4" . mysqli_error( $sql4 ) );
+  $query4 = mysqli_query( $con, $sql4 )or die( "Error in query: $sql4" . mysqli_error( $con,$sql4 ) );
 
   // echo '<pre>';
   // echo $sql4;
@@ -107,7 +107,7 @@ foreach ( $_SESSION[ 'cart' ] as $product_id => $qty ) {
     $sql5 = "UPDATE tb_product SET  
      product_uom=$stc
      WHERE  product_id=$product_id ";
-    $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $sql5 ) );
+    $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $con,$sql5 ) );
   }
 }
 
