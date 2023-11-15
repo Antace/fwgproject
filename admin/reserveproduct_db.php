@@ -13,7 +13,7 @@ include( "../condb.php" );
 $strNextSeq = "";
 
 //*** Check Year ***//
-$strSQL = "SELECT * FROM tb_prefix WHERE 1 ";
+$strSQL = "SELECT * FROM tb_prefixsale WHERE 1 ";
 $objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 $objResult = mysqli_fetch_array($objQuery);
 
@@ -24,7 +24,7 @@ if($objResult["val"] == date("y"))
 	$strNextSeq =$objResult["val"].$objResult["mval"].$Seq;
 
 	//*** Update Next Seq ***//
-	$strSQL = "UPDATE tb_prefix SET mval = '".date("m")."' ,seq= seq+1 ";
+	$strSQL = "UPDATE tb_prefixsale SET mval = '".date("m")."' ,seq= seq+1 ";
 	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
 else  //*** Check val != year now ***//
@@ -33,7 +33,7 @@ else  //*** Check val != year now ***//
 	$strNextSeq =date("y").date("m").$Seq;
 
 	//*** Update New Seq ***//
-	$strSQL = "UPDATE tb_prefix SET val = '".date("y")."' , mval='".date("m")."', seq = '1' ";
+	$strSQL = "UPDATE tb_prefixsale SET val = '".date("y")."' , mval='".date("m")."', seq = '1' ";
 	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
 
@@ -60,7 +60,7 @@ $reserve_dt = Date( "Y-m-d G:i:s" );
 mysqli_query( $con, "BEGIN" );
 $sql1 = "INSERT INTO tb_reserve
 VALUES
-($strNextSeq,'$reserve_date','$customer_name','$total','$discount','$receive_status','$payment_status','$payment_type','$username','$reserve_dt')";
+($strNextSeq,'$reserve_date','$customer_name','$receive_status','$username','$reserve_dt')";
 $query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_error($con,$sql1));
 
 
@@ -70,7 +70,7 @@ $query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_erro
 $sql2 = "SELECT MAX(reserve_id) as reserve_id 
 	FROM tb_reserve
 	WHERE customer_name='$customer_name' ";
-$query2 = mysqli_query( $con, $sql2 )or die( "Error in query: $sql2" . mysqli_error( $sql2 ) );
+$query2 = mysqli_query( $con, $sql2 )or die( "Error in query: $sql2" . mysqli_error( $con,$sql2 ) );
 $row = mysqli_fetch_array( $query2 );
 $reserve_id = $row[ "reserve_id" ]; // order id ล่าสุดที่อยู่ในตาราง order_head
 
@@ -85,15 +85,15 @@ echo '<br>';*/
 foreach ( $_SESSION[ 'reserve' ] as $product_id => $qty ) {
   $reserve_price = $reserve_pricearray[$product_id];
   $sql3 = "SELECT * FROM tb_product WHERE product_id=$product_id";
-  $query3 = mysqli_query( $con, $sql3 )or die( "Error in query: $sql3" . mysqli_error( $sql3 ) );
+  $query3 = mysqli_query( $con, $sql3 )or die( "Error in query: $sql3" . mysqli_error( $con,$sql3 ) );
   $row3 = mysqli_fetch_array( $query3 );
-  $pricetotal = $reserve_price * $qty;
+  
   $count=mysqli_num_rows($query3);
   
   
  
-  $sql4 = "INSERT INTO tb_reservelist VALUES(null, $reserve_id, $product_id, $qty,$pricetotal)";
-  $query4 = mysqli_query( $con, $sql4 )or die( "Error in query: $sql4" . mysqli_error( $sql4 ) );
+  $sql4 = "INSERT INTO tb_reservelist VALUES(null, $reserve_id, $product_id, $qty)";
+  $query4 = mysqli_query( $con, $sql4 )or die( "Error in query: $sql4" . mysqli_error( $con,$sql4 ) );
 
   // echo '<pre>';
   // echo $sql4;
@@ -107,7 +107,7 @@ foreach ( $_SESSION[ 'reserve' ] as $product_id => $qty ) {
     $sql5 = "UPDATE tb_product SET  
      product_uom=$stc
      WHERE  product_id=$product_id ";
-    $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $sql5 ) );
+    $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $con,$sql5 ) );
   }
 }
 
