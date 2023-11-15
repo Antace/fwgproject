@@ -32,6 +32,9 @@ session_start(); ?>
     $rec3 = mysqli_num_rows($result3);
     $m_name = $row['username'];
 
+    $sql4 = "SELECT * FROM tb_reserve WHERE receive_status ='ยังไม่ได้รับของ' AND reserve_date <= current_date";
+    $result4 = mysqli_query($con, $sql4);
+    $rec4 = mysqli_num_rows($result4);
     ?>
 
     <meta charset="utf-8">
