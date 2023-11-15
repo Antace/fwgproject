@@ -5,7 +5,7 @@
       <img src="../img/logo.png" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">FINEWORKGROUP</span>
     </a>
-
+    
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
