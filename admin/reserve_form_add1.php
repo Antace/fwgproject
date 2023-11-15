@@ -62,7 +62,7 @@
                                         {
                                             unset($_SESSION['reserve']);
                                         }
-                                        $query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error());
+                                        $query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error($con));
                                         $result2 = mysqli_query($con, $query2);
                                         $row2 = mysqli_fetch_array($result2);
                                         ?>
@@ -95,10 +95,9 @@
                                                 <tr>
                                                     <td>รายการ</td>
                                                     <td align="center">คงเหลือ</td>
-                                                    <td align="center">ราคามาตราฐาน</td>
-                                                    <td align="center">ราคา<font color='red'>* </font></td>
+                                                    
                                                     <td align="center">จำนวน</td>
-                                                    <td align="center">รวม(บาท)</td>
+                                                    
                                                     <td align="center">ลบ</td>
                                                 </tr>
                                                 <?php
@@ -121,29 +120,17 @@
                                                         echo "<tr>";
                                                         echo "<td width='334'>" . $row["product_name"] . "</td>";
                                                         echo "<td width='20' align='center'>" . $row["product_uom"]  . "</td>";
-                                                        echo "<td width='46' align='right'>" . number_format($row["product_price"], 2) . "</td>";
-                                                        echo "<td width='57' align='right'>";
-                                                        echo "<input type='number' class='form-control' style='text-align:right;' name='reserve_price[$product_id]' value='$reserve_price' size='2' Required/></td>";
                                                         echo "<td width='57' align='right'>";
                                                         echo "<input type='number' class='form-control' style='text-align:right;' name='amount[$product_id]' value='$qty' size='2' min='1' max='$p_qty'/></td>";
-                                                        echo "<td width='93' align='right'>" . number_format($sum, 2) . "</td>";
+                                                        
                                                         //remove product
                                                         echo "<td width='46' align='center'><a href='reserve_form_add1.php?product_id=$product_id&act=remove'class='btn btn-danger'>ลบ</a></td>";
                                                         echo "</tr>";
                                                     }
-                                                    echo "<tr>";
-                                                    echo "<td colspan='5'  align='right'><b>ราคารวม</b></td>";
-                                                    echo "<td align='right' >" . "<input type='decimal' style='text-align:right;' name='reserve_total' class='form-control' value='$total' Required readonly>". "</td>";
-                                                    echo "<td align='left' >บาท</td>";
-                                                    echo "</tr>";
-                                                    echo "<tr>";
-                                                    echo "<td colspan='5'  align='right'><b>ส่วนลด</b><font color='red'>*ถ้าไม่มีส่วนลดให้ใส่ 0 </font></td>";
-                                                    echo "<td align='right' >" . "<input type='decimal' style='text-align:right;' name='reserve_discount' class='form-control' value='$discount' Required>" . "</td>";
-                                                    echo "<td align='left' >บาท</td>";
-                                                    echo "</tr>";
+                                                    
                                                     
                                                     echo "<tr>";
-                                                    echo "<td colspan='7' align='right'>";
+                                                    echo "<td colspan='4' align='right'>";
                                                     echo "<input type='hidden' name='username' value=' $username'>";
                                                     echo "</td>";
                                                     echo "</tr>";
@@ -152,9 +139,9 @@
                                                 
                                                 <tr>
                                                     <td colspan="7" align="right">
-                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="ปรับปรุง" />
+                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="อัพเดตรายการ" />
                                                         <?php if ($act == 'update') { ?>
-                                                            <input type="button" value="สั่งซื้อ" class="btn btn-info btn-sm" onClick="this.form.action='reserveproduct_confirm.php'; submit()">
+                                                            <input type="button" value="สั่งจอง" class="btn btn-info btn-sm" onClick="this.form.action='reserveproduct_confirm.php'; submit()">
                                                             
                                                         <?php } ?>
                                                     </td>
