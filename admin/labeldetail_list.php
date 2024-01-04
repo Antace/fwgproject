@@ -58,10 +58,10 @@ if ($qdeptnpd != '') { //ถ้า $qdeptnpd ไม่เท่ากับค�
 
 if ($act == 'pd') { //ถ้า act = pd ให้คิวรี่ข้อมูลจากตาราง tb_labeldetail โดยกำหนดว่า label_orderstatus > 0(คือป้ายที่สั่งผลิตแล้ว)
   $query = "SELECT * FROM tb_labeldetail WHERE label_orderstatus > 0
-  ORDER BY department_name DESC" or die("Error:" . mysqli_error());
+  ORDER BY department_name DESC" or die("Error:" . mysqli_error($con));
   $result = mysqli_query($con, $query);
   
-  echo ' <table id="example1" class="table table-bordered table-striped">';
+  echo ' <table id="example1" class="table table-bordered table-hover table-sm">';
 echo "<thead  align=center>";
 echo "<tr class='table-light'>
       <th width='3%'>ลำดับ</th>
@@ -72,16 +72,16 @@ echo "<tr class='table-light'>
       <th width='10%'>สถานะ</th>
       <th width='10%'>สถานะจัดส่ง</th>
       
-      <th width='7%'>-</th>
+      <th width='7%'></th>
       
     </tr>";
 echo "</thead>";
 }  elseif ($act == 'npd') { //ถ้า act = pd ให้คิวรี่ข้อมูลจากตาราง tb_labeldetail โดยกำหนดว่า label_orderstatus = 0(คือป้ายที่ยังไม่ได้สั่งผลิต)
   $query = "SELECT * FROM tb_labeldetail WHERE label_orderstatus = 0
-  ORDER BY department_name DESC" or die("Error:" . mysqli_error());
+  ORDER BY department_name DESC" or die("Error:" . mysqli_error($con));
   $result = mysqli_query($con, $query);
 
-  echo ' <table id="example1" class="table table-bordered table-striped">';
+  echo ' <table id="example1" class="table table-bordered table-hover table-sm">';
   echo "<thead  align=center>";
   echo "<tr class='table-light'>
         <th width='3%'>ลำดับ</th>
@@ -93,17 +93,17 @@ echo "</thead>";
         <th width='10%'>สถานะ</th>
         <th width='10%'>สถานะจัดส่ง</th>
         
-        <th width='7%'>-</th>
+        <th width='7%'></th>
         
       </tr>";
   echo "</thead>";
 } else { //ถ้า ไม่ตรงกับข้อใดเลยให้ คิวรี่ ข้อมูลตาราง tb_labeldetail ทั้งหมด เรียงตาม ชื่อโครงการ(department_name)
 
   $query = "SELECT tb_orderlist.*,tb_labeldetail.*  FROM tb_orderlist
-  LEFT JOIN tb_labeldetail ON tb_orderlist.label_ida = tb_labeldetail.label_ida " or die("Error:" . mysqli_error());
+  LEFT JOIN tb_labeldetail ON tb_orderlist.label_ida = tb_labeldetail.label_ida " or die("Error:" . mysqli_error($con));
   $result = mysqli_query($con, $query);
 
-echo ' <table id="example1" class="table table-bordered table-striped">';
+echo ' <table id="example1" class="table table-bordered table-hover table-sm">';
 echo "<thead  align=center>";
 echo "<tr class='table-light'>
       <th width='3%'>ลำดับ</th>
@@ -115,7 +115,7 @@ echo "<tr class='table-light'>
       <th width='10%'>สถานะจัดส่ง</th>
       <th width='10%'>เลขที่สั่งผลิต</th>
       <th width='15%'>วันที่สั่ง</th>
-      <th width='7%'>-</th>
+      <th width='7%'></th>
       
     </tr>";
 echo "</thead>";
