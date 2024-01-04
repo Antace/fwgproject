@@ -2,12 +2,12 @@
 $ID = mysqli_real_escape_string($con,$_GET['ID']);
 $sql = "SELECT * FROM tb_po
 WHERE po_id=$ID
-ORDER BY po_id DESC" or die("Error:" . mysqli_error());
-$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+ORDER BY po_id DESC" or die("Error:" . mysqli_error($con));
+$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 $row = mysqli_fetch_array($result);
-$query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error());
+$query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error($con));
 $result2 = mysqli_query($con, $query2);
-$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error());
+$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error($con));
 $result3 = mysqli_query($con, $query3);
 ?>
 <div align="right">
@@ -125,7 +125,7 @@ $result3 = mysqli_query($con, $query3);
       <div class="col-sm-3">
         <input type="hidden" name="po_file2" value="<?php echo $row['po_file'];?>">
         <input type="hidden" name="po_id" value="<?php echo $ID; ?>" />
-        <button type="submit" name="submit" class="btn btn-success">แก้ไขข้อมูล</button>
+        <button type="submit" name="submit" class="btn btn-success">บันทึก</button>
         <a href="po.php" class="btn btn-danger">ยกเลิก</a>
       </div>
     </div>
