@@ -1,5 +1,5 @@
 <?php
-$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error());
+$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error($con));
 $result3 = mysqli_query($con, $query3);
 ?>
 <div align="right">
@@ -63,7 +63,7 @@ $result3 = mysqli_query($con, $query3);
     <div class="col-sm-2">
     </div>
     <div class="col-sm-3">
-      <button type="submit" class="btn btn-success">เพิ่มข้อมูล</button>
+      <button type="submit" class="btn btn-success">บันทึก</button>
       <a href="labeldetail.php" class="btn btn-danger">ยกเลิก</a>
     </div>
   </div>
