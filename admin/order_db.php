@@ -13,31 +13,34 @@ include( "../condb.php" );
 $strNextSeq = "";
 
 //*** Check Year ***//
-$strSQL = "SELECT * FROM tb_prefix WHERE 1 ";
+$strSQL = "SELECT * FROM tb_prefixorder WHERE 1 ";
 $objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 $objResult = mysqli_fetch_array($objQuery);
 
-//*** Check val = year now ***//
-if($objResult["val"] == date("y"))
+$date1= date("y")+43;
+//*** Check val = year now ***// (ถ้า val = ปี ค.ศ. +43 แล้วเท่ากับปัจจุบัน จะทำการนับต่อ)
+if($objResult["val"] == $date1)
 {
 	$Seq = substr("0000".$objResult["seq"],-4,4);   //*** Replace Zero Fill ***//
 	$strNextSeq =$objResult["val"].$objResult["mval"].$Seq;
 
 	//*** Update Next Seq ***//
-	$strSQL = "UPDATE tb_prefix SET mval = '".date("m")."' ,seq= seq+1 ";
+	$strSQL = "UPDATE tb_prefixorder SET mval = '".date("m")."' ,seq= seq+1 ";
 	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
-else  //*** Check val != year now ***//
+else  //*** Check val != year now ***// (แต่ถ้าไม่ใช่ ปีปัจจุบัน จะทำการ ขึ้นปีใหม่ เช่น ถ้าปีนี้ 66 แต่ ค่า val = 65 จะเริ่มนับใหม่ เป็นปีปัจจุบันแทน)
 {
 	$Seq = substr("00001",-4,4);   //*** Replace Zero Fill ***//
-	$strNextSeq =date("y").date("m").$Seq;
+	$strNextSeq =$date1.date("m").$Seq;
 
 	//*** Update New Seq ***//
-	$strSQL = "UPDATE tb_prefix SET val = '".date("y")."' , mval='".date("m")."', seq = '1' ";
+	$strSQL = "UPDATE tb_prefixorder SET val = '".$date1."' , mval='".date("m")."', seq = '1' ";
 	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
 
 // echo $strNextSeq;
+// echo '<br>';
+// echo $date1;
 
 // exit;
 
@@ -65,7 +68,7 @@ $query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_erro
 $sql2 = "SELECT MAX(order_id) as order_id 
 	FROM tb_order
 	WHERE label_name='$label_name' ";
-$query2 = mysqli_query( $con, $sql2 )or die( "Error in query: $sql2" . mysqli_error( $sql2 ) );
+$query2 = mysqli_query( $con, $sql2 )or die( "Error in query: $sql2" . mysqli_error( $con,$sql2 ) );
 $row = mysqli_fetch_array( $query2 );
 $order_id = $row[ "order_id" ]; // order id ล่าสุดที่อยู่ในตาราง order_head
 
@@ -82,7 +85,7 @@ echo '<br>';*/
 //PHP foreach() เป็นคำสั่งเพื่อนำข้อมูลออกมาจากตัวแปลที่เป็นประเภท array โดยสามารถเรียกค่าได้ทั้ง $key และ $value ของ array
 foreach ( $_SESSION[ 'order' ] as $label_ida => $qty ) {
   $sql3 = "SELECT * FROM tb_labeldetail WHERE label_ida=$label_ida";
-  $query3 = mysqli_query( $con, $sql3 )or die( "Error in query: $sql3" . mysqli_error( $sql3 ) );
+  $query3 = mysqli_query( $con, $sql3 )or die( "Error in query: $sql3" . mysqli_error( $con,$sql3 ) );
   $row3 = mysqli_fetch_array( $query3 );
  
   $count=mysqli_num_rows($query3);
@@ -92,7 +95,7 @@ foreach ( $_SESSION[ 'order' ] as $label_ida => $qty ) {
 //   echo '<pre>';
  
   $sql4 = "INSERT INTO tb_orderlist VALUES(null, $order_id, $label_ida)";
-  $query4 = mysqli_query( $con, $sql4 )or die( "Error in query: $sql4" . mysqli_error( $sql4 ) );
+  $query4 = mysqli_query( $con, $sql4 )or die( "Error in query: $sql4" . mysqli_error( $con,$sql4 ) );
 
 //   echo '<pre>';
 //   echo 'sql4 = '.$sql4;
@@ -106,7 +109,7 @@ foreach ( $_SESSION[ 'order' ] as $label_ida => $qty ) {
     $sql5 = "UPDATE tb_labeldetail SET  
      label_orderstatus=$stc
      WHERE  label_ida=$label_ida ";
-    $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $sql5 ) );
+    $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $con,$sql5 ) );
 
 //     echo '<pre>';
 //   echo $sql5;
