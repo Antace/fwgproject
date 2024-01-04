@@ -66,7 +66,7 @@ if(!empty($_GET['status'])){
             </div>
 
             <!-- Data list table --> 
-            <table id="example1" style="width: 100%" class="table table-striped table-bordered">
+            <table id="example1" style="width: 100%" class="table table-bordered table-hover table-sm">
                 <thead class="">
                     <tr>
                         <th width='3%'>#</th>
