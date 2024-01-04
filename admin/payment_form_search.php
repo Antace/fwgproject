@@ -1,6 +1,6 @@
 <!-- Main content -->
 <?php
-$query3 = "SELECT * FROM tb_contractor ORDER BY contractor_id asc" or die("Error:" . mysqli_error());
+$query3 = "SELECT * FROM tb_contractor ORDER BY contractor_id" or die("Error:" . mysqli_error($con));
 $result3 = mysqli_query($con, $query3);
 ?>
 <section class="content">
@@ -49,3 +49,4 @@ $result3 = mysqli_query($con, $query3);
 		</form>
 	</div>
 </section>
+
