@@ -7,7 +7,7 @@ if(@$_GET['do']=='finish'){
 
   }
 $sql = "SELECT * FROM tb_employee WHERE employee_id=$employee_id";
-$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 $row = mysqli_fetch_array($result);
 ?>
 
@@ -52,7 +52,7 @@ $row = mysqli_fetch_array($result);
     </div>
     <div class="col-sm-3">
       <input type="hidden" name="employee_id" value="<?php echo $employee_id; ?>" />
-      <button type="submit" class="btn btn-success">แก้ไขข้อมูล</button>
+      <button type="submit" class="btn btn-success">บันทึก</button>
       <a href="member.php" class="btn btn-danger">ยกเลิก</a>
     </div>
   </div>
