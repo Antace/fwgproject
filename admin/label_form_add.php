@@ -1,35 +1,10 @@
 <?php
 
-$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error());
+$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error($con));
 $result3 = mysqli_query($con, $query3);
 
 ?>
-<!-- <script type="text/javascript">
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#blah').attr('src', e.target.result);
-                }
-                
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-</script> -->
-<!-- <script type="text/javascript">
-        function readURL1(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#blah1').attr('src', e.target.result);
-                }
-                
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-</script> -->
 <div align="right">
   <font color="red">*</font>
   <font color="gray">Required Fields</font>
@@ -120,7 +95,7 @@ $result3 = mysqli_query($con, $query3);
       <div class="col-sm-2">
       </div>
       <div class="col-sm-3">
-        <button type="submit" name="submit" class="btn btn-success">เพิ่มข้อมูล</button>
+        <button type="submit" name="submit" class="btn btn-success">บันทึก</button>
         <a href="label.php" class="btn btn-danger">ยกเลิก</a>
       </div>
     </div>
