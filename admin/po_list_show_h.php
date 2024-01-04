@@ -10,7 +10,7 @@ if(@$_GET['do']=='success'){
     </script>';
     echo '<meta http-equiv="refresh" content="1;url=po.php" />';
     }
-    echo ' <table id="example1" class="table table-bordered table-striped">';
+    echo ' <table id="example1" class="table table-bordered table-hover table-sm">';
       echo "<thead>";
         //echo mysqli_num_rows($result1);
         //exit;
