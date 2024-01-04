@@ -4,10 +4,10 @@ $sql = "SELECT * FROM tb_employees as e
 INNER JOIN tb_dept as d ON e.name_dept = d.dept_id
 INNER JOIN tb_position as p ON e.name_position = p.position_id
 WHERE employee_id=$ID
-ORDER BY employee_id DESC" or die("Error:" . mysqli_error());
-$result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error());
+ORDER BY employee_id DESC" or die("Error:" . mysqli_error($con));
+$result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error($con));
 $row = mysqli_fetch_array($result);
-$query2 = "SELECT * FROM tb_dept ORDER BY dept_id asc" or die("Error:" . mysqli_error());
+$query2 = "SELECT * FROM tb_dept ORDER BY dept_id asc" or die("Error:" . mysqli_error($con));
 $result2 = mysqli_query($con, $query2);
 
 ?>
@@ -166,7 +166,7 @@ $result2 = mysqli_query($con, $query2);
     <div class="col-sm-3">
 
       <input type="hidden" name="employee_id" value="<?php echo $ID; ?>" />
-      <button type="submit" class="btn btn-success">แก้ไขข้อมูล</button>
+      <button type="submit" class="btn btn-success">บันทึก</button>
       <a href="employee.php" class="btn btn-danger">ยกเลิก</a>
     </div>
   </div>
