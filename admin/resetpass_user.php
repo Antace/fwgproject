@@ -26,7 +26,7 @@
                     $employee_id = $_SESSION['employee_id'];
 
                     $sql_admin = "SELECT * FROM tb_employee WHERE employee_id = '" . $employee_id . "'"
-                      or die("Error : $sql_admin " . mysqli_error());
+                      or die("Error : $sql_admin " . mysqli_error($con));
                     $resault_admin = mysqli_query($con, $sql_admin);
                     $row = mysqli_fetch_array($resault_admin);
 
