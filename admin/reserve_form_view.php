@@ -5,14 +5,14 @@ $ID = mysqli_real_escape_string($con,$_GET['ID']);
 
 $sql = "SELECT * FROM tb_reserve
 WHERE reserve_id=$ID
-ORDER BY reserve_id DESC" or die("Error:" . mysqli_error());
-$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+ORDER BY reserve_id DESC" or die("Error:" . mysqli_error($con));
+$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 $row = mysqli_fetch_array($result);
 
 $sql1 = "SELECT * FROM tb_reservelist
 WHERE reserve_id=$ID
-ORDER BY reservelist_id DESC" or die("Error:" . mysqli_error());
-$result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_error());
+ORDER BY reservelist_id DESC" or die("Error:" . mysqli_error($con));
+$result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_error($con));
 
 
 ?>
@@ -38,10 +38,11 @@ $result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_e
 
 <tr>
     <td>รายการ</td>
+    <td>สถานที่จัดเก็บ</td>
     <td align="center">ราคามาตราฐาน</td>
-    <td align="center">ราคาขาย</td>
+    
     <td align="center">จำนวน</td>
-    <td align="center">รวม(บาท)</td>
+    
     <!-- <td align="center">ลบ</td> -->
 </tr>
 
@@ -68,39 +69,18 @@ while ($row1 = mysqli_fetch_array($result1)) {
         echo "<tr>";
         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='reservelist_id[]' value='$row1[reservelist_id]' readonly>";
         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='product_id[]' value='$row2[product_id]' readonly>";
-        echo "<td width='334'>" . $row2["product_name"] . "</td>";
-        
+        echo "<td width='250'>" . $row2["product_name"] . "</td>";
+        echo "<td width='150'>" . $row2["location_name"] . "</td>";
         echo "<td width='46' align='right'>" . number_format($row2["product_price"],2). "</td>";
-        echo "<td width='57' align='right'>" . number_format($preserve_price,2) ."</td>";
+       
         echo "<td width='46' align='right'>" . "<input type='number' style='text-align:right;'  class='form-control' name='reserve_uom[]' value='$row1[reserve_uom]' readonly>" . "</td>";
         echo "</td>";
         
-        echo "<td width='93' align='right'>" . number_format($row1["reserve_price"], 2) . "</td>";
+        
         //remove product
         // echo "<td width='46' align='center'><a href='reserve_form_add1.php?product_id=$product_id&act=remove'class='btn btn-danger'>ลบ</a></td>";
         echo "</tr>";
 }
-    echo "<tr>";
-    echo "<td colspan='3'  align='right'><b>ราคาก่อน Vat</b></td>";
-    echo "<td align='right' >" . $row["reserve_total"] . "</td>";
-    echo "<td align='left' >บาท</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<td colspan='3'  align='right'><b>ส่วนลด</b><font color='red'>*ถ้าไม่มีส่วนลดให้ใส่ 0 </font></td>";
-    echo "<td align='right' >" . $row["reserve_discount"]. "</td>";
-    echo "<td align='left' >บาท</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<td colspan='3'  align='right'><b>Vat 7%</b></td>";
-    echo "<td align='right' >" . $row["reserve_vat"]. "</td>";
-    echo "<td align='left' >บาท</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<td colspan='3'  align='right'><b>ราคารวม Vat</b></td>";
-    echo "<td align='right' >" . $row["reserve_stotal"] . "</td>";
-    echo "<td align='left' >บาท</td>";
-    echo "</tr>";
-    echo "<tr>";
     echo "<td colspan='7' align='right'>";
     echo "<input type='hidden' name='username' value=' $username'>";
     echo "</td>";
