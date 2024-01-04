@@ -14,6 +14,7 @@ if($_SESSION['employee_id']==''){
 	$product_detail = mysqli_real_escape_string($con,$_POST["product_detail"]);
 	$num2 = mysqli_real_escape_string($con,$_POST["num2"]);
 	$num1 = mysqli_real_escape_string($con,$_POST["num1"]);
+	$location_name = mysqli_real_escape_string($con,$_POST["location_name"]);
 	$product_price = mysqli_real_escape_string($con,$_POST["product_price"]);
 	$calculate_uom = mysqli_real_escape_string($con,$_POST["calculate_uom"]);
 	$production_price = mysqli_real_escape_string($con,$_POST["production_price"]);
@@ -23,29 +24,15 @@ if($_SESSION['employee_id']==''){
 	
 	$username = mysqli_real_escape_string($con,$_POST["username"]);
 
-	$product_name1 = $product_name.$num2.' ม.';
+	$product_name1 = $product_name.'&nbsp'.$num2.' ม.';
 
-	// echo $product_name1; 
-	// exit;
-    $check = "
-	SELECT product_name
-	FROM tb_product
-	WHERE product_name = '$product_name'
-	";
-	$result1 = mysqli_query($con, $check) or die(mysqli_error($con));
-    $num=mysqli_num_rows($result1);
-
-    if($num > 0)
-    {
-	      	  echo '<script>';
-		      echo "window.location='product.php?act=add&do=d';";
-		      echo '</script>';
-    }else{
+	
 
 	$sql = "INSERT INTO tb_product
 	(
         product_idn,
         product_name,
+		location_name,
         product_detail,
         product_price,
 		calculate_uom,
@@ -59,6 +46,7 @@ if($_SESSION['employee_id']==''){
 	(
 	'$product_idn',
 	'$product_name1',
+	'$location_name',
 	'$product_detail',
 	'$product_price',
 	'$calculate_uom',
@@ -70,7 +58,7 @@ if($_SESSION['employee_id']==''){
 	)";
 
 	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
-}
+
 	mysqli_close($con);
 
 	if($result){
