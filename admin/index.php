@@ -36,6 +36,18 @@
                               </div>
                               <a href="po.php" class="small-box-footer">ดูเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
+
+                            <div class="small-box bg-danger">
+                              <div class="inner">
+                                <h3><?php echo $rec5; ?></h3>
+
+                                <p>บัตรประชาชนหมดอายุ</p>
+                              </div>
+                              <div class="icon">
+                                <i class="ion ion-android-alert"></i>
+                              </div>
+                              <a href="contractor.php?act=exp" class="small-box-footer">ดูเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
                           </div>
                           <!-- ./col -->
 
@@ -53,6 +65,18 @@
                                 <i class="ion ion-android-warning"></i>
                               </div>
                               <a href="poe.php" class="small-box-footer">ดูเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+
+                            <div class="small-box bg-primary">
+                              <div class="inner">
+                                <h3><?php echo $rec4; ?></h3>
+
+                                <p>รายการจองที่ยังไม่ได้รับของ</p>
+                              </div>
+                              <div class="icon">
+                                <i class="ion ion-android-calendar"></i>
+                              </div>
+                              <a href="reserve.php" class="small-box-footer">ดูเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                           </div>
                           <!-- ./col -->
