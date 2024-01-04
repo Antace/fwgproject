@@ -15,7 +15,7 @@ echo '<meta http-equiv="refresh" content="1;url=poe.php" />';
 //ORDER BY po_id ASC" or die("Error:" . mysqli_error());
 //$result = mysqli_query($con, $query);
 $query = "SELECT * FROM tb_po 
-WHERE po_dateexpire < current_date AND po_dateexpire != 0000-00-00 AND cb_name = '' ORDER BY po_id DESC" or die("Error:" . mysqli_error());
+WHERE po_dateexpire < current_date AND po_dateexpire != 0000-00-00 AND cb_name = '' ORDER BY po_id DESC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
 //$sql="SELECT * FROM tb_po WHERE po_dateexpire < current_date AND po_dateexpire != 0000-00-00" ;
 //$result1 = mysqli_query($con, $sql,);
