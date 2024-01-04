@@ -2,8 +2,8 @@
 $ID = mysqli_real_escape_string($con,$_GET['ID']);
 $sql = "SELECT * FROM tb_label
 WHERE label_id=$ID
-ORDER BY label_id DESC" or die("Error:" . mysqli_error());
-$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+ORDER BY label_id DESC" or die("Error:" . mysqli_error($con));
+$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 $row = mysqli_fetch_array($result);
 ?>
 <div align="right">
@@ -115,7 +115,7 @@ $row = mysqli_fetch_array($result);
         <input type="hidden" name="label_pic11" value="<?php echo $row['label_pic1'];?>">
         <input type="hidden" name="label_pic22" value="<?php echo $row['label_pic2'];?>">
         <input type="hidden" name="label_id" value="<?php echo $ID; ?>" />
-        <button type="submit" name="submit" class="btn btn-success">แก้ไขข้อมูล</button>
+        <button type="submit" name="submit" class="btn btn-success">บันทึก</button>
         <a href="label.php" class="btn btn-danger">ยกเลิก</a>
       </div>
     </div>
