@@ -7,8 +7,8 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-        <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลการผลิต</span> 
-        <a href="production_form_add.php" class="btn btn-primary btn-sm">เพิ่มรายการผลิต</a>
+        <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">บันทึกรายการผลิต</span> 
+        <a href="production_form_add.php" class="btn btn-primary btn-sm">เพิ่ม</a>
         
         </h1>
       </section>
