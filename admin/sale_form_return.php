@@ -25,7 +25,7 @@ $sale_dt = Date( "Y-m-d G:i:s" );
 mysqli_query( $con, "BEGIN" );
 
 $sql1 = "DELETE FROM tb_sale WHERE sale_id=$sale_id";
-$query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_error($sql1));
+$query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_error($con,$sql1));
 
 
 // echo $sql1;
@@ -33,7 +33,7 @@ $query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_erro
 // ฟังก์ชั่น MAX() จะคืนค่าที่มากที่สุดในคอลัมน์ที่ระบุ ออกมา หรือจะพูดง่ายๆก็ว่า ใช้สำหรับหาค่าที่มากที่สุด นั่นเอง.
 for($a=0;$a<count($_POST["salelist_id"]);$a++){
 $sql2 = "DELETE FROM tb_salelist WHERE salelist_id = '".$_POST["salelist_id"][$a]."'";
-$query2 = mysqli_query( $con, $sql2 )or die( "Error in query: $sql2" . mysqli_error( $sql2 ) );
+$query2 = mysqli_query( $con, $sql2 )or die( "Error in query: $sql2" . mysqli_error($con, $sql2 ) );
 
 }
 // $row2 = mysqli_fetch_array( $query2 );
@@ -44,7 +44,7 @@ $query2 = mysqli_query( $con, $sql2 )or die( "Error in query: $sql2" . mysqli_er
 // $string = implode(",",$_POST["checkbox"]);
 for($i=0;$i<count($_POST["product_id"]);$i++){
   $sql3 = "SELECT * FROM tb_product WHERE product_id = '".$_POST["product_id"][$i]."'";
-  $query3 = mysqli_query( $con, $sql3 )or die( "Error in query: $sql3" . mysqli_error( $sql3 ) );
+  $query3 = mysqli_query( $con, $sql3 )or die( "Error in query: $sql3" . mysqli_error( $con,$sql3 ) );
   $row3 = mysqli_fetch_array( $query3 );
   
   $count=mysqli_num_rows($query3);
@@ -71,7 +71,7 @@ for($i=0;$i<count($_POST["product_id"]);$i++){
     $sql5 = "UPDATE tb_product SET  
      product_uom=$stc
      WHERE  product_id='".$_POST["product_id"][$i]."'";
-    $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $sql5 ) );
+    $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $con,$sql5 ) );
 
 
     // echo 'sql5 ='.$sql5;
