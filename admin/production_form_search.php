@@ -1,5 +1,5 @@
 <?php
-$query1 = "SELECT * FROM tb_product ORDER BY product_id" or die ("Erorr:" . mysqli_error());
+$query1 = "SELECT * FROM tb_product ORDER BY product_id" or die ("Erorr:" . mysqli_error($con));
 $result1 = mysqli_query($con, $query1);
 
 
@@ -18,7 +18,7 @@ $result1 = mysqli_query($con, $query1);
 							<option value="">-</option>	
 									<?php foreach($result1 as $results){?>
 									<option value="<?php echo $results["product_id"];?>">
-										<?php echo $results["product_name"]; ?>
+										<?php echo $results["product_name"]; ?>&nbsp;---&nbsp;<?php echo $results ["location_name"];?>
 									</option>
 									<?php } ?>
 								</select>
