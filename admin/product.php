@@ -9,7 +9,9 @@
         <h1>
         <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลสินค้า</span> 
         <a href="product.php?act=add" class="btn btn-primary btn-sm">เพิ่มรายการคิดตามจำนวน</a>
-        <a href="product.php?act=add1" class="btn btn-secondary btn-sm">เพิ่มรายการคิดตามความยาว</a>
+        <a href="product.php?act=add1" class="btn btn-warning btn-sm">เพิ่มรายการคิดตามความยาว</a>
+        <a href="product.php?act=location" class="btn btn-info btn-sm">ดูรายการตามสถานที่จัดเก็บ</a>
+        <a href="product.php" class="btn btn-danger btn-sm">ปิด</a>
         </h1>
       </section>
       <section class="content">
@@ -29,6 +31,8 @@
                         include('product_form_edit.php');
                     }elseif ($act == 'edit1') {
                       include('product_form_edit1.php');
+                  }elseif($act == 'location'){
+                    include('product_list.php');
                   }else {
                         include('product_list.php');
                     }
