@@ -6,7 +6,7 @@ include 'menutop.php';
 include 'menu_l.php';
 
 
-$result1 = mysqli_query($con, $sql1) or die("Error in query: $sql1 " . mysqli_error());
+$result1 = mysqli_query($con, $sql1) or die("Error in query: $sql1 " . mysqli_error($con));
 
 echo '<div class="content-wrapper">';
 echo '<section class="content-header">';
@@ -44,7 +44,7 @@ for ($i = 0; $i < count($_POST["checkbox"]); $i++) {
     // $string = implode(",",$_POST["checkbox"]);
     $sql = "SELECT * FROM tb_order
         WHERE order_id = '" . $_POST["checkbox"][$i] . "'";
-    $result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error());
+    $result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error($con));
     while ($row = mysqli_fetch_assoc($result)) {
       
       echo '<div class="container" >';
@@ -118,7 +118,7 @@ for ($i = 0; $i < count($_POST["checkbox"]); $i++) {
 
       $total = 0;
       $a=1;
-      $sql1 = "SELECT * FROM tb_orderlist WHERE order_id='" . $_POST["checkbox"][$i] . "' ORDER BY orderlist_id DESC" or die("Error:" . mysqli_error());
+      $sql1 = "SELECT * FROM tb_orderlist WHERE order_id='" . $_POST["checkbox"][$i] . "' ORDER BY orderlist_id DESC" or die("Error:" . mysqli_error($con));
       $result1 = mysqli_query($con, $sql1);
       while ($row1 = mysqli_fetch_array($result1)) {
 
