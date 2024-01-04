@@ -29,7 +29,7 @@ if($_SESSION['employee_id']==''){
 	WHERE employee_id=$employee_id
 	 ";
 
-	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 	mysqli_close($con);
 	
 	if($result){
