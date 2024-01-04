@@ -11,7 +11,7 @@
       <section class="content-header">
       <h1>
         <i class="glyphicon glyphicon-user hidden-xs"></i> <span class="hidden-xs">ข้อมูลผู้ใช้งาน</span>
-        <a href="member.php?act=add" class="btn btn-primary btn-sm">เพิ่มผู้ใช้งาน</a>
+        <a href="member.php?act=add" class="btn btn-primary btn-sm">เพิ่ม</a>
         </h1>
         
       </section>
