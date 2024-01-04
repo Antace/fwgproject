@@ -14,28 +14,33 @@ $strNextSeq = "";
 
 //*** Check Year ***//
 $strSQL = "SELECT * FROM tb_prefixdelivery WHERE 1 ";
-$objQuery = mysqli_query($con, $strSQL) or die("Error Query [" . $strSQL . "]");
+$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 $objResult = mysqli_fetch_array($objQuery);
 
-//*** Check val = year now ***//
-if ($objResult["val"] == date("y")) {
-  $Seq = substr("0000" . $objResult["seq"], -4, 4);   //*** Replace Zero Fill ***//
-  $strNextSeq = $objResult["val"] . $objResult["mval"] . $Seq;
-
-  //*** Update Next Seq ***//
-  $strSQL = "UPDATE tb_prefixdelivery SET mval = '" . date("m") . "' ,seq= seq+1 ";
-  $objQuery = mysqli_query($con, $strSQL) or die("Error Query [" . $strSQL . "]");
-} else  //*** Check val != year now ***//
+$date1= date("y")+43;
+//*** Check val = year now ***// (ถ้า val = ปี ค.ศ. +43 แล้วเท่ากับปัจจุบัน จะทำการนับต่อ)
+if($objResult["val"] == $date1)
 {
-  $Seq = substr("00001", -4, 4);   //*** Replace Zero Fill ***//
-  $strNextSeq = date("y") . date("m") . $Seq;
+	$Seq = substr("0000".$objResult["seq"],-4,4);   //*** Replace Zero Fill ***//
+	$strNextSeq =$objResult["val"].$objResult["mval"].$Seq;
 
-  //*** Update New Seq ***//
-  $strSQL = "UPDATE tb_prefixdelivery SET val = '" . date("y") . "' , mval='" . date("m") . "', seq = '1' ";
-  $objQuery = mysqli_query($con, $strSQL) or die("Error Query [" . $strSQL . "]");
+	//*** Update Next Seq ***//
+	$strSQL = "UPDATE tb_prefixdelivery SET mval = '".date("m")."' ,seq= seq+1 ";
+	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
+}
+else  //*** Check val != year now ***// (แต่ถ้าไม่ใช่ ปีปัจจุบัน จะทำการ ขึ้นปีใหม่ เช่น ถ้าปีนี้ 66 แต่ ค่า val = 65 จะเริ่มนับใหม่ เป็นปีปัจจุบันแทน)
+{
+	$Seq = substr("00001",-4,4);   //*** Replace Zero Fill ***//
+	$strNextSeq =$date1.date("m").$Seq;
+
+	//*** Update New Seq ***//
+	$strSQL = "UPDATE tb_prefixdelivery SET val = '".$date1."' , mval='".date("m")."', seq = '1' ";
+	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
 
 // echo $strNextSeq;
+// echo '<br>';
+// echo $date1;
 
 // exit;
 
@@ -43,8 +48,8 @@ if ($objResult["val"] == date("y")) {
 
 $customer_name = mysqli_real_escape_string($con, $_POST["customer_name"]);
 $department_name = mysqli_real_escape_string($con, $_POST["department_name"]);
-
-
+$delivery_poarray = $_POST["delivery_po"];
+$delivery_pricearray=$_POST['delivery_price'];
 $username = mysqli_real_escape_string($con, $_POST["username"]);
 $delivery_date = mysqli_real_escape_string($con, $_POST["delivery_date"]);
 $delivery_dt = Date("Y-m-d G:i:s");
@@ -76,6 +81,7 @@ echo '<br>';*/
 //PHP foreach() เป็นคำสั่งเพื่อนำข้อมูลออกมาจากตัวแปลที่เป็นประเภท array โดยสามารถเรียกค่าได้ทั้ง $key และ $value ของ array
 foreach ($_SESSION['delivery'] as $product_id => $qty) {
   $delivery_price = $delivery_pricearray[$product_id];
+  $delivery_po = $delivery_poarray[$product_id];
   $sql3 = "SELECT * FROM tb_product WHERE product_id=$product_id";
   $query3 = mysqli_query($con, $sql3) or die("Error in query: $sql3" . mysqli_error($con,$sql3));
   $row3 = mysqli_fetch_array($query3);
@@ -84,7 +90,7 @@ foreach ($_SESSION['delivery'] as $product_id => $qty) {
 
 
 
-  $sql4 = "INSERT INTO tb_deliverylist VALUES(null, $delivery_id, $product_id, $qty)";
+  $sql4 = "INSERT INTO tb_deliverylist VALUES(null, $delivery_id,'$delivery_po' ,$product_id, $qty,$delivery_price)";
   $query4 = mysqli_query($con, $sql4) or die("Error in query: $sql4" . mysqli_error($con,$sql4));
 
   // echo '<pre>';
