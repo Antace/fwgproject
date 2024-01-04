@@ -8,11 +8,8 @@
       <section class="content-header">
         <h1>
         <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลการขาย</span> 
-        <a href="sale_form_add1.php" class="btn btn-primary btn-sm">เพิ่มการขาย</a>
-        <a href="sale.php?act=daily" class="btn btn-info btn-sm">รายงานประจำวัน</a> 
-			<a href="sale.php?act=monthy" class="btn btn-success btn-sm">รายงานประจำเดือน</a> 
-			<a href="sale.php?act=yearly" class="btn btn-secondary btn-sm">รายงานประจำปี</a> 
-      <a href="sale.php" class="btn btn-warning btn-sm">ปิด</a> 
+        <a href="sale_form_add1.php" class="btn btn-primary btn-sm">เพิ่ม</a>
+      
         </h1>
       </section>
       <section class="content">
@@ -28,13 +25,7 @@
                      include('sale_form_view.php');
                      }elseif($act == 'sale_cancel'){
                       include('sale_form_view.php');
-                     }elseif($act=='daily'){
-                      include('r_daily.php');
-                    }elseif($act=='monthy'){
-                      include('r_monthy.php');
-                    }elseif($act=='yearly'){
-                      include('r_yearly.php');
-                    }else {
+                     }else {
                      include('sale_product_list.php');  
                      
                      }
