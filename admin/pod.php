@@ -8,7 +8,7 @@
       <section class="content-header">
         <h1>
         <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลใบสั่งซื้อ(ที่รับเงินประกันแล้ว)</span> 
-        <a href="po.php?act=add" class="btn btn-primary btn-sm disabled">เพิ่มใบสั่งซื้อ</a>
+        <a href="po.php?act=add" class="btn btn-primary btn-sm disabled">เพิ่ม</a>
         </h1>
       </section>
       <section class="content">
