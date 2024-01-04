@@ -14,10 +14,10 @@ if (@$_GET['do'] == 'success') {
 $query = "SELECT * FROM tb_employees as e
 INNER JOIN tb_dept as d ON e.name_dept = d.dept_id
 INNER JOIN tb_position as p ON e.name_position = p.position_id
-ORDER BY employee_id ASC" or die("Error:" . mysqli_error());
+ORDER BY employee_id ASC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
 
-echo '<table id="example1" class="table table-bordered table-striped">';
+echo '<table id="example1" class="table table-bordered table-hover table-sm">';
 echo "<thead align=center>";
 echo "<tr class='table-light'>
       <th width='3%'>ลำดับ</th>
@@ -25,7 +25,7 @@ echo "<tr class='table-light'>
       <th width='25%'>ชื่อ-นามสกุล</th>
       <th width='25%'>แผนก</th>
       <th width='30%'>ตำแหน่ง</th>
-      <th width='12%'>-</th>
+      <th width='12%'></th>
       
     </tr>";
 echo "</thead>";
