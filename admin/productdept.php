@@ -8,7 +8,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลสินค้าโครงการ</span>
+          <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลค่าเริ่มต้นรายการสินค้า</span>
           <a href="productdept.php?act=add" class="btn btn-primary btn-sm">เพิ่ม</a>
 
         </h1>
