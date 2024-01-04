@@ -62,7 +62,7 @@ echo "<br>";
 
 $query = "SELECT * FROM tb_salary 
 WHERE salary_date BETWEEN '$d_s' AND '$d_e' ORDER BY salary_id ASC "
-or die("Error:" . mysqli_error()); 
+or die("Error:" . mysqli_error($con)); 
 
 //ประกาศตัวแปร sqli
 $result = mysqli_query($con, $query);//ดูชื่อ ตัวแปรในไฟล์ connect ให้ดีว่า conหรือ condb หรืออย่างอื่น
@@ -79,19 +79,20 @@ echo "<br>";
 ?>
 
 <form name="frmsalary" action="salaryprintall.php" method="post">
-<table id="example1" class="table table-bordered table-striped">
-<input type = 'submit' class='btn btn-primary' name='btnprint' value='พิมพ์รายการที่เลือก'>
+<table id="example1" class="table table-bordered table-hover table-sm">
+<input type = 'submit' class='btn btn-primary btn-sm' name='btnprint' value='พิมพ์รายการที่เลือก'>
   <thead>
     <tr class=''>
     <th width='5'> <div align='center'>
       <input name='CheckAll' type='checkbox' id='CheckAll'  value='Y' onClick='ClickCheckAll(this);'>
       </div></th>
-      <th width='5%'>ID</th>
-      <th width='20%'>ข้อมูลส่วนตัว</th>
-      <th width='20%'>แผนก</th>
-      <th width='30%'>ตำแหน่ง</th>
+      <th width='5%'>ลำดับ</th>
+      <th width='5%'>รหัสพนักงาน</th>
+      <th width='15%'>ชื่อ-นามสกุล</th>
+      <th width='25%'>แผนก</th>
+      <th width='25%'>ตำแหน่ง</th>
       <th width='15%'>วันที่ทำรายการ</th>
-      <th width='10%'>-</th>
+      <th width='10%'></th>
       
       
     </tr>
@@ -107,13 +108,11 @@ echo "<br>";
   <td><input type='checkbox'  name='checkbox[]' id='checkbox<?php echo $a;?>' value='<?php echo $row['salary_id'];?>'></td>
     <td  class='hidden-xs'>  <?php echo $i++  ; ?> </td> 
     
-    <td> รหัส <?php echo $row["emp_id"];?>
-     <br> ชื่อ <?php echo $row["employee_name"];?>
-    </td>
+    <td><?php echo $row["emp_id"];?></td>
+    <td><?php echo $row["employee_name"];?></td>
     <td> <?php echo $row["name_dept"];?>  </td>
-      
-  <td> <?php echo $row["name_position"];?>  </td>
-  <td> <?php echo $row["salary_date"];?>  </td>
+    <td> <?php echo $row["name_position"];?>  </td>
+    <td> <?php echo $row["salary_date"];?>  </td>
 
    
     <td><a href='salary.php?act=edit&ID=<?php echo $row["salary_id"];?>' class='btn btn-warning btn-xs'><i class='fas fa-pencil-alt'></i></a>   
