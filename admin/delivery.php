@@ -7,12 +7,9 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-        <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลการนำออก</span> 
-        <a href="delivery_form_add1.php" class="btn btn-primary btn-sm">เพิ่มรายการ</a>
-        <!-- <a href="delivery.php?act=daily" class="btn btn-info btn-sm">รายงานประจำวัน</a> 
-			<a href="delivery.php?act=monthy" class="btn btn-success btn-sm">รายงานประจำเดือน</a> 
-			<a href="delivery.php?act=yearly" class="btn btn-secondary btn-sm">รายงานประจำปี</a>  -->
-      <!-- <a href="delivery.php" class="btn btn-warning btn-sm">ปิด</a>  -->
+        <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ใบส่งของ (ผู้รับเหมา)</span> 
+        <a href="delivery_form_add1.php" class="btn btn-primary btn-sm">เพิ่ม</a>
+        
         </h1>
       </section>
       <section class="content">
@@ -28,7 +25,9 @@
                      include('delivery_form_view.php');
                      }elseif($act == 'delivery_cancel'){
                       include('delivery_form_view.php');
-                     }else {
+                     }elseif ($act == 'print') {
+                      include('delivery_form_print.php');
+                    }else {
                      include('delivery_product_list.php');  
                      
                      }
