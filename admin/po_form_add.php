@@ -1,7 +1,7 @@
 <?php
-$query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error());
+$query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error($con));
 $result2 = mysqli_query($con, $query2);
-$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error());
+$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error($con));
 $result3 = mysqli_query($con, $query3);
 
 ?>
@@ -133,7 +133,7 @@ echo '<meta http-equiv="refresh" content="1;url=po.php?act=add" />';
       <div class="col-sm-2">
       </div>
       <div class="col-sm-3">
-        <button type="submit" name="submit" class="btn btn-success">เพิ่มข้อมูล</button>
+        <button type="submit" name="submit" class="btn btn-success">บันทึก</button>
         <a href="po.php" class="btn btn-danger">ยกเลิก</a>
       </div>
     </div>
