@@ -56,24 +56,23 @@ exit;
 
 
 $query = "SELECT * FROM tb_salary 
-ORDER BY salary_id DESC" or die("Error:" . mysqli_error());
+ORDER BY salary_id DESC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
 ?>
 
 <form name="frmsalary" action="salaryprintall.php" method="post">
-<table id="example1" class="table table-bordered table-striped">
-<input type = 'submit' class='btn btn-primary' name='btnprint' value='พิมพ์รายการที่เลือก'>
+<table id="example1" class="table table-bordered table-hover table-sm">
+<input type = 'submit' class='btn btn-primary btn-sm' name='btnprint' value='พิมพ์รายการที่เลือก'>
   <thead>
-    <tr class=''>
-    <th width='5'> <div align='center'>
-      <input name='CheckAll' type='checkbox' id='CheckAll'  value='Y' onClick='ClickCheckAll(this);'>
-      </div></th>
-      <th width='5%'>ID</th>
-      <th width='20%'>ข้อมูลส่วนตัว</th>
+    <tr class='' align = 'center'>
+      <th width='5'> <input name='CheckAll' type='checkbox' id='CheckAll'  value='Y' onClick='ClickCheckAll(this);'></th>
+      <th width='3%'>ลำดับ</th>
+      <th width='10%'>รหัสพนักงาน</th>
+      <th width='20%'>ชื่อ-นามสกุล</th>
       <th width='20%'>แผนก</th>
-      <th width='30%'>ตำแหน่ง</th>
+      <th width='20%'>ตำแหน่ง</th>
       <th width='15%'>วันที่ทำรายการ</th>
-      <th width='10%'>-</th>
+      <th width='7%'></th>
       
       
     </tr>
@@ -86,16 +85,13 @@ $result = mysqli_query($con, $query);
   ?>
   <tr>
  
-  <td><input type='checkbox'  name='checkbox[]' id='checkbox<?php echo $a;?>' value='<?php echo $row['salary_id'];?>'></td>
-    <td  class='hidden-xs'>  <?php echo $i++  ; ?> </td> 
-    
-    <td> รหัส <?php echo $row["emp_id"];?>
-     <br> ชื่อ <?php echo $row["employee_name"];?>
-    </td>
-    <td> <?php echo $row["name_dept"];?>  </td>
-      
-  <td> <?php echo $row["name_position"];?>  </td>
-  <td> <?php echo $row["salary_date"];?>  </td>
+    <td align = 'center'><input type='checkbox'  name='checkbox[]' id='checkbox<?php echo $a;?>' value='<?php echo $row['salary_id'];?>'></td>
+    <td align = 'center' class='hidden-xs'>  <?php echo $i++  ; ?> </td> 
+    <td align = 'center'><?php echo str_pad( $row['emp_id'],4,"0",STR_PAD_LEFT); ?></td>
+    <td align = 'center'><?php echo $row["employee_name"];?></td>
+    <td align = 'center'><?php echo $row["name_dept"];?>  </td> 
+    <td align = 'center'><?php echo $row["name_position"];?>  </td>
+    <td align = 'center'><?php echo $row["salary_date"];?>  </td>
 
    
     <td><a href='salary.php?act=edit&ID=<?php echo $row["salary_id"];?>' class='btn btn-warning btn-xs'><i class='fas fa-pencil-alt'></i></a>   
