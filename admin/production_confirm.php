@@ -1,12 +1,13 @@
 <?php
 session_start();
 $production_pricearray =  $_POST['production_price'];
+$production_status = $_POST['production_status'];
 // print_r($_POST);
 
 include("../condb.php");
 $sql2 = "SELECT * FROM tb_contractor
-ORDER BY contractor_id DESC" or die("Error:" . mysqli_error());
-$result_t = mysqli_query($con, $sql2) or die("Error in query: $sql " . mysqli_error());
+ORDER BY contractor_id DESC" or die("Error:" . mysqli_error($discount));
+$result_t = mysqli_query($con, $sql2) or die("Error in query: $sql " . mysqli_error($con));
 
 
 ?>
@@ -79,12 +80,14 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql " . mysqli_er
                                                 </table>
                                                 <table width="600" border="0" align="center" class="table table-bordered table-striped">
                                                     <tr>
-                                                        <td width="1558" colspan="4">
+                                                        <td width="1558" colspan="5">
                                                             <strong>รายการที่สั่งผลิต</strong>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>รายการ</td>
+                                                        <td>สถานที่จัดเก็บ</td>
+                                                    <td align="center">คงเหลือ</td>
                                                         <td align="center">ราคา/หน่วย</td>
                                                         <td align="center">จำนวนที่สั่งผลิต</td>
 
@@ -98,42 +101,27 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql " . mysqli_er
                                                         $sql    = "SELECT * FROM tb_product WHERE product_id=$product_id";
                                                         $query    = mysqli_query($con, $sql);
                                                         $row    = mysqli_fetch_array($query);
-                                                        // $sum    = $sale_price * $qty;
-                                                        // $total    += $sum;
-                                                        // $total1 = $total-$discount;
-                                                        // $vat = $total1 * 0.07;
-                                                        // $stotal = $total1 + $vat;
+                                                       
 
-                                                        echo"<input type='text' name='production_price[$product_id]' value=' $production_price'>";
+                                                        echo"<input type='hidden' name='production_price[$product_id]' value=' $production_price'>";
+                                                        echo"<input type='hidden' name='production_status' value=' $production_status'>";
                                                         echo "<tr>";
                                                         echo "<td>" . $row["product_name"] . "</td>";
+                                                        echo "<td>" . $row["location_name"] . "</td>";
+                                                        echo "<td align='center'>" . $row["product_uom"] . "</td>";
                                                         echo "<td align='right'>" . number_format($production_price, 2) . "</td>";
                                                         echo "<td align='right'>". number_format($qty,2) ."</td>";
                                                         // echo "<td align='right'>" . number_format($sum, 2) . "</td>";
                                                         echo "</tr>";
                                                     }
-                                                    // echo "<tr>";
-                                                    // echo "<td  align='right' colspan='3' ><b>รวม</b></td>";
-                                                    // echo "<td align='right' >" . "<b>" . number_format($total, 2) . "</b>" . "</td>";
-                                                    // echo "</tr>";
-                                                    // echo "<tr>";
-                                                    // echo "<td  align='right' colspan='3' ><b>ส่วนลด</b></td>";
-                                                    // echo "<td align='right' >" . "<b>" . number_format($discount, 2) . "</b>" . "</td>";
-                                                    // echo "</tr>";
-                                                    // echo "<td  align='right' colspan='3' ><b>ภาษี</b></td>";
-                                                    // echo "<td align='right' >" . "<b>" . number_format($vat, 2) . "</b>" . "</td>";
-                                                    // echo "</tr>";
-                                                    // echo "<tr>";
-                                                    // echo "<td  align='right' colspan='3' ><b>รวมทั้งหมด</b></td>";
-                                                    // echo "<td align='right' >" . "<b>" . number_format($stotal, 2) . "</b>" . "</td>";
-                                                    // echo "</tr>";
+                                                    
                                                     ?>
 
                                                 </table>
                                                 <p>
 
                                                    
-                                                    <center><a href="production_form_add.php" class="btn btn-warning ">กลับหน้ายืนยันการสั่งผลิต</a> &nbsp;&nbsp;<input type="submit" name="Submit2" class="btn btn-success" value="บันทึกการผลิต" /></center>
+                                                    <center><a href="production_form_add.php" class="btn btn-warning ">กลับหน้ายืนยันการสั่งผลิต</a> &nbsp;&nbsp;<input type="submit" name="Submit2" class="btn btn-success" value="บันทึก" /></center>
                                             </form>
                                             <!-- /.card-body -->
                                         </div>
