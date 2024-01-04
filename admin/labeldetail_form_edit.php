@@ -1,9 +1,9 @@
 <?php 
 $ID = mysqli_real_escape_string($con,$_GET['ID']);
 $sql = "SELECT * FROM tb_labeldetail WHERE label_ida=$ID";
-$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 $row = mysqli_fetch_array($result);
-$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error());
+$query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error($con));
 $result3 = mysqli_query($con, $query3);
 // print_r($row);
 ?>
@@ -77,7 +77,7 @@ $result3 = mysqli_query($con, $query3);
     </div>
     <div class="col-sm-3">
       <input type="hidden" name="label_ida" value="<?php echo $ID; ?>" />
-      <button type="submit" class="btn btn-success">แก้ไขข้อมูล</button>
+      <button type="submit" class="btn btn-success">บันทึก</button>
       <a href="labeldetail.php" class="btn btn-danger">ยกเลิก</a>
     </div>
   </div>
