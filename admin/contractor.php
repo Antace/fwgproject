@@ -11,7 +11,9 @@
       <section class="content-header">
       <h1>
         <i class="glyphicon glyphicon-user hidden-xs"></i> <span class="hidden-xs">ข้อมูลผู้รับเหมา</span>
-        <a href="contractor.php?act=add" class="btn btn-primary btn-sm">เพิ่มข้อมูลผู้รับเหมา</a>
+        <a href="contractor.php?act=add" class="btn btn-primary btn-sm">เพิ่ม</a>
+        <a href="contractor.php?act=exp" class="btn btn-danger btn-sm">บัตรประชาชนหมดอายุ</a>
+        <a href="contractor.php" class="btn btn-warning btn-sm">ปิด</a>
         </h1>
         
       </section>
@@ -30,6 +32,8 @@
                   include('contractor_form_edit.php');
                   }elseif($act=='view'){
                   include('contractor_form_view.php');
+                  }elseif($act=='exp'){
+                  include('contractor_list.php');
                   }else {
                   include('contractor_list.php');
                   }
