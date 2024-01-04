@@ -40,7 +40,7 @@ for($i=0;$i<count($_POST["checkbox"]);$i++)
         // $string = implode(",",$_POST["checkbox"]);
         $sql = "SELECT * FROM tb_salary
         WHERE salary_id = '".$_POST["checkbox"][$i]."'";
-        $result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
         while($row = mysqli_fetch_assoc($result)) {
           
           echo '<div class="container">';
