@@ -35,10 +35,10 @@
   // WHERE  department_name LIKE '%$qdept%' " 
 
   $query = "SELECT tb_orderlist.*,tb_labeldetail.*  FROM tb_orderlist
-  LEFT JOIN tb_labeldetail ON tb_orderlist.label_ida = tb_labeldetail.label_ida  WHERE  department_name LIKE '%$qdept%'"  or die("Error:" . mysqli_error());
+  LEFT JOIN tb_labeldetail ON tb_orderlist.label_ida = tb_labeldetail.label_ida  WHERE  department_name LIKE '%$qdept%'"  or die("Error:" . mysqli_error($con));
   $result = mysqli_query($con, $query);
   
-  echo ' <table id="example1" class="table table-bordered table-striped">';
+  echo ' <table id="example1" class="table table-bordered table-hover table-sm">';
 echo "<thead  align=center>";
 echo "<tr class='table-light'>
       <th width='3%'>ลำดับ</th>
@@ -49,7 +49,7 @@ echo "<tr class='table-light'>
       <th width='10%'>สถานะ</th>
       <th width='10%'>สถานะจัดส่ง</th>
       <th width='10%'>เลขที่สั่งผลิต</th>
-      <th width='7%'>-</th>
+      <th width='7%'></th>
       
     </tr>";
 echo "</thead>";
