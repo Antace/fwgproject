@@ -120,7 +120,7 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql2 " . mysqli_e
                                                     </tr>
                                                     <tr>
                                                         <td>สินค้า</td>
-                                                        
+                                                        <td>สถานที่จัดเก็บ</td>
                                                         <td align="center">จำนวน</td>
                                                         
                                                     </tr>
@@ -142,7 +142,7 @@ $result_t = mysqli_query($con, $sql2) or die("Error in query: $sql2 " . mysqli_e
                                                         echo "<input type='hidden' name='reserve_price[$product_id]' value=' $reserve_price'>";
                                                         echo "<tr>";
                                                         echo "<td>" . $row["product_name"] . "</td>";
-                                                        
+                                                        echo "<td>" . $row["location_name"] . "</td>";
                                                         echo "<td align='right'>$qty</td>";
                                                         
                                                         echo "</tr>";
