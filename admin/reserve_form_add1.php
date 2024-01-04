@@ -94,6 +94,7 @@
 
                                                 <tr>
                                                     <td>รายการ</td>
+                                                    <td>สถานที่จัดเก็บ</td>
                                                     <td align="center">คงเหลือ</td>
                                                     
                                                     <td align="center">จำนวน</td>
@@ -118,7 +119,8 @@
                                                         $stotal = $total1 + $vat;
                                                         $p_qty = $row['product_uom']; //จำนวนสินค้าในสต๊อก
                                                         echo "<tr>";
-                                                        echo "<td width='334'>" . $row["product_name"] . "</td>";
+                                                        echo "<td width='250'>" . $row["product_name"] . "</td>";
+                                                        echo "<td width='150'>" . $row["location_name"] . "</td>";
                                                         echo "<td width='20' align='center'>" . $row["product_uom"]  . "</td>";
                                                         echo "<td width='57' align='right'>";
                                                         echo "<input type='number' class='form-control' style='text-align:right;' name='amount[$product_id]' value='$qty' size='2' min='1' max='$p_qty'/></td>";
@@ -130,7 +132,7 @@
                                                     
                                                     
                                                     echo "<tr>";
-                                                    echo "<td colspan='4' align='right'>";
+                                                    echo "<td colspan='5' align='right'>";
                                                     echo "<input type='hidden' name='username' value=' $username'>";
                                                     echo "</td>";
                                                     echo "</tr>";
@@ -139,7 +141,7 @@
                                                 
                                                 <tr>
                                                     <td colspan="7" align="right">
-                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="อัพเดตรายการ" />
+                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="ยืนยัน" />
                                                         <?php if ($act == 'update') { ?>
                                                             <input type="button" value="สั่งจอง" class="btn btn-info btn-sm" onClick="this.form.action='reserveproduct_confirm.php'; submit()">
                                                             
