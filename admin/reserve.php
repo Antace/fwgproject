@@ -9,7 +9,7 @@
         <h1>
         <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลการจอง</span> 
         <a href="reserve_form_add1.php" class="btn btn-primary btn-sm">เพิ่ม</a>
-        <a href="reserve.php?act=seeall" class="btn btn-primary btn-sm">ดูทั้งหมด</a>
+        <a href="reserve.php?act=seeall" class="btn btn-info btn-sm">ดูทั้งหมด</a>
         <a href="reserve.php" class="btn btn-danger btn-sm">ปิด</a>
       
         </h1>
@@ -29,12 +29,6 @@
                       include('reserve_form_view.php');
                      }elseif($act=='sale'){
                       include('reserve_form_sale.php');
-                     }elseif($act=='daily'){
-                      include('r_daily.php');
-                     }elseif($act=='monthy'){
-                      include('r_monthy.php');
-                     }elseif($act=='yearly'){
-                      include('r_yearly.php');
                      }elseif($act=='seeall'){
                       include('reserve_product_list.php');
                      }else {
