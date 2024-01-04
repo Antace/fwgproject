@@ -33,7 +33,7 @@ $query4 = mysqli_query($con,$sql4) or die ("Error in query: $sql4" . mysqli_erro
 
 
 $sql1 = "DELETE FROM tb_order WHERE order_id=$order_id";
-$query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_error($sql1));
+$query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_error($con,$sql1));
 
 // echo $order_date;
 // echo '<br>';
@@ -44,7 +44,7 @@ $query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_erro
 // ฟังก์ชั่น MAX() จะคืนค่าที่มากที่สุดในคอลัมน์ที่ระบุ ออกมา หรือจะพูดง่ายๆก็ว่า ใช้สำหรับหาค่าที่มากที่สุด นั่นเอง.
 for($a=0;$a<count($_POST["orderlist_id"]);$a++){
 $sql2 = "DELETE FROM tb_orderlist WHERE orderlist_id = '".$_POST["orderlist_id"][$a]."'";
-$query2 = mysqli_query( $con, $sql2 )or die( "Error in query: $sql2" . mysqli_error( $sql2 ) );
+$query2 = mysqli_query( $con, $sql2 )or die( "Error in query: $sql2" . mysqli_error($con, $sql2 ) );
 
 }
 // $row2 = mysqli_fetch_array( $query2 );
@@ -55,7 +55,7 @@ $query2 = mysqli_query( $con, $sql2 )or die( "Error in query: $sql2" . mysqli_er
 // $string = implode(",",$_POST["checkbox"]);
 for($i=0;$i<count($_POST["label_ida"]);$i++){
   $sql3 = "SELECT * FROM tb_labeldetail WHERE label_ida = '".$_POST["label_ida"][$i]."'";
-  $query3 = mysqli_query( $con, $sql3 )or die( "Error in query: $sql3" . mysqli_error( $sql3 ) );
+  $query3 = mysqli_query( $con, $sql3 )or die( "Error in query: $sql3" . mysqli_error($con, $sql3 ) );
   $row3 = mysqli_fetch_array( $query3 );
   
   $count=mysqli_num_rows($query3);
@@ -65,7 +65,7 @@ for($i=0;$i<count($_POST["label_ida"]);$i++){
 // echo '<br>';
 
   $sql6 = "INSERT INTO tb_cancelorderlist VALUES(null, $order_id,'".$_POST["label_ida"][$i]."' )";
-  $query6 = mysqli_query( $con, $sql6 )or die( "Error in query: $sql6" . mysqli_error( $sql6 ) ); 
+  $query6 = mysqli_query( $con, $sql6 )or die( "Error in query: $sql6" . mysqli_error($con, $sql6 ) ); 
 
 // echo '$_POST[order_uom]='.$_POST['order_uom'][$i];
   //ตัดสต๊อก
@@ -85,7 +85,7 @@ for($i=0;$i<count($_POST["label_ida"]);$i++){
     $sql5 = "UPDATE tb_labeldetail SET  
      label_orderstatus=$stc
      WHERE  label_ida='".$_POST["label_ida"][$i]."'";
-    $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error( $sql5 ) );
+    $query5 = mysqli_query( $con, $sql5 )or die( "Error in query: $sql5" . mysqli_error($con, $sql5 ) );
 
 
     // echo 'sql5 ='.$sql5;
