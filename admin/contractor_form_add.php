@@ -42,6 +42,51 @@
       <input name="contractor_nid" type="text" onkeyup="autoTab(this)" size="15" required class="form-control">
     </div>
   </div>
+  <div class="form-group">
+    <div class="col-sm-3 control-label">
+    สำเนาบัตรประชาชน : <font color="red">*อัพโหลดได้เฉพาะไฟล์PDFเท่านั้น </font>
+    </div>
+    <div class="col-sm-3">
+    <input type="file" class="form-control" id="file" name="contractor_file" accept="application/pdf" required>
+      
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-3 control-label">
+    วันหมดอายุ : <font color="red">* </font>
+    </div>
+    <div class="col-sm-3">
+    <input type="date" name="contractor_expired" required class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-3 control-label">
+      ที่อยู่ : <font color="red">*</font>
+    </div>
+    <div class="col-sm-6">
+      <textarea name = "contractor_address" require class="form-control"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-3 control-label">
+      ธนาคาร : <font color="red">*</font>
+    </div>
+    <div class="col-sm-3">
+      <select name ="contractor_bank" require class="select2bs4" style="width: 100%;">
+        <option value="">-</option>
+        <option value="ไทยพาณิชย์">ไทยพาณิชย์</option>
+        <option value="กสิกร">กสิกร</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-3 control-label">
+      เลขที่บัญชี : <font color="red">*</font>
+    </div>
+    <div class="col-sm-3">
+      <input name="account_number" type="text" required class="form-control">
+    </div>
+  </div>
   
   <hr>
   <div class="form-group">
@@ -53,7 +98,7 @@
     <div class="col-sm-2">
     </div>
     <div class="col-sm-3">
-      <button type="submit" class="btn btn-success">เพิ่มข้อมูล</button>
+      <button type="submit" class="btn btn-success">บันทึก</button>
       <a href="contractor.php" class="btn btn-danger">ยกเลิก</a>
     </div>
   </div>
