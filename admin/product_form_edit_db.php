@@ -13,6 +13,7 @@ if($_SESSION['employee_id']==''){
 	$product_id = mysqli_real_escape_string($con,$_POST["product_id"]);
     $product_idn = mysqli_real_escape_string($con,$_POST["product_idn"]);
 	$product_name = mysqli_real_escape_string($con,$_POST["product_name"]);
+	$location_name = mysqli_real_escape_string($con,$_POST["location_name"]);
 	$product_detail = mysqli_real_escape_string($con,$_POST["product_detail"]);
 	$product_price = mysqli_real_escape_string($con,$_POST["product_price"]);
 	$calculate_uom = mysqli_real_escape_string($con,$_POST["calculate_uom"]);
@@ -25,6 +26,7 @@ if($_SESSION['employee_id']==''){
 	$sql = "UPDATE tb_product SET 
 	product_idn='$product_idn',
 	product_name='$product_name',
+	location_name='$location_name',
 	product_detail='$product_detail',
 	product_price='$product_price',
 	calculate_uom='$calculate_uom',
@@ -36,7 +38,7 @@ if($_SESSION['employee_id']==''){
 	WHERE product_id=$product_id
 	 ";
 
-	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 	mysqli_close($con);
 	
 	if($result){
