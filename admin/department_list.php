@@ -16,14 +16,14 @@
 
 $query = "SELECT * FROM tb_department ORDER BY department_id DESC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
-echo ' <table id="example1" class="table table-bordered table-striped">';
+echo ' <table id="example1" class="table table-bordered table-hover table-sm">';
   echo "<thead align=center>";
     echo "<tr class='table-light'>
       <th width='5%'>ลำดับ</th>
       <th width='20%'>รหัสโครงการ</th>
       <th width='65%'>ชื่อโครงการ</th>
       
-      <th width='10%'>-</th>
+      <th width='10%'></th>
       
     </tr>";
   echo "</thead>";
