@@ -8,7 +8,7 @@
       <section class="content-header">
         <h1>
         <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลลูกค้า</span> 
-        <a href="customer.php?act=add" class="btn btn-primary btn-sm">เพิ่มลูกค้า</a>
+        <a href="customer.php?act=add" class="btn btn-primary btn-sm">เพิ่ม</a>
         </h1>
       </section>
       <section class="content">
