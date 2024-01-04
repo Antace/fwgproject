@@ -38,7 +38,7 @@ $row = mysqli_fetch_array($result);
     </div>
     <div class="col-sm-3">
       <input type="hidden" name="expenses_id" value="<?php echo $ID; ?>" />
-      <button type="submit" class="btn btn-success">แก้ไขข้อมูล</button>
+      <button type="submit" class="btn btn-success">บันทึก</button>
       <a href="expenses.php" class="btn btn-danger">ยกเลิก</a>
     </div>
   </div>
