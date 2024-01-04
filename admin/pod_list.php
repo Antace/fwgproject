@@ -11,7 +11,7 @@ swal("", "แก้ไขสำเร็จ !!", "success");
 echo '<meta http-equiv="refresh" content="1;url=pod.php" />';
 }
 $query = "SELECT * FROM tb_po 
-WHERE po_dateexpire < current_date AND po_dateexpire != 0000-00-00 OR cb_name != ''ORDER BY po_id DESC" or die("Error:" . mysqli_error());
+WHERE po_dateexpire < current_date AND po_dateexpire != 0000-00-00 OR cb_name != ''ORDER BY po_id DESC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
 
 include "po_list_thead.php";
