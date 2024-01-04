@@ -13,15 +13,16 @@ if (@$_GET['do'] == 'success') {
 $query = "SELECT * FROM tb_link
 ORDER BY link_id DESC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
-echo ' <table id="example1" class="table table-bordered table-striped">';
+echo ' <table id="example1" class="table table-bordered table-hover table-sm">';
 echo "<thead  align=center>";
 echo "<tr class='table-light'>
       <th width='3%'>ลำดับ</th>
       <th width='30%'>อีเมล์/เว็บไซต์</th>
+      <th width='20%'>ชื่อบัญชี</th>
       <th width='20%'>รหัสผ่าน</th>
-      <th width='40%'>หมายเหตุ</th>
+      <th width='20%'>หมายเหตุ</th>
       
-      <th width='7%'>-</th>
+      <th width='7%'></th>
     </tr>";
 echo "</thead>";
 $i = 1;
@@ -29,6 +30,7 @@ while ($row = mysqli_fetch_array($result)) {
   echo "<tr>";
   echo "<td  align=center>" . $i++  . "</td> ";
   echo "<td>" . "<a href= ".$row['link_name']." target=blank>".$row['link_name']."</a>" . "</td> ";
+  echo "<td>" . $row['link_user'] . "</td> ";
   echo "<td>" . $row['link_pass'] . "</td> ";
   echo "<td>"  . $row["link_detail"] . "</td> ";
   
