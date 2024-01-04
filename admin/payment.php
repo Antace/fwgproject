@@ -1,14 +1,15 @@
-<?php include('h.php');?>
+<?php include('h.php'); ?>
+
 <body class="hold-transition skin-purple sidebar-mini">
   <div class="wrapper">
     <!-- Main Header -->
-    <?php include('menutop.php');?>
-        <?php include('menu_l.php');?>
+    <?php include('menutop.php'); ?>
+    <?php include('menu_l.php'); ?>
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-        <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลสินค้า</span> 
-        <a href="payment_form_add.php" class="btn btn-primary btn-sm">เพิ่ม</a>
+          <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">บันทึกการจ่ายเงิน</span>
+          <a href="payment_form_add.php" class="btn btn-primary btn-sm">เพิ่ม</a>
         </h1>
       </section>
       <section class="content">
@@ -20,36 +21,40 @@
                   <div class="card-body">
                     <?php
                     $act = (isset($_GET['act']) ? $_GET['act'] : '');
-                    if($act == 'add'){
-                        include('payment_form_add.php');
-                    }elseif ($act == 'edit') {
-                        include('payment_form_edit.php');
-                    }else {
-                        include('payment_list.php');
+                    if ($act == 'add') {
+                      include('payment_form_add.php');
+                    } elseif ($act == 'edit') {
+                      include('payment_form_edit.php');
+                    } elseif ($act == 'view') {
+                      include('payment_form_view.php');
+                    } elseif ($act == 'payment_cancel') {
+                      include('payment_form_view.php');
+                    } elseif ($act == 'print') {
+                      include('payment_form_print.php');
+                    } else {
+                      include('payment_list.php');
                     }
-                  ?>                   
-                 <!-- /.card-body -->
+                    ?>
+                    <!-- /.card-body -->
                   </div>
                   <!-- /.card -->
                 </div>
                 <!-- /.col -->
-                
+
               </div>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
-          
+
         </div>
-      </div>
-      
     </div>
-    <!-- /.row -->
-    </div><!-- /.container-fluid -->
-      </section>
-    <?php include ('footer.php');?>
+
+  </div>
+  <!-- /.row -->
+  </div><!-- /.container-fluid -->
+  </section>
+  <?php include('footer.php'); ?>
+
   </html>
-  <?php include('footerjs.php');?>
-
-
-
+  <?php include('footerjs.php'); ?>
