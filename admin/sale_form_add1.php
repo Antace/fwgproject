@@ -45,12 +45,12 @@
                                             unset($_SESSION['cart'][$product_id]);
                                         }
                                         if ($act == 'update') {
-                                            $sale_pricearray=$_POST['sale_price'];
+                                            // $sale_pricearray=$_POST['sale_price'];
                                             // foreach($sale_pricearray as $product_id => $sale_price){
                                             //     $_SESSION['cart'][$product_id] = $sale_price;
                                             // }
                                             // $vat=$_POST['sale_vat'];
-                                            $discount=$_POST['sale_discount'];
+                                            
                                             
                                             $amount_array = $_POST['amount'];
                                             foreach ($amount_array as $product_id => $amount) {
@@ -92,9 +92,10 @@
 
                                                 <tr>
                                                     <td>รายการ</td>
+                                                    <td>สถานที่จัดเก็บ</td>
                                                     <td align="center">คงเหลือ</td>
-                                                    <td align="center">ราคามาตราฐาน</td>
-                                                    <td align="center">ราคา<font color='red'>* </font></td>
+                                                    <td align="center">ราคา</td>
+                                                    
                                                     <td align="center">จำนวน</td>
                                                     <td align="center">รวม(บาท)</td>
                                                     <td align="center">ลบ</td>
@@ -103,25 +104,24 @@
                                                 $total = 0;
                                                 if (!empty($_SESSION['cart'])) {
                                                     foreach ($_SESSION['cart'] as $product_id => $qty  ) {
-                                                        $sale_price = $sale_pricearray[$product_id];
+                                                        // $sale_price = $sale_pricearray[$product_id];
                                                         $sql = "SELECT * FROM tb_product WHERE product_id=$product_id";
                                                         
                                                         $query = mysqli_query($con, $sql);
                                                         $row = mysqli_fetch_array($query);
-                                                        $sum = $sale_price * $qty;
+                                                        $sum = $row["product_price"]* $qty;
                                                         $total += $sum;
-                                                        $total1 = $total-$discount;
+                                                        $total1 = $total;
                                                         
                                                         
-                                                        $vat = ($total1 * 0.07);
-                                                        $stotal = $total1 + $vat;
+                                                        
+                                                        $stotal = $total1 ;
                                                         $p_qty = $row['product_uom']; //จำนวนสินค้าในสต๊อก
                                                         echo "<tr>";
-                                                        echo "<td width='334'>" . $row["product_name"] . "</td>";
+                                                        echo "<td width='250'>" . $row["product_name"] . "</td>";
+                                                        echo "<td width='150'>" . $row["location_name"] . "</td>";
                                                         echo "<td width='20' align='center'>" . $row["product_uom"]  . "</td>";
                                                         echo "<td width='46' align='right'>" . number_format($row["product_price"], 2) . "</td>";
-                                                        echo "<td width='57' align='right'>";
-                                                        echo "<input type='number' class='form-control' style='text-align:right;' name='sale_price[$product_id]' value='$sale_price' size='2' Required/></td>";
                                                         echo "<td width='57' align='right'>";
                                                         echo "<input type='number' class='form-control' style='text-align:right;' name='amount[$product_id]' value='$qty' size='2' min='1' max='$p_qty'/></td>";
                                                         echo "<td width='93' align='right'>" . number_format($sum, 2) . "</td>";
@@ -129,22 +129,7 @@
                                                         echo "<td width='46' align='center'><a href='sale_form_add1.php?product_id=$product_id&act=remove'class='btn btn-danger'>ลบ</a></td>";
                                                         echo "</tr>";
                                                     }
-                                                    echo "<tr>";
-                                                    echo "<td colspan='5'  align='right'><b>ราคารวม</b></td>";
-                                                    echo "<td align='right' >" . "<input type='decimal' style='text-align:right;' name='sale_total' class='form-control' value='$total' Required readonly>". "</td>";
-                                                    echo "<td align='left' >บาท</td>";
-                                                    echo "</tr>";
-                                                    echo "<tr>";
-                                                    echo "<td colspan='5'  align='right'><b>ส่วนลด</b><font color='red'>*ถ้าไม่มีส่วนลดให้ใส่ 0 </font></td>";
-                                                    echo "<td align='right' >" . "<input type='decimal' style='text-align:right;' name='sale_discount' class='form-control' value='$discount' Required>" . "</td>";
-                                                    echo "<td align='left' >บาท</td>";
-                                                    echo "</tr>";
-                                                    echo "<tr>";
-                                                    echo "<td colspan='5'  align='right'><b>Vat 7%</b></td>";
-                                                    echo "<td align='right' >" . "<input type='decimal' style='text-align:right;' name='sale_vat' class='form-control' value='$vat' Required readonly  >" . "</td>";
-                                                    echo "<td align='left' >บาท</td>";
-                                                    echo "</tr>";
-                                                    echo "<tr>";
+                                                   
                                                     echo "<td colspan='5'  align='right'><b>ราคารวมสุทธิ  </b></td>";
                                                     echo "<td align='right' >" . "<input type='decimal' style='text-align:right;' name='sale_stotal' class='form-control' value='$stotal' Required readonly>" . "</td>";
                                                     echo "<td align='left' >บาท</td>";
@@ -159,7 +144,7 @@
                                                 
                                                 <tr>
                                                     <td colspan="7" align="right">
-                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="ปรับปรุง" />
+                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="ยืนยัน" />
                                                         <?php if ($act == 'update') { ?>
                                                             <input type="button" value="สั่งซื้อ" class="btn btn-info btn-sm" onClick="this.form.action='saleproduct_confirm.php'; submit()">
                                                             
