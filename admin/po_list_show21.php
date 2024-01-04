@@ -2,7 +2,7 @@
 include "po_list_show_h.php";
   
   $query = "SELECT * FROM tb_po 
-  WHERE po_name LIKE '%$qpo%'  AND customer_name LIKE '%$qcus%' AND work_by LIKE '%$qcate%' "  or die("Error:" . mysqli_error());
+  WHERE po_name LIKE '%$qpo%'  AND customer_name LIKE '%$qcus%' AND work_by LIKE '%$qcate%' "  or die("Error:" . mysqli_error($con));
   $result = mysqli_query($con, $query);
   include "po_slist.php";
 
