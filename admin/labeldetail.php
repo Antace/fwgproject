@@ -9,10 +9,10 @@
         <h1>
         <i class="glyphicon glyphicon-list-alt hidden-xs"></i> <span class="hidden-xs">ข้อมูลเลขที่บ้าน</span>
         
-        <a href="labeldetail.php?act=add" class="btn btn-primary btn-sm">เพิ่มเลขที่บ้าน</a>
+        <a href="labeldetail.php?act=add" class="btn btn-primary btn-sm">เพิ่ม</a>
         <a href="labeldetail.php?act=pd" class="btn btn-primary btn-sm">เลขที่บ้านที่สั่งแล้ว</a>
         <a href="labeldetail.php?act=npd" class="btn btn-primary btn-sm">เลขที่บ้านที่ยังไม่ได้สั่ง</a>
-        <a href="labeldetail.php" class="btn btn-primary btn-sm">X</a>
+        <a href="labeldetail.php" class="btn btn-danger btn-sm">ปิด</a>
         </h1>
       </section>
       <section class="content">
