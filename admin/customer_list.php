@@ -13,15 +13,15 @@ if (@$_GET['do'] == 'success') {
 $query = "SELECT * FROM tb_customer
 ORDER BY customer_id DESC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
-echo ' <table id="example1" class="table table-bordered table-striped">';
+echo ' <table id="example1" class="table table-bordered table-hover table-sm">';
 echo "<thead  align=center>";
 echo "<tr class='table-light'>
       <th width='3%'>ลำดับ</th>
-      <th width='30%'>ชื่อบริษัท</th>
-      <th width='30%'>ที่อยู่</th>
-      <th width='15%'>สาขา</th>
-      <th width='15%'>Tax ID</th>
-      <th width='7%'>-</th>
+      <th width='25%'>ชื่อบริษัท</th>
+      <th width='45%'>ที่อยู่</th>
+      <th width='10%'>สาขา</th>
+      <th width='10%'>Tax ID</th>
+      <th width='7%'></th>
     </tr>";
 echo "</thead>";
 $i = 1;
