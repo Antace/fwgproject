@@ -31,13 +31,13 @@ if(@$_GET['do']=='success'){
   echo '<meta http-equiv="refresh" content="1;url=order.php" />';
 }
 $query = "SELECT * FROM tb_order
-ORDER BY order_id DESC" or die("Error:" . mysqli_error());
+ORDER BY order_id DESC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
 ?>
 
 
 <form name="frmorder" action="orderprintall.php" method="post">
-<table id="example1" class="table table-bordered table-striped">
+<table id="example1" class="table table-bordered table-hover table-sm">
 <input type = 'submit' class='btn btn-primary  ' name='btnprint' value='พิมพ์รายการที่เลือก'>
 <thead>
   <tr class=''>
@@ -50,7 +50,7 @@ $result = mysqli_query($con, $query);
     <th>รายการ</th>
     
     
-    <th width='10%'>-</th>
+    <th width='10%'></th>
   </tr>
 </thead>
 
