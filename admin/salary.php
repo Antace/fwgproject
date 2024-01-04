@@ -11,7 +11,6 @@
       <section class="content-header">
       <h1>
         <i class="glyphicon glyphicon-user hidden-xs"></i> <span class="hidden-xs">ข้อมูลเงินเดือน</span>
-        <!-- <a href="salary.php?act=add" class="btn btn-primary btn-sm">เพิ่มผู้ใช้งาน</a> -->
         </h1>
         
       </section>
