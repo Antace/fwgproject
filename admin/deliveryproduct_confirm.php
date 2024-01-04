@@ -2,7 +2,9 @@
 session_start();
 
 // print_r($_POST);
+$delivery_poarray = $_POST["delivery_po"];
 
+$delivery_pricearray =  $_POST['delivery_price'];
 include('../condb.php');
 $sql2 = "SELECT * FROM tb_customer
 ORDER BY customer_id DESC" or die("Error:" . mysqli_error($con, $sql2));
@@ -115,31 +117,38 @@ $result_t3 = mysqli_query($con, $sql3) or die("Error in query: $sql3 " . mysqli_
 
                                                 <table width="600" border="0" align="center" class="table table-bordered table-striped">
                                                     <tr>
-                                                        <td width="1558" colspan="4">
+                                                        <td width="1558" colspan="6">
                                                             <strong>ยืนยันรายการ</strong>
                                                         </td>
                                                     </tr>
                                                     <tr>
+                                                        <td>เลขที่</td>
                                                         <td>สินค้า</td>
-
+                                                        <td>สถานที่จัดเก็บ</td>
+                                                        <td align="center">ราคา</td>
                                                         <td align="center">จำนวน</td>
+                                                        <td align="center">รวม(บาท)</td>
 
                                                     </tr>
                                                     <?php
 
                                                     foreach ($_SESSION['delivery'] as $product_id => $qty) {
-
+                                                        $delivery_price = $delivery_pricearray[$product_id];
+                                                        $delivery_po = $delivery_poarray[$product_id];
                                                         $sql    = "SELECT * FROM tb_product WHERE product_id=$product_id";
                                                         $query    = mysqli_query($con, $sql);
                                                         $row    = mysqli_fetch_array($query);
-
-
-
+                                                        $sum = $delivery_price * $qty;
+                                                        echo "<input type='hidden' name='delivery_price[$product_id]' value=' $delivery_price'>";
+                                                        echo "<input type='hidden' name='delivery_po[$product_id]' value=' $delivery_po'>";
                                                         echo "<tr>";
+                                                        echo "<td>" . $delivery_po . "</td>";
                                                         echo "<td>" . $row["product_name"] . "</td>";
+                                                        echo "<td>" . $row["location_name"] . "</td>";
 
+                                                        echo "<td align='right'>" . number_format($delivery_price, 2) . "</td>";
                                                         echo "<td align='right'>$qty</td>";
-
+                                                        echo "<td align='right'>" . number_format($sum, 2) . "</td>";
                                                         echo "</tr>";
                                                     }
 
@@ -148,7 +157,7 @@ $result_t3 = mysqli_query($con, $sql3) or die("Error in query: $sql3 " . mysqli_
                                                 </table>
                                                 <p>
 
-                                                    <center><a href="delivery_form_add1.php" class="btn btn-warning ">กลับหน้ายืนยันการสั่งซื้อ</a> &nbsp;&nbsp;<input type="submit" name="Submit2" class="btn btn-success" value="สั่งซื้อ" /></center>
+                                                    <center><a href="delivery_form_add1.php" class="btn btn-warning ">กลับหน้ายืนยันการสั่งซื้อ</a> &nbsp;&nbsp;<input type="submit" name="Submit2" class="btn btn-success" value="บันทึก" /></center>
                                             </form>
                                             <!-- /.card-body -->
                                         </div>
