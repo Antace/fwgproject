@@ -2,7 +2,7 @@
 
 // $query3 = "SELECT * FROM tb_department ORDER BY department_id asc" or die("Error:" . mysqli_error());
 // $result3 = mysqli_query($con, $query3);
-$query3 = "SELECT * FROM tb_labeldetail  GROUP BY department_name asc" or die("Error:" . mysqli_error());
+$query3 = "SELECT * FROM tb_labeldetail  GROUP BY department_name asc" or die("Error:" . mysqli_error($con));
 $result3 = mysqli_query($con, $query3);
 
 ?>
