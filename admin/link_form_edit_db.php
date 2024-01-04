@@ -12,12 +12,14 @@ if($_SESSION['employee_id']==''){
 
 	$link_id = mysqli_real_escape_string($con,$_POST["link_id"]);
 	$link_name = mysqli_real_escape_string($con,$_POST["link_name"]);
+	$link_user = mysqli_real_escape_string($con,$_POST["link_user"]);
 	$link_pass = mysqli_real_escape_string($con,$_POST["link_pass"]);
 	$link_detail = mysqli_real_escape_string($con,$_POST["link_detail"]);	
 	$username = mysqli_real_escape_string($con,$_POST["username"]);
 
 	$sql = "UPDATE tb_link SET 
 	link_name='$link_name',
+	link_user='$link_user',
 	link_pass='$link_pass',
 	link_detail='$link_detail',
 	username='$username'
