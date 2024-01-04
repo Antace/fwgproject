@@ -1,5 +1,5 @@
 <?php
-$query1 = "SELECT * FROM tb_labeldetail WHERE label_orderstatus = 0 ORDER BY label_ida " or die ("Erorr:" . mysqli_error());
+$query1 = "SELECT * FROM tb_labeldetail WHERE label_orderstatus = 0 ORDER BY label_ida " or die ("Erorr:" . mysqli_error($con));
 $result1 = mysqli_query($con, $query1);
 
 
