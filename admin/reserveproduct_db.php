@@ -13,31 +13,34 @@ include( "../condb.php" );
 $strNextSeq = "";
 
 //*** Check Year ***//
-$strSQL = "SELECT * FROM tb_prefixsale WHERE 1 ";
+$strSQL = "SELECT * FROM tb_prefixreserve WHERE 1 ";
 $objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 $objResult = mysqli_fetch_array($objQuery);
 
-//*** Check val = year now ***//
-if($objResult["val"] == date("y"))
+$date1= date("y")+43;
+//*** Check val = year now ***// (ถ้า val = ปี ค.ศ. +43 แล้วเท่ากับปัจจุบัน จะทำการนับต่อ)
+if($objResult["val"] == $date1)
 {
 	$Seq = substr("0000".$objResult["seq"],-4,4);   //*** Replace Zero Fill ***//
 	$strNextSeq =$objResult["val"].$objResult["mval"].$Seq;
 
 	//*** Update Next Seq ***//
-	$strSQL = "UPDATE tb_prefixsale SET mval = '".date("m")."' ,seq= seq+1 ";
+	$strSQL = "UPDATE tb_prefixreserve SET mval = '".date("m")."' ,seq= seq+1 ";
 	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
-else  //*** Check val != year now ***//
+else  //*** Check val != year now ***// (แต่ถ้าไม่ใช่ ปีปัจจุบัน จะทำการ ขึ้นปีใหม่ เช่น ถ้าปีนี้ 66 แต่ ค่า val = 65 จะเริ่มนับใหม่ เป็นปีปัจจุบันแทน)
 {
 	$Seq = substr("00001",-4,4);   //*** Replace Zero Fill ***//
-	$strNextSeq =date("y").date("m").$Seq;
+	$strNextSeq =$date1.date("m").$Seq;
 
 	//*** Update New Seq ***//
-	$strSQL = "UPDATE tb_prefixsale SET val = '".date("y")."' , mval='".date("m")."', seq = '1' ";
+	$strSQL = "UPDATE tb_prefixreserve SET val = '".$date1."' , mval='".date("m")."', seq = '1' ";
 	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
 
 // echo $strNextSeq;
+// echo '<br>';
+// echo $date1;
 
 // exit;
 
@@ -61,7 +64,7 @@ mysqli_query( $con, "BEGIN" );
 $sql1 = "INSERT INTO tb_reserve
 VALUES
 ($strNextSeq,'$reserve_date','$customer_name','$receive_status','$username','$reserve_dt')";
-$query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_error($con,$sql1));
+$query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_error($con)."<br>$sql1");
 
 
 // echo $sql1;
