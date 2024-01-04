@@ -24,11 +24,10 @@
     echo '<meta http-equiv="refresh" content="1;url=member.php" />';
   }
 
-$query = "
-SELECT * FROM tb_employee 
-ORDER BY employee_id ASC" or die("Error:" . mysqli_error());
+$query = "SELECT * FROM tb_employee 
+ORDER BY employee_id ASC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
-echo '<table id="example1" class="table table-bordered table-striped">';
+echo '<table id="example1" class="table table-bordered table-hover table-sm">';
   echo "<thead align=center>";
     echo "<tr class='table-light'>
       <th width='5%'>ลำดับ</th>
@@ -37,7 +36,7 @@ echo '<table id="example1" class="table table-bordered table-striped">';
       <th width='15%'>เบอร์ติดต่อ</th>
       <th width='20%'>E-mail</th>
     <th width='15%'>สถานะ</th>
-      <th width='7%'>-</th>
+      <th width='7%'></th>
     </tr>";
   echo "</thead>";
   $i=1;
