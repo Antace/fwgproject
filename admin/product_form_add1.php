@@ -1,6 +1,9 @@
 <?php
 $query2 = "SELECT * FROM tb_productdept ORDER BY productdept_id asc" or die("Error:" . mysqli_error($con));
 $result_t = mysqli_query($con, $query2);
+
+$query3 = "SELECT * FROM tb_location ORDER BY location_id asc" or die("Error:" . mysqli_error($con));
+$result3 = mysqli_query($con, $query3);
 ?>
 <?php
 if (@$_GET['do'] == 'f') {
@@ -107,6 +110,22 @@ swal("", "ชื่อสินค้าซ้ำ กรุณาเปลี่
         </div>
 
         <div class="form-group">
+            <div class="col-sm-2 control-label">
+                สถานที่จัดเก็บ : <font color="red">*</font>
+            </div>
+            <div class="col-sm-6">
+                <select class="select2bs4" data-placeholder="สถานที่จัดเก็บ" name="location_name" style="width: 100%;" required>
+                    <option value="">-</option>
+                    <?php foreach ($result3 as $results) { ?>
+                        <option value="<?php echo $results["location_name"]; ?>">
+                            <?php echo $results["location_name"]; ?>
+                        </option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-sm-3 control-label" class="form-control">
                 รายละเอียดสินค้า :
             </div>
@@ -176,7 +195,7 @@ swal("", "ชื่อสินค้าซ้ำ กรุณาเปลี่
             <div class="col-sm-2">
             </div>
             <div class="col-sm-3">
-                <button type="submit" name="submit" class="btn btn-success">เพิ่มข้อมูล</button>
+                <button type="submit" name="submit" class="btn btn-success">บันทึก</button>
                 <a href="product.php" class="btn btn-danger">ยกเลิก</a>
             </div>
         </div>
