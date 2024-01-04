@@ -34,7 +34,7 @@
   
 
   $query = "SELECT * FROM tb_labeldetail 
-  WHERE  department_name LIKE '%$qdeptpd%' AND label_orderstatus > 0 "  or die("Error:" . mysqli_error());
+  WHERE  department_name LIKE '%$qdeptpd%' AND label_orderstatus > 0 "  or die("Error:" . mysqli_error($con));
   $result = mysqli_query($con, $query);
   
   include "labeldetail_list_ashow.php";
