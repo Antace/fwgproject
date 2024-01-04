@@ -62,7 +62,7 @@
                                         {
                                             unset($_SESSION['salary']);
                                         }
-                                        $query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error());
+                                        $query2 = "SELECT * FROM tb_customer ORDER BY customer_id asc" or die("Error:" . mysqli_error($con));
                                         $result2 = mysqli_query($con, $query2);
                                         $row2 = mysqli_fetch_array($result2);
                                         ?>
@@ -90,7 +90,7 @@
                                         ?>
 
                                         <form id="frmsalary" name="frmsalary" method="post" action="?act=update">
-                                            <table width="600" border="0" align="center" class="table table-bordered table-striped">
+                                            <table width="600" border="0" align="center" class="table table-bordered table-striped table-sm">
 
                                                 <tr>
                                                 
@@ -110,7 +110,7 @@
                                                     <td align="center">หักภาษี</td>
                                                     <td align="center">หักมาสาย</td>
                                                     <td align="center">หักขาดงาน</td>
-                                                    <td align="center">หักเบี้ยเลี้ยงกิ/ป่วย/พักร้อน</td>
+                                                    <td align="center">หักเบี้ยเลี้ยงกิจ/ป่วย/พักร้อน</td>
                                                     <td align="center">เบิกล่วงหน้า</td>
                                                     <td align="center">หักกองทุนสำรองเลี้ยงชีพ</td>
                                                     <td align="center">หักจ่ายอื่นๆ</td>
@@ -209,9 +209,9 @@
                                                 
                                                 <tr>
                                                     <td colspan="15" align="right">
-                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="ปรับปรุง" />
+                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="ยืนยัน" />
                                                         <?php if ($act == 'update') { ?>
-                                                            <input type="button" value="สั่งซื้อ" class="btn btn-info btn-sm" onClick="this.form.action='salaryemployee_confirm.php'; submit()">
+                                                            <input type="button" value="บันทึก" class="btn btn-info btn-sm" onClick="this.form.action='salaryemployee_confirm.php'; submit()">
                                                             
                                                         <?php } ?>
                                                     </td>
@@ -220,7 +220,7 @@
                                         </form>
                                         <hr>
                                         <!-- /.card-body -->
-                                        <a href="salary.php" class="btn btn-warning">ปิด</a>
+                                        <a href="salary.php" class="btn btn-warning btn-sm">ปิด</a>
                                     </div>
                                     <!-- /.card -->
                                 </div>
