@@ -11,7 +11,7 @@
       <section class="content-header">
       <h1>
         <i class="glyphicon glyphicon-user hidden-xs"></i> <span class="hidden-xs">ข้อมูลพนักงาน </span>
-        <a href="employee.php?act=add" class="btn btn-primary btn-sm">เพิ่มพนักงาน</a>
+        <a href="employee.php?act=add" class="btn btn-primary btn-sm">เพิ่ม</a>
         </h1>
         
       </section>
@@ -31,7 +31,7 @@
                   }elseif ($act == 'salary') {
                   include('salary_form_add.php');
                   }else {
-                  include('employee_list.php');
+                  include('employee_list1.php');
                   }
                   ?>                   
                   <!-- /.card-body -->
