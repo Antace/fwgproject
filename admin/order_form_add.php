@@ -155,7 +155,7 @@
                                                 
                                                 <tr>
                                                     <td colspan="7" align="right">
-                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="ปรับปรุง" />
+                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="ยืนยัน" />
                                                         <?php if ($act == 'update') { ?>
                                                             <input type="button" value="สั่งผลิต" class="btn btn-info btn-sm" onClick="this.form.action='order_confirm1.php'; submit()">
                                                             
