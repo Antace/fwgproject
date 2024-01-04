@@ -4,14 +4,14 @@ include ('../vendor/autoload.php');
 $ID = mysqli_real_escape_string($con,$_GET['ID']);
 $sql = "SELECT * FROM tb_order
 WHERE order_id=$ID
-ORDER BY order_id DESC" or die("Error:" . mysqli_error());
-$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+ORDER BY order_id DESC" or die("Error:" . mysqli_error($con));
+$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 $row = mysqli_fetch_array($result);
 
 $sql1 = "SELECT * FROM tb_orderlist
 WHERE order_id=$ID
-ORDER BY orderlist_id DESC" or die("Error:" . mysqli_error());
-$result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_error());
+ORDER BY orderlist_id DESC" or die("Error:" . mysqli_error($con));
+$result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_error($con));
 
 
 
