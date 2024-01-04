@@ -1,5 +1,5 @@
 <?php include('h.php'); 
-$query2 = "SELECT * FROM tb_label ORDER BY label_id DESC" or die("Error:" . mysqli_error());
+$query2 = "SELECT * FROM tb_label ORDER BY label_id DESC" or die("Error:" . mysqli_error($con));
 $result2 = mysqli_query($con, $query2);
 ?>
 <body class="hold-transition skin-purple sidebar-mini">
@@ -143,28 +143,14 @@ $result2 = mysqli_query($con, $query2);
                                                         // echo "<td align='right'>" . number_format($sum, 2) . "</td>";
                                                         echo "</tr>";
                                                     }
-                                                    // echo "<tr>";
-                                                    // echo "<td  align='right' colspan='3' ><b>รวม</b></td>";
-                                                    // echo "<td align='right' >" . "<b>" . number_format($total, 2) . "</b>" . "</td>";
-                                                    // echo "</tr>";
-                                                    // echo "<tr>";
-                                                    // echo "<td  align='right' colspan='3' ><b>ส่วนลด</b></td>";
-                                                    // echo "<td align='right' >" . "<b>" . number_format($discount, 2) . "</b>" . "</td>";
-                                                    // echo "</tr>";
-                                                    // echo "<td  align='right' colspan='3' ><b>ภาษี</b></td>";
-                                                    // echo "<td align='right' >" . "<b>" . number_format($vat, 2) . "</b>" . "</td>";
-                                                    // echo "</tr>";
-                                                    // echo "<tr>";
-                                                    // echo "<td  align='right' colspan='3' ><b>รวมทั้งหมด</b></td>";
-                                                    // echo "<td align='right' >" . "<b>" . number_format($stotal, 2) . "</b>" . "</td>";
-                                                    // echo "</tr>";
+                                                    
                                                     ?>
 
                                                 </table>
                                                 <p>
 
                                                     <input type="hidden" name="order_date" value="<?php echo (new DateTime())->format('Y-m-d'); ?>" required class="form-control">
-                                                    <center><a href="order_form_add.php" class="btn btn-warning ">กลับหน้ายืนยันการสั่งผลิต</a> &nbsp;&nbsp;<input type="submit" name="Submit2" class="btn btn-success" value="บันทึกการผลิต" /></center>
+                                                    <center><a href="order_form_add.php" class="btn btn-warning ">กลับหน้ายืนยันการสั่งผลิต</a> &nbsp;&nbsp;<input type="submit" name="Submit2" class="btn btn-success" value="บันทึก" /></center>
                                             </form>
                                             <!-- /.card-body -->
                                         </div>
