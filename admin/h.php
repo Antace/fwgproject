@@ -35,6 +35,10 @@ session_start(); ?>
     $sql4 = "SELECT * FROM tb_reserve WHERE receive_status ='ยังไม่ได้รับของ' AND reserve_date <= current_date";
     $result4 = mysqli_query($con, $sql4);
     $rec4 = mysqli_num_rows($result4);
+
+    $sql5 = "SELECT * FROM tb_contractor WHERE contractor_expired < current_date";
+    $result5 = mysqli_query($con,$sql5);
+    $rec5 = mysqli_num_rows($result5);
     ?>
 
     <meta charset="utf-8">
