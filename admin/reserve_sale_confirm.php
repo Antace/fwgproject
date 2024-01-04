@@ -90,7 +90,7 @@ if($_GET['act']=='vat'){
 
                                                     <tr>
                                                         <td>รายการ</td>
-                                                        
+                                                        <td>สถานที่จัดเก็บ</td>
                                                         <td align="center">ราคาขาย</td>
                                                         <td align="center">จำนวน</td>
                                                         <td align="center">รวม/รายการ</td>
@@ -124,7 +124,8 @@ if($_GET['act']=='vat'){
                                                         echo "<input type='text' name='sale_price[$product_id]' value=' $sale_price'>";
                                                         echo "<input type='text' name='reserve_uom[$product_id]' value=' $qty'>";
                                                         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='product_id[]' value='$product_id' readonly>";
-                                                        echo "<td width='334'>" . $row["product_name"] . "</td>";
+                                                        echo "<td width='250'>" . $row["product_name"] . "</td>";
+                                                        echo "<td width='150'>" . $row["location_name"] . "</td>";
 
                                                         
                                                         echo "<td width='46' align='right'>" . number_format($sale_price, 2) . "</td>";
@@ -139,22 +140,22 @@ if($_GET['act']=='vat'){
                                                     }
                                                     if($_GET['act']=='vat'){
                                                     echo "<tr>";
-                                                    echo "<td  align='right' colspan='3' ><b>รวม</b></td>";
+                                                    echo "<td  align='right' colspan='4' ><b>รวม</b></td>";
                                                     echo "<td align='right' >" . "<b>" . number_format($total, 2) . "</b>" . "</td>";
                                                     echo "</tr>";
                                                     echo "<tr>";
-                                                    echo "<td  align='right' colspan='3' ><b>ส่วนลด</b></td>";
+                                                    echo "<td  align='right' colspan='4' ><b>ส่วนลด</b></td>";
                                                     echo "<td align='right' >" . "<b>" . number_format($discount, 2) . "</b>" . "</td>";
                                                     echo "</tr>";
-                                                    echo "<td  align='right' colspan='3' ><b>ภาษี</b></td>";
+                                                    echo "<td  align='right' colspan='4' ><b>ภาษี</b></td>";
                                                     echo "<td align='right' >" . "<b>" . number_format($vat, 2) . "</b>" . "</td>";
                                                     echo "</tr>";
                                                     echo "<tr>";
-                                                    echo "<td  align='right' colspan='3' ><b>รวมทั้งหมด</b></td>";
+                                                    echo "<td  align='right' colspan='4' ><b>รวมทั้งหมด</b></td>";
                                                     echo "<td align='right' >" . "<b>" . number_format($stotal, 2) . "</b>" . "</td>";
                                                     echo "</tr>";
                                                     echo "<tr>";
-                                                    echo "<td colspan='4' align='center'>";
+                                                    echo "<td colspan='5' align='center'>";
                                                     echo "<input type='text' name='sale_total' value='$total'>";
                                                     echo "<input type='text' name='sale_discount' value='$discount'>";
                                                     echo "<input type='text' name='sale_vat' value=' $vat'>";
@@ -165,17 +166,17 @@ if($_GET['act']=='vat'){
 
                                                     ?>
                                                     <tr>
-                                                        <td colspan="4" align="right">
-                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="บันทึก1" />
+                                                        <td colspan="5" align="right">
+                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="submit" />
                                                         </td>
                                                     </tr>
                                                 <?php }else{
                                                     echo "<tr>";
-                                                    echo "<td  align='right' colspan='3' ><b>รวมทั้งหมด</b></td>";
+                                                    echo "<td  align='right' colspan='4' ><b>รวมทั้งหมด</b></td>";
                                                     echo "<td align='right' >" . "<b>" . number_format($total, 2) . "</b>" . "</td>";
                                                     echo "</tr>";
 
-                                                    echo "<td colspan='4' align='right'>";
+                                                    echo "<td colspan='5' align='right'>";
                                                    
                                                     echo "<input type='text' name='sale_stotal' value='$total'>";
                                                     echo "<input type='hidden' name='username' value=' $username'>";
@@ -185,8 +186,8 @@ if($_GET['act']=='vat'){
 
                                                     
                                                     <tr>
-                                                        <td colspan="4" align="right">
-                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="บันทึก" />
+                                                        <td colspan="5" align="right">
+                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="confirm" />
                                                         </td>
                                                     </tr>
                                                     <?php }?>
