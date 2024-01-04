@@ -20,6 +20,14 @@ $row = mysqli_fetch_array($result);
     </div>
   </div>
   <div class="form-group">
+    <div class="col-sm-9 control-label">
+      ชื่อบัญชี : 
+    </div>
+    <div class="col-sm-3">
+      <input type="text" name="link_user" class="form-control" autocomplete="off" minlength="2" value="<?php echo $row['link_user']; ?>">
+    </div>
+  </div>
+  <div class="form-group">
     <div class="col-sm-3 control-label" class="form-control">
       รหัสผ่าน : <font color="red">*</font>
     </div>
@@ -60,7 +68,7 @@ $row = mysqli_fetch_array($result);
     </div>
     <div class="col-sm-3">
       <input type="hidden" name="link_id" value="<?php echo $ID; ?>" />
-      <button type="submit" class="btn btn-success">แก้ไขข้อมูล</button>
+      <button type="submit" class="btn btn-success">บันทึก</button>
       <a href="link.php" class="btn btn-danger">ยกเลิก</a>
     </div>
   </div>
