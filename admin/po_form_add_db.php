@@ -25,11 +25,11 @@ if($_SESSION['employee_id']==''){
 	$type = strrchr($_FILES['po_file']['name'],".");
 
 
-	echo 'upload='.(isset($_POST['po_file']));
-	echo '<br>';
-	echo 'product_img='.($_FILES['po_file']['name']);
-	echo '<br>';
-	exit;
+	// echo 'upload='.(isset($_POST['po_file']));
+	// echo '<br>';
+	// echo 'product_img='.($_FILES['po_file']['name']);
+	// echo '<br>';
+	// exit;
 	
 	if($type=='.pdf'){
 		if($upload !='') { 
@@ -94,7 +94,7 @@ if($_SESSION['employee_id']==''){
 	FROM tb_po
 	WHERE po_name = '$po_name'
 	";
-	$result1 = mysqli_query($con, $check) or die(mysqli_error());
+	$result1 = mysqli_query($con, $check) or die(mysqli_error($con));
     $num=mysqli_num_rows($result1);
 
     if($num > 0)
@@ -129,7 +129,7 @@ if($_SESSION['employee_id']==''){
 	'$username'
 	)";
 
-	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 }
 	mysqli_close($con);
 
