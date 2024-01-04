@@ -1,5 +1,5 @@
 <?php
-echo ' <table id="example1" class="table table-bordered table-striped">';
+echo ' <table id="example1" class="table table-bordered table-hover table-sm">';
 echo "<thead align='center'>";
   //echo mysqli_num_rows($result1);
   //exit;
