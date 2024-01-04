@@ -45,7 +45,7 @@ if(isset($_POST['importSubmit'])){
                     ('".$lh_place."','".$lh_side."','".$lh_fenceside."','".$lh_length."','".$lh_date."','".$lh_fencetype."','".$lh_department."','".$lh_amount."','".$lh_phase."','".$lh_unit."','".$lh_price."','".$lh_number."','".$lh_insurance."','".$status."',NOW(),NOW())");
                 
             }
-
+            
             $qstring = '?status=succ';
         }else{
             $qstring = '?status=err';
