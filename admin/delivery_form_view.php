@@ -43,10 +43,13 @@ $result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_e
     <table width="600" border="0" align="center" class="table table-bordered table-striped">
 
 <tr>
+    <td>เลขที่</td>
     <td>รายการ</td>
-    
+    <td>สถานที่จัดเก็บ</td>
+    <td align="center">ราคามาตราฐาน</td>
+    <td align="center">ราคาขาย</td>
     <td align="center">จำนวน</td>
-    
+    <td align="center">รวม(บาท)</td>
     <!-- <td align="center">ลบ</td> -->
 </tr>
 
@@ -65,7 +68,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
         //  $total += $sum;
         //  $total1 = $total-$discount;
         
-        $pdelivery_price = $row1['delivery_price']/$row1['delivery_uom'];
+        $pdelivery_price = $row1['delivery_price']*$row1['delivery_uom'];
         // echo $row1['delivery_uom'];
         //  $vat = ($total1 * 0.07);
         //  $stotal = $total1 + $vat;
@@ -73,12 +76,15 @@ while ($row1 = mysqli_fetch_array($result1)) {
         echo "<tr>";
         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='deliverylist_id[]' value='$row1[deliverylist_id]' readonly>";
         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='product_id[]' value='$row2[product_id]' readonly>";
-        echo "<td width='334'>" . $row2["product_name"] . "</td>";
-        
-        
+        // เก็บ array
+        echo "<td width='50'>" . $row1["delivery_po"] . "</td>";
+        echo "<td width='200'>" . $row2["product_name"] . "</td>";
+        echo "<td width='100'>" . $row2["location_name"] . "</td>";
+        echo "<td width='46' align='right'>" . number_format($row2["product_price"],2). "</td>";
+        echo "<td width='57' align='right'>" . number_format($row1["delivery_price"],2) ."</td>";
         echo "<td width='46' align='right'>" . "<input type='number' style='text-align:right;'  class='form-control' name='delivery_uom[]' value='$row1[delivery_uom]' readonly>" . "</td>";
-        echo "</td>";
         
+        echo "<td width='93' align='right'>" . number_format($pdelivery_price, 2) . "</td>";
         
         //remove product
         // echo "<td width='46' align='center'><a href='delivery_form_add1.php?product_id=$product_id&act=remove'class='btn btn-danger'>ลบ</a></td>";
