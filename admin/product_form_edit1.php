@@ -7,6 +7,8 @@ $row = mysqli_fetch_array($result);
 $query2 = "SELECT * FROM tb_productdept ORDER BY productdept_id asc" or die("Error:" . mysqli_error($con));
 $result_t = mysqli_query($con, $query2);
 
+$query3 = "SELECT * FROM tb_location ORDER BY location_id asc" or die("Error:" . mysqli_error($con));
+$result3 = mysqli_query($con, $query3);
 
 ?>
 <script type="text/javascript">
@@ -100,6 +102,22 @@ $result_t = mysqli_query($con, $query2);
         </div>
 
         <div class="form-group">
+            <div class="col-sm-2 control-label">
+                สถานที่จัดเก็บ : <font color="red">*</font>
+            </div>
+            <div class="col-sm-6">
+                <select class="select2bs4" data-placeholder="สถานที่จัดเก็บ" name="location_name" style="width: 100%;" required>
+                <option value="<?php echo $row['location_name'] ?>"><?php echo $row['location_name'] ?></option>
+                    <?php foreach ($result3 as $results) { ?>
+                        <option value="<?php echo $results["location_name"]; ?>">
+                            <?php echo $results["location_name"]; ?>
+                        </option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-sm-3 control-label" class="form-control">
                 รายละเอียดสินค้า :
             </div>
@@ -184,7 +202,7 @@ $result_t = mysqli_query($con, $query2);
             </div>
             <div class="col-sm-3">
                 <input type="hidden" name="product_id" value="<?php echo $ID; ?>" />
-                <button type="submit" class="btn btn-success">แก้ไขข้อมูล</button>
+                <button type="submit" class="btn btn-success">บันทึก</button>
                 <a href="product.php" class="btn btn-danger">ยกเลิก</a>
             </div>
         </div>
