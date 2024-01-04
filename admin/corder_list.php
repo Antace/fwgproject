@@ -19,18 +19,15 @@ $result = mysqli_query($con, $query);
 
 
 <form name="frmorder" action="orderprintall.php" method="post">
-<table id="example1" class="table table-bordered table-striped">
+<table id="example1" class="table table-bordered table-hover table-sm">
 
 <thead>
   <tr class=''>
-  
-    <th width='3%'>ลำดับ</th>
+     <th width='3%'>ลำดับ</th>
      <th width='20%'>เลขที่ใบสั่งผลิต</th>
      <th width='30%' >วันที่ทำรายการ</th>
-    <th>รายการ</th>
-    
-    
-    <th width='10%'>-</th>
+     <th>รายการ</th>
+     <th width='10%'></th>
   </tr>
 </thead>
 
