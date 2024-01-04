@@ -23,7 +23,9 @@
                      $act = (isset($_GET['act']) ? $_GET['act'] : '');
                      if($act == 'add'){
                       include('rexpenses_form_add.php');
-                      }else{
+                      }elseif ($act == 'edit') {
+                        include('rexpenses_form_edit.php');
+                    }else{
                      include('rexpenses_list.php');  
                      
                      }
