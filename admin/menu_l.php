@@ -24,73 +24,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-header">SYSTEM</li>
-          <li class="nav-item menu-">
-            <a href="#" class="nav-link  ">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>
-                จัดการข้อมูลระบบ
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="member.php" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลผู้ใช้งาน</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="employee.php" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลพนักงาน</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="link.php" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลอีเมล์/เว็บไซต์</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="customer.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลลูกค้า</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="contractor.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลผู้รับเหมา</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="expenses.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลค่าใช้จ่าย</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="product.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลสินค้า</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="department.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลหน่วยงาน/โครงการ</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="label.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลป้ายบ้านเลขที่</p>
-                </a>
-              </li>
-            </ul>
-          </li>
           
+               <li class="nav-header">SYSTEM</li>
           <li class="nav-item menu-">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-money-check"></i>
@@ -135,31 +70,7 @@
           </li>
 
          
-          <li class="nav-item menu-">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon far fa-file-alt"></i>
-              <p>
-              ข้อมูลการสั่งป้าย
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="order.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลการสั่งป้าย</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="corder.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลการสั่งป้ายที่ถูกยกเลิก</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          
 
           <li class="nav-item menu-">
             <a href="#" class="nav-link ">
@@ -178,89 +89,15 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item menu-">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-shopping-cart"></i>
-              <p>
-                ข้อมูลการขาย
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <!-- <li class="nav-item">
-                <a href="sale.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลการขาย</p>
-                </a>
-              </li> -->
-              <!-- <li class="nav-item">
-                <a href="salenv.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลการขาย1</p>
-                </a>
-              </li> -->
-              <li class="nav-item">
-                <a href="delivery.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลการนำออก</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="reserve.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลการจอง</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="sale.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลการขาย</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="production.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ข้อมูลการนำเข้า</p>
-                </a>
-              </li>
-            </ul>
-          </li>
           
-          <li class="nav-item menu-">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-shopping-cart"></i>
-              <p>
-                บันทึกรายการผลิต
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="production.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>บันทึกรายการผลิต</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="rexpenses.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>บันทึกค่าใช้จ่าย</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="payment.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>บันทึกการจ่ายเงิน</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          
+          
 
           
                     
           
           
-          <li class="nav-header">Exit</li>
+          <li class="nav-header">EXIT</li>
           <li class="nav-item">
             <a href="../logout.php" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
