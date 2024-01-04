@@ -8,8 +8,8 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ข้อมูลการนำออก</span>
-                    <a href="delivery_form_add1.php" class="btn btn-primary btn-sm">เพิ่มรายการ</a>
+                    <i class="glyphicon glyphicon-check hidden-xs"></i> <span class="hidden-xs">ใบส่งของ (ผู้รับเหมา)</span>
+                    <a href="delivery_form_add1.php" class="btn btn-primary btn-sm">เพิ่ม</a>
                 </h1>
             </section>
             <section class="content">
@@ -90,15 +90,18 @@
                                         ?>
 
                                         <form id="frmdelivery" name="frmdelivery" method="post" action="?act=update">
-                                            <table width="600" border="0" align="center" class="table table-bordered table-striped">
+                                            <table width="600" border="0" align="center" class="table table-bordered table-striped table-sm">
 
                                                 <tr>
+                                                    <td>เลขที่</td>
                                                     <td>รายการ</td>
+                                                    <td>สถานที่จัดเก็บ</td>
                                                     <td align="center">คงเหลือ</td>
-                                                    
+                                                    <td align="center">ราคามาตราฐาน</td>
+                                                    <td align="center">ราคา<font color='red'>* </font></td>
                                                     
                                                     <td align="center">จำนวน</td>
-                                                    
+                                                    <td align="center">รวม(บาท)</td>
                                                     <td align="center">ลบ</td>
                                                 </tr>
                                                 <?php
@@ -119,20 +122,25 @@
                                                         $stotal = $total1 + $vat;
                                                         $p_qty = $row['product_uom']; //จำนวนสินค้าในสต๊อก
                                                         echo "<tr>";
-                                                        echo "<td width='334'>" . $row["product_name"] . "</td>";
+                                                        echo "<td width='57' align='right'>";
+                                                        echo "<input type='text' class='form-control' style='text-align:left;' name='delivery_po[$product_id]' value=''  /></td>";
+                                                        echo "<td width='200'>" . $row["product_name"] . "</td>";
+                                                        echo "<td width='100'>" . $row["location_name"] . "</td>";
                                                         echo "<td width='20' align='center'>" . $row["product_uom"]  . "</td>";
-                                                        
+                                                        echo "<td width='46' align='right'>" . number_format($row["product_price"], 2) . "</td>";
+                                                        echo "<td width='57' align='right'>";
+                                                        echo "<input type='number' class='form-control' style='text-align:right;' name='delivery_price[$product_id]' value='$delivery_price' size='2' Required/></td>";
                                                        
                                                         echo "<td width='57' align='right'>";
                                                         echo "<input type='number' class='form-control' style='text-align:right;' name='amount[$product_id]' value='$qty' size='2' min='1' max='$p_qty'/></td>";
-                                                        
+                                                        echo "<td width='93' align='right'>" . number_format($sum, 2) . "</td>";
                                                         //remove product
                                                         echo "<td width='46' align='center'><a href='delivery_form_add1.php?product_id=$product_id&act=remove'class='btn btn-danger'>ลบ</a></td>";
                                                         echo "</tr>";
                                                     }
                                                     
                                                     echo "<tr>";
-                                                    echo "<td colspan='4' align='right'>";
+                                                    echo "<td colspan='9' align='right'>";
                                                     echo "<input type='hidden' name='username' value=' $username'>";
                                                     echo "</td>";
                                                     echo "</tr>";
@@ -140,10 +148,10 @@
                                                 ?>
                                                 
                                                 <tr>
-                                                    <td colspan="7" align="right">
-                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="ปรับปรุง" />
+                                                    <td colspan="9" align="right">
+                                                        <input type="submit" name="button" id="button" class="btn btn-success btn-sm" value="ยืนยัน" />
                                                         <?php if ($act == 'update') { ?>
-                                                            <input type="button" value="สั่งซื้อ" class="btn btn-info btn-sm" onClick="this.form.action='deliveryproduct_confirm.php'; submit()">
+                                                            <input type="button" value="บันทึก" class="btn btn-info btn-sm" onClick="this.form.action='deliveryproduct_confirm.php'; submit()">
                                                             
                                                         <?php } ?>
                                                     </td>
