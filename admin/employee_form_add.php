@@ -171,7 +171,7 @@ if (@$_GET['do'] == 'f') {
     <div class="col-sm-2">
     </div>
     <div class="col-sm-3">
-      <button type="submit" class="btn btn-success">เพิ่มข้อมูล</button>
+      <button type="submit" class="btn btn-success">บันทึก</button>
       <a href="employee.php" class="btn btn-danger">ยกเลิก</a>
     </div>
   </div>
