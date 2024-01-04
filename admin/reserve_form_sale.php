@@ -54,6 +54,7 @@ $result1 = mysqli_query($con, $sql1) or die("Error in query: $sql1 " . mysqli_er
 
             <tr>
                 <td>รายการ</td>
+                <td>สถานที่จัดเก็บ</td>
                 <td align="center">ราคามาตราฐาน</td>
                 <td align="center">ราคาขาย<font color="red">*</font>
                 </td>
@@ -85,25 +86,26 @@ $result1 = mysqli_query($con, $sql1) or die("Error in query: $sql1 " . mysqli_er
                 echo "<tr>";
                 echo "<input type='hidden' style='text-align:right;'  class='form-control' name='reservelist_id[]' value='$row1[reservelist_id]' readonly>";
                 echo "<input type='hidden' style='text-align:right;'  class='form-control' name='product_id[]' value='$row2[product_id]' readonly>";
-                echo "<td width='334'>" . $row2["product_name"] . "</td>";
+                echo "<td width='250'>" . $row2["product_name"] . "</td>";
+                echo "<td width='150'>" . $row2["location_name"] . "</td>";
                 echo "<td width='46' align='right'>" . number_format($row2["product_price"], 2) . "</td>";
                 echo "<td width='46' align='right'>" . "<input type='number' style='text-align:right;' required class='form-control' name='sale_price[]'>" . "</td>";
                 echo "<td width='57' align='right'>" . "<input type='number' style='text-align:right;'  class='form-control' name='reserve_uom[]' value='$row1[reserve_uom]' readonly>" . "</td>";
                 echo "</tr>";
             }
             echo "<tr>";
-                echo "<td colspan='3'  align='right'><b>ส่วนลด</b><font color='red'>*ถ้าไม่มีส่วนลดให้ใส่ 0 </font></td>";
+                echo "<td colspan='4'  align='right'><b>ส่วนลด</b><font color='red'>*ถ้าไม่มีส่วนลดให้ใส่ 0 </font></td>";
                 echo "<td align='right' >" . "<input type='decimal' style='text-align:right;' name='sale_discount' class='form-control' value='0' Required>" . "</td>";
             echo "</tr>";
             echo "<tr>";
-            echo "<td colspan='4' align='right'>";
+            echo "<td colspan='5' align='right'>";
             echo "<input type='hidden' name='username' value=' $username'>";
             echo "</td>";
             echo "</tr>";
 
             ?>
             <tr>
-                <td colspan="4" align="right">
+                <td colspan="5" align="right">
                     <input type="button" value="บิลธรรมดา" class="btn btn-success btn-sm" onClick="this.form.action='reserve_sale_confirm.php?act=novat'; submit()">
                     <input type="button" value="ใบกำกับภาษี" class="btn btn-warning btn-sm" onClick="this.form.action='reserve_sale_confirm.php?act=vat'; submit()">
 
