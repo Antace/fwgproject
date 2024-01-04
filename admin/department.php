@@ -9,7 +9,7 @@
         <h1>
         <i class="glyphicon glyphicon-list-alt hidden-xs"></i> <span class="hidden-xs">ข้อมูลหน่วยงาน</span>
         
-        <a href="department.php?act=add" class="btn btn-primary btn-sm">เพิ่มหน่วยงาน</a>
+        <a href="department.php?act=add" class="btn btn-primary btn-sm">เพิ่ม</a>
         
         </h1>
       </section>
