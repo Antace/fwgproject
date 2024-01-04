@@ -87,7 +87,7 @@ include ('footerjs.php');
 exit;
 }
 $query = "SELECT * FROM tb_po
-WHERE po_dateexpire >= current_date OR po_dateexpire = 0000-00-00 ORDER BY po_id DESC" or die("Error:" . mysqli_error());
+WHERE po_dateexpire >= current_date OR po_dateexpire = 0000-00-00 ORDER BY po_id DESC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
 
 
