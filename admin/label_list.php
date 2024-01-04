@@ -15,9 +15,9 @@ if (@$_GET['do'] == 'success') {
 
 
 $query = "SELECT * FROM tb_label
-ORDER BY label_id DESC" or die("Error:" . mysqli_error());
+ORDER BY label_id DESC" or die("Error:" . mysqli_error($con));
 $result = mysqli_query($con, $query);
-echo ' <table id="example1" class="table table-bordered table-striped">';
+echo ' <table id="example1" class="table table-bordered table-hover table-sm">';
 echo "<thead  align=center>";
 echo "<tr class='table-light'>
       <th width='3%'>ลำดับ</th>
@@ -27,7 +27,7 @@ echo "<tr class='table-light'>
       
       <th width='10%'>ราคา</th>
 
-      <th width='7%'>-</th>
+      <th width='7%'></th>
     </tr>";
 echo "</thead>";
 $i = 1;
