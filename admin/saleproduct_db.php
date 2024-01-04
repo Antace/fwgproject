@@ -17,8 +17,9 @@ $strSQL = "SELECT * FROM tb_prefixsale WHERE 1 ";
 $objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 $objResult = mysqli_fetch_array($objQuery);
 
-//*** Check val = year now ***//
-if($objResult["val"] == date("y"))
+$date1= date("y")+43;
+//*** Check val = year now ***// (ถ้า val = ปี ค.ศ. +43 แล้วเท่ากับปัจจุบัน จะทำการนับต่อ)
+if($objResult["val"] == $date1)
 {
 	$Seq = substr("0000".$objResult["seq"],-4,4);   //*** Replace Zero Fill ***//
 	$strNextSeq =$objResult["val"].$objResult["mval"].$Seq;
@@ -27,17 +28,19 @@ if($objResult["val"] == date("y"))
 	$strSQL = "UPDATE tb_prefixsale SET mval = '".date("m")."' ,seq= seq+1 ";
 	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
-else  //*** Check val != year now ***//
+else  //*** Check val != year now ***// (แต่ถ้าไม่ใช่ ปีปัจจุบัน จะทำการ ขึ้นปีใหม่ เช่น ถ้าปีนี้ 66 แต่ ค่า val = 65 จะเริ่มนับใหม่ เป็นปีปัจจุบันแทน)
 {
 	$Seq = substr("00001",-4,4);   //*** Replace Zero Fill ***//
-	$strNextSeq =date("y").date("m").$Seq;
+	$strNextSeq =$date1.date("m").$Seq;
 
 	//*** Update New Seq ***//
-	$strSQL = "UPDATE tb_prefixsale SET val = '".date("y")."' , mval='".date("m")."', seq = '1' ";
+	$strSQL = "UPDATE tb_prefixsale SET val = '".$date1."' , mval='".date("m")."', seq = '1' ";
 	$objQuery = mysqli_query($con,$strSQL) or die ("Error Query [".$strSQL."]");
 }
 
 // echo $strNextSeq;
+// echo '<br>';
+// echo $date1;
 
 // exit;
 
@@ -48,9 +51,7 @@ $customer_name = mysqli_real_escape_string($con,$_POST["customer_name"]);
 // $customer_branch = $_POST[ "customer_branch" ];
 // $customer_tax = $_POST[ "customer_tax" ];
 //$total_qty = $_POST["total_qty"];
-$total = mysqli_real_escape_string($con,$_POST[ "sale_total" ]); //ราคารวมทั้ง order
-$discount = mysqli_real_escape_string($con,$_POST["sale_discount"]);
-$vat = mysqli_real_escape_string($con,$_POST[ "sale_vat" ]);
+
 $stotal = mysqli_real_escape_string($con,$_POST[ "sale_stotal" ]);
 // $sale_status = mysqli_real_escape_string($con,$_POST["sale_status"]);
 $username = mysqli_real_escape_string($con,$_POST[ "username" ]);
@@ -60,12 +61,12 @@ $sale_dt = Date( "Y-m-d G:i:s" );
 mysqli_query( $con, "BEGIN" );
 $sql1 = "INSERT INTO tb_sale
 VALUES
-($strNextSeq,'$sale_date','$customer_name','$total','$discount','$vat','$stotal','$username','$sale_dt')";
+($strNextSeq,'$sale_date','$customer_name','$stotal','$username','$sale_dt')";
 $query1 = mysqli_query($con,$sql1) or die ("Error in query: $sql1" . mysqli_error($con,$sql1));
 
 
 // echo $sql1;
-//exit;
+// exit;
 //ฟังก์ชั่น MAX() จะคืนค่าที่มากที่สุดในคอลัมน์ที่ระบุ ออกมา หรือจะพูดง่ายๆก็ว่า ใช้สำหรับหาค่าที่มากที่สุด นั่นเอง.
 $sql2 = "SELECT MAX(sale_id) as sale_id 
 	FROM tb_sale
@@ -87,7 +88,7 @@ foreach ( $_SESSION[ 'cart' ] as $product_id => $qty ) {
   $sql3 = "SELECT * FROM tb_product WHERE product_id=$product_id";
   $query3 = mysqli_query( $con, $sql3 )or die( "Error in query: $sql3" . mysqli_error( $con,$sql3 ) );
   $row3 = mysqli_fetch_array( $query3 );
-  $pricetotal = $sale_price * $qty;
+  $pricetotal = $sale_price;
   $count=mysqli_num_rows($query3);
   
   
