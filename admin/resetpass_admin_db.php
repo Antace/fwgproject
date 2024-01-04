@@ -16,7 +16,7 @@ $employee_id = $_POST['employee_id'];
 	        password = '$password'
 	        WHERE employee_id = '".$employee_id."' ";	
 	        $resault_resetpass = mysqli_query($con, $sql_resetpass) or die
-			("Error : ".mysqli_error($sql_resetpass));
+			("Error : ".mysqli_error($con,$sql_resetpass));
 
 		if($resault_resetpass){
 			//แก้ไขสำเร็จ
