@@ -30,6 +30,14 @@ if (@$_GET['do'] == 'f') {
     </div>
   </div>
   <div class="form-group">
+    <div class="col-sm-9 control-label">
+      ชื่อบัญชี : 
+    </div>
+    <div class="col-sm-3">
+      <input type="text" name="link_user" class="form-control" autocomplete="off" minlength="2">
+    </div>
+  </div>
+  <div class="form-group">
     <div class="col-sm-3 control-label" class="form-control">
       รหัสผ่าน : <font color="red">*</font>
     </div>
@@ -58,7 +66,7 @@ if (@$_GET['do'] == 'f') {
     <div class="col-sm-3">
     </div>
     <div class="col-sm-3">
-      <button type="submit" class="btn btn-success">เพิ่มข้อมูล</button>
+      <button type="submit" class="btn btn-success">บันทึก</button>
       <a href="link.php" class="btn btn-danger">ยกเลิก</a>
     </div>
   </div>
