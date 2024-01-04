@@ -5,14 +5,14 @@ $ID = mysqli_real_escape_string($con,$_GET['ID']);
 
 $sql = "SELECT * FROM tb_sale
 WHERE sale_id=$ID
-ORDER BY sale_id DESC" or die("Error:" . mysqli_error());
-$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+ORDER BY sale_id DESC" or die("Error:" . mysqli_error($con));
+$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error($con));
 $row = mysqli_fetch_array($result);
 
 $sql1 = "SELECT * FROM tb_salelist
 WHERE sale_id=$ID
-ORDER BY salelist_id DESC" or die("Error:" . mysqli_error());
-$result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_error());
+ORDER BY salelist_id DESC" or die("Error:" . mysqli_error($con));
+$result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_error($con));
 
 
 ?>
@@ -38,6 +38,7 @@ $result1 = mysqli_query($con, $sql1) or die ("Error in query: $sql1 " . mysqli_e
 
 <tr>
     <td>รายการ</td>
+    <td>สถานที่จัดเก็บ</td>
     <td align="center">ราคามาตราฐาน</td>
     <td align="center">ราคาขาย</td>
     <td align="center">จำนวน</td>
@@ -68,8 +69,8 @@ while ($row1 = mysqli_fetch_array($result1)) {
         echo "<tr>";
         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='salelist_id[]' value='$row1[salelist_id]' readonly>";
         echo "<input type='hidden' style='text-align:right;'  class='form-control' name='product_id[]' value='$row2[product_id]' readonly>";
-        echo "<td width='334'>" . $row2["product_name"] . "</td>";
-        
+        echo "<td width='250'>" . $row2["product_name"] . "</td>";
+        echo "<td width='150'>" . $row2["location_name"] . "</td>";
         echo "<td width='46' align='right'>" . number_format($row2["product_price"],2). "</td>";
         echo "<td width='57' align='right'>" . number_format($psale_price,2) ."</td>";
         echo "<td width='46' align='right'>" . "<input type='number' style='text-align:right;'  class='form-control' name='sale_uom[]' value='$row1[sale_uom]' readonly>" . "</td>";
@@ -80,23 +81,9 @@ while ($row1 = mysqli_fetch_array($result1)) {
         // echo "<td width='46' align='center'><a href='sale_form_add1.php?product_id=$product_id&act=remove'class='btn btn-danger'>ลบ</a></td>";
         echo "</tr>";
 }
+    
     echo "<tr>";
-    echo "<td colspan='3'  align='right'><b>ราคาก่อน Vat</b></td>";
-    echo "<td align='right' >" . $row["sale_total"] . "</td>";
-    echo "<td align='left' >บาท</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<td colspan='3'  align='right'><b>ส่วนลด</b><font color='red'>*ถ้าไม่มีส่วนลดให้ใส่ 0 </font></td>";
-    echo "<td align='right' >" . $row["sale_discount"]. "</td>";
-    echo "<td align='left' >บาท</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<td colspan='3'  align='right'><b>Vat 7%</b></td>";
-    echo "<td align='right' >" . $row["sale_vat"]. "</td>";
-    echo "<td align='left' >บาท</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<td colspan='3'  align='right'><b>ราคารวม Vat</b></td>";
+    echo "<td colspan='4'  align='right'><b>ราคารวม</b></td>";
     echo "<td align='right' >" . $row["sale_stotal"] . "</td>";
     echo "<td align='left' >บาท</td>";
     echo "</tr>";
