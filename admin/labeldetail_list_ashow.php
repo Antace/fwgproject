@@ -1,5 +1,5 @@
 <?php 
-echo ' <table id="example1" class="table table-bordered table-striped">';
+echo ' <table id="example1" class="table table-bordered table-hover table-sm">';
 echo "<thead  align=center>";
 echo "<tr class='table-light'>
       <th width='3%'>ลำดับ</th>
@@ -9,7 +9,7 @@ echo "<tr class='table-light'>
       
       <th width='10%'>สถานะ</th>
       <th width='10%'>สถานะจัดส่ง</th>
-      <th width='7%'>-</th>
+      <th width='7%'></th>
     </tr>";
 echo "</thead>";
 $i=1;
