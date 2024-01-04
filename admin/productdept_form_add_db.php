@@ -56,6 +56,10 @@ if($_SESSION['employee_id']==''){
 	echo '<script>';
     echo "window.location='product.php?act=edit1&ID=$_GET[ID]';";
     echo '</script>';
+	}else{
+	echo '<script>';
+    echo "window.location='productdept.php?do=success';";
+    echo '</script>';
 	}
 	}else{
 	echo '<script>';
